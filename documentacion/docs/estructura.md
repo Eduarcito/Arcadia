@@ -29,13 +29,12 @@ Registrar las cuatro `Activity` en `AndroidManifest.xml`. Solo el catálogo nece
 |---|---|
 | `res/layout/activity_main.xml` | Catálogo con `ConstraintLayout` y tres tarjetas fijas en una columna. |
 | `res/layout/activity_juego_2048.xml`, `activity_buscaminas.xml`, `activity_kenken.xml` | Raíz `ConstraintLayout` y contenedor `LinearLayout` vertical para el tablero de cada juego. |
-| `res/layout/tarjeta_juego.xml`, `encabezado_juego.xml` | Componentes reutilizables con `<include>` e IDs distintos cuando una pantalla incluye el mismo layout varias veces. |
 | `res/layout/fila_tablero.xml` | Plantilla compartida: un `LinearLayout` horizontal que agrupa las casillas de cada fila. |
 | `res/layout/celda_2048.xml`, `celda_buscaminas.xml`, `celda_kenken.xml` | Plantillas para inflar las casillas de cada tablero. |
 | `res/values/` | Textos, colores, tamaños, estilos y tema. |
 | `res/drawable/` | Fondos, bordes y estados visuales definidos en XML. |
 
-Android no admite subcarpetas arbitrarias dentro de `res/layout/`. Distinguir los recursos de cada juego por sus nombres. Para tres tarjetas fijas no hace falta un `RecyclerView` ni un adaptador.
+Declarar las vistas fijas en el propio XML de la pantalla, sin usar `<include>`. Android no admite subcarpetas arbitrarias dentro de `res/layout/`. Distinguir los recursos de cada juego por sus nombres. Para tres tarjetas fijas no hace falta un `RecyclerView` ni un adaptador.
 
 ## Responsabilidades
 

@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="arcadia_fondo">#F7F6F0</color>
+    <color name="arcadia_texto">#173E31</color>
+    <color name="arcadia_primario">#275442</color>
+    <color name="arcadia_sobre_primario">#FFFFFF</color>
+    <color name="arcadia_lima">#D6EE8C</color>
+    <color name="arcadia_sobre_lima">#233400</color>
+    <color name="catalogo_ocre">#F4DCA3</color>
+    <color name="catalogo_verde_azulado">#BFE6D9</color>
+    <color name="catalogo_lavanda">#E4D9EF</color>
 </resources>

@@ -11,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Arcadia">
+        <activity android:name=".juegos.juego2048.Juego2048Activity"
+            android:exported="false" android:label="@string/juego_2048" />
+        <activity android:name=".juegos.buscaminas.BuscaminasActivity"
+            android:exported="false" android:label="@string/juego_buscaminas" />
+        <activity android:name=".juegos.kenken.KenKenActivity"
+            android:exported="false" android:label="@string/juego_kenken" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

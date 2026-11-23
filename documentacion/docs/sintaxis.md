@@ -10,33 +10,28 @@ Los ejemplos ilustran convenciones del proyecto. Los fragmentos de pantalla se i
 - Usar cuatro espacios de sangría. Preferir `if` para decisiones simples, `when` para varias opciones y `for` o `while` cuando permitan seguir mejor una regla paso a paso. No usar `!!` ni encadenar muchas operaciones si una versión explícita resulta más clara.
 - Los comentarios deben explicar decisiones o comportamientos importantes y escribirse sin tildes, sin eñe y sin punto final. Los textos que ve el usuario sí siguen la ortografía habitual del español.
 
-## 1. Reutilizar un encabezado XML
+## 1. Conectar un botón declarado en el XML de la pantalla
 
-Dentro de `activity_kenken.xml`, incluir un encabezado con una vista raíz normal. El botón con ID `btn_reiniciar` se declara en `encabezado_juego.xml`.
+En `activity_kenken.xml`, declarar el botón de regreso directamente dentro del `ConstraintLayout`:
 
 ```xml
-<include
-    android:id="@+id/encabezado_juego"
-    layout="@layout/encabezado_juego"
-    android:layout_width="0dp"
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_volver"
+    style="@style/Widget.Material3.Button.TextButton"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:text="@string/volver_catalogo"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 ```
 
-Dentro de `KenKenActivity.kt`, después de inicializar el binding, conectar el botón con la partida:
+En `onCreate()` de `KenKenActivity.kt`, después de inicializar el binding, conectar el botón:
 
 ```kotlin
-private fun configurarEventos() {
-    binding.encabezadoJuego.btnReiniciar.setOnClickListener {
-        viewModel.reiniciar()
-        actualizarPantalla()
-    }
-}
+binding.btnVolver.setOnClickListener { finish() }
 ```
 
-`<include>` es de Android y reutiliza el layout. View Binding genera `ActivityKenkenBinding` a partir de `activity_kenken.xml` y expone los IDs en Kotlin. `setOnClickListener()` pertenece a las vistas de Android. `reiniciar()` y `actualizarPantalla()` son funciones propias: la primera cambia la partida y la segunda actualiza la interfaz.
+View Binding genera `ActivityKenkenBinding` a partir de `activity_kenken.xml` y expone los IDs en Kotlin. `setOnClickListener()` registra la pulsación en la vista. `finish()`, de `Activity` del SDK de Android, cierra el juego y vuelve al catálogo que lo abrió.
 
 Activar `viewBinding = true` en `android.buildFeatures` del `app/build.gradle.kts`. Usar `AppCompatActivity` de AndroidX AppCompat para las pantallas, `ViewModel` de AndroidX Lifecycle y el delegado `by viewModels()` de AndroidX Activity KTX para obtener el estado de pantalla. No se necesita una biblioteca externa para View Binding.
 
@@ -53,7 +48,7 @@ En `activity_kenken.xml`, dentro del `ConstraintLayout` raíz, declarar el table
     app:layout_constraintDimensionRatio="H,1:1"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/encabezado_juego" />
+    app:layout_constraintTop_toBottomOf="@id/titulo" />
 ```
 
 El ancho se ajusta entre las restricciones laterales; `H,1:1` calcula el alto a partir de ese ancho. `ConstraintLayout` pertenece a AndroidX. `LinearLayout` es parte del SDK de Android y no requiere otra biblioteca.

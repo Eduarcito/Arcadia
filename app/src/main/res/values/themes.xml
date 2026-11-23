@@ -1,8 +1,13 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Base.Theme.Arcadia" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorSurface">@color/arcadia_fondo</item>
+        <item name="colorOnSurface">@color/arcadia_texto</item>
+        <item name="android:colorBackground">@color/arcadia_fondo</item>
+        <item name="colorOnBackground">@color/arcadia_texto</item>
+        <item name="colorPrimary">@color/arcadia_primario</item>
+        <item name="colorOnPrimary">@color/arcadia_sobre_primario</item>
+        <item name="colorPrimaryContainer">@color/arcadia_lima</item>
+        <item name="colorOnPrimaryContainer">@color/arcadia_sobre_lima</item>
     </style>
 
     <style name="Theme.Arcadia" parent="Base.Theme.Arcadia" />

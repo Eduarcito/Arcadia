@@ -5,7 +5,7 @@ plugins {
 android {
     namespace = "com.example.arcadia"
     compileSdk {
-        version = release(36) {
+        version = release(37) {
             minorApiLevel = 1
         }
     }
@@ -26,6 +26,9 @@ android {
                 enable = false
             }
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
