@@ -11,24 +11,16 @@ Estas reglas se aplican al desarrollo de una aplicación Android con tres juegos
 5. Usar nombres descriptivos en español y sin tildes en el código. Los textos visibles deben respetar la ortografía del español y declararse en recursos cuando sean fijos.
 6. Preferir funciones cortas, `if`, `when`, bucles y colecciones sencillas. No introducir capas, dependencias ni características sin una necesidad del proyecto y sin acordarlo con el equipo.
 7. La aplicación debe funcionar sin Internet. No agregar cuentas ni base de datos.
-8. Al crear el futuro proyecto Android e incorporar estas guías, excluir la carpeta `documentacion/` completa mediante el `.gitignore` de la raíz del repositorio.
+8. Mantener `documentacion/` en el repositorio mientras se comparte la guía con la persona encargada de continuar el proyecto.
 9. Usar Material Components de Google para vistas XML: tema Material 3, `MaterialCardView` para las tarjetas, `MaterialButton` para los controles y `MaterialAlertDialogBuilder` para el diálogo de 2048. Esto no sustituye `ConstraintLayout`, `LinearLayout` ni View Binding.
 10. Entregar 2048 con gestos y botones de dirección. Mostrar el selector de controles al abrir el juego por primera vez y permitir cambiar el modo sin reiniciar la partida.
-
-## Exclusión de Git
-
-Cuando exista el repositorio del proyecto Android, añadir esta línea a su `.gitignore` antes de incorporar la documentación a Git, sin reemplazar las reglas existentes:
-
-```gitignore
-/documentacion/
-```
-
-Compartir estas guías fuera del repositorio. Si Git ya está siguiendo alguno de estos archivos, añadirlo al `.gitignore` no basta: hay que dejar de rastrearlo sin borrar la copia local. Esto no elimina las versiones que ya estén en el historial.
+11. Construir las pantallas de **todos los juegos** según la [guía de componentes](docs/componentes.md). Encapsular los bloques visuales reutilizables en vistas compuestas y declararlas por su nombre de clase en XML. Configurar el contenido fijo mediante atributos XML, comunicar las acciones a la `Activity` y mantener las reglas de la partida en el `ViewModel` y en funciones Kotlin. No usar `<include>` en layouts.
 
 ## Guías
 
 | Archivo | Consultar antes de |
 |---|---|
+| [Componentes](docs/componentes.md) | Crear la interfaz de un juego o reutilizar una parte de otra pantalla. |
 | [Estructura](docs/estructura.md) | Crear o mover paquetes, clases, pantallas y recursos. |
 | [Diseño](docs/diseno.md) | Cambiar tarjetas, tableros, estilos o controles. |
 | [Juegos](docs/juegos.md) | Implementar o modificar las reglas de una partida. |

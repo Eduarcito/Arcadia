@@ -21,13 +21,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(bindingPrincipal.root)
         bindingPrincipal.root.aplicarMargenesDelSistema()
 
-        bindingPrincipal.btnJugar2048.setOnClickListener {
+        bindingPrincipal.tarjeta2048.alJugar {
             startActivity(Intent(this, Juego2048Activity::class.java))
         }
-        bindingPrincipal.btnJugarBuscaminas.setOnClickListener {
+        bindingPrincipal.tarjetaBuscaminas.alJugar {
             startActivity(Intent(this, BuscaminasActivity::class.java))
         }
-        bindingPrincipal.btnJugarKenken.setOnClickListener {
+        bindingPrincipal.tarjetaKenken.alJugar {
             startActivity(Intent(this, KenKenActivity::class.java))
         }
     }

@@ -34,112 +34,34 @@
                 android:textColor="?attr/colorOnSurface"
                 android:textStyle="bold" />
 
-            <com.google.android.material.card.MaterialCardView
+            <com.example.arcadia.compartido.ui.TarjetaJuegoView
                 android:id="@+id/tarjeta_2048"
                 style="@style/TarjetaCatalogo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/catalogo_ocre">
+                app:cardBackgroundColor="@color/catalogo_ocre"
+                app:descripcionJuego="@string/catalogo_descripcion_2048"
+                app:tituloJuego="@string/juego_2048" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/NombreJuegoCatalogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/juego_2048" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/DescripcionJuegoCatalogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/catalogo_descripcion_2048" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_jugar_2048"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:contentDescription="@string/catalogo_jugar_2048"
-                        android:text="@string/catalogo_jugar" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <com.example.arcadia.compartido.ui.TarjetaJuegoView
                 android:id="@+id/tarjeta_buscaminas"
                 style="@style/TarjetaCatalogo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/catalogo_verde_azulado">
+                app:cardBackgroundColor="@color/catalogo_verde_azulado"
+                app:descripcionJuego="@string/catalogo_descripcion_buscaminas"
+                app:tituloJuego="@string/juego_buscaminas" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/NombreJuegoCatalogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/juego_buscaminas" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/DescripcionJuegoCatalogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/catalogo_descripcion_buscaminas" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_jugar_buscaminas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:contentDescription="@string/catalogo_jugar_buscaminas"
-                        android:text="@string/catalogo_jugar" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <com.example.arcadia.compartido.ui.TarjetaJuegoView
                 android:id="@+id/tarjeta_kenken"
                 style="@style/TarjetaCatalogo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/catalogo_lavanda">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/NombreJuegoCatalogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/juego_kenken" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/DescripcionJuegoCatalogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/catalogo_descripcion_kenken" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_jugar_kenken"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:contentDescription="@string/catalogo_jugar_kenken"
-                        android:text="@string/catalogo_jugar" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                app:cardBackgroundColor="@color/catalogo_lavanda"
+                app:descripcionJuego="@string/catalogo_descripcion_kenken"
+                app:tituloJuego="@string/juego_kenken" />
         </LinearLayout>
     </ScrollView>
 

@@ -13,6 +13,6 @@ class KenKenActivity : AppCompatActivity() {
         val binding = ActivityKenkenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.root.aplicarMargenesDelSistema()
-        binding.btnVolver.setOnClickListener { finish() }
+        binding.encabezado.alVolver { finish() }
     }
 }

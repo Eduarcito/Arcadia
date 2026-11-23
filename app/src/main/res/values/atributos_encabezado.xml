@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="EncabezadoJuegoView">
+        <attr name="tituloEncabezado" format="string" />
+    </declare-styleable>
+</resources>

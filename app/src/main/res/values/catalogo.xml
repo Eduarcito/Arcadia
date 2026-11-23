@@ -5,9 +5,12 @@
     <string name="catalogo_descripcion_buscaminas">Usa las pistas numéricas para descubrir las casillas seguras sin tocar una mina.</string>
     <string name="catalogo_descripcion_kenken">Completa cada jaula con la operación indicada, sin repetir números en filas ni columnas.</string>
     <string name="catalogo_jugar">Jugar</string>
-    <string name="catalogo_jugar_2048">Jugar a 2048</string>
-    <string name="catalogo_jugar_buscaminas">Jugar a Buscaminas</string>
-    <string name="catalogo_jugar_kenken">Jugar a KenKen</string>
+    <string name="catalogo_jugar_a">Jugar a %1$s</string>
+
+    <declare-styleable name="TarjetaJuegoView">
+        <attr name="tituloJuego" format="string" />
+        <attr name="descripcionJuego" format="string" />
+    </declare-styleable>
 
     <style name="TarjetaCatalogo">
         <item name="cardCornerRadius">24dp</item>

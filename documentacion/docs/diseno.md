@@ -7,12 +7,12 @@ Usar **Material Components para vistas XML** (`com.google.android.material:mater
 ## Catálogo
 
 - Mostrar el encabezado **«Juegos que estimulan el pensamiento»** y tres tarjetas en una sola columna: 2048, Buscaminas y KenKen.
-- Declarar las tres `MaterialCardView` directamente en `activity_main.xml`. Cada tarjeta tiene su nombre, descripción, color de fondo y un `MaterialButton` **Jugar** definidos en XML para que se vean en la vista previa.
+- Declarar tres instancias de `TarjetaJuegoView` en `activity_main.xml`. La vista compuesta contiene el título, la descripción y el `MaterialButton` **Jugar**. Cada instancia configura sus textos y su color en XML para que se vean en la vista previa.
 - No incorporar búsqueda, filtros, favoritos ni secciones adicionales.
 
 ## Pantallas de juego
 
-- Declarar el título y **Volver** en el layout de cada juego. Al implementar la partida, añadir **Reiniciar** en ese mismo archivo.
+- Usar `EncabezadoJuegoView` en los tres layouts. Cada pantalla indica su título en XML y conecta la acción **Volver** en Kotlin. Al implementar **Reiniciar**, añadir el botón al encabezado compartido y conectar la acción desde cada pantalla.
 - Mostrar una instrucción breve, el tablero, los controles propios del juego y un mensaje de estado. 2048 muestra su puntaje; Buscaminas indica el modo activo; KenKen muestra si aún faltan valores o si hay un error al comprobar.
 - Mantener el tablero cuadrado con una proporción `1:1` en `ConstraintLayout`, dentro del espacio disponible y sin desplazamiento horizontal. No fijar el ancho en `dp`.
 - Dar el mismo peso a todas las filas del `LinearLayout` vertical y a todas las casillas de cada fila horizontal. Así se reparte por igual el alto entre filas y el ancho entre casillas.

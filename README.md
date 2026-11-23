@@ -14,6 +14,15 @@ El código está en `app/src/main/java/com/example/arcadia/` y las vistas en `ap
 | Buscaminas | `juegos/buscaminas/` | `activity_buscaminas.xml` |
 | KenKen | `juegos/kenken/` | `activity_kenken.xml` |
 
+Las tarjetas y los encabezados son **vistas compuestas** en `compartido/ui/`.
+Para reutilizarlos en otro layout, declara la etiqueta de `TarjetaJuegoView` como en
+`activity_main.xml` o la de `EncabezadoJuegoView` como en `activity_kenken.xml`.
+Cada instancia recibe su contenido mediante atributos XML. La pantalla decide
+qué hacer al pulsar el botón.
+
+Para crear o ampliar un juego, sigue la [guía de componentes](documentacion/docs/componentes.md).
+Este patrón se aplica a 2048, Buscaminas y KenKen.
+
 Al implementar una partida, coloca su `ViewModel` y sus reglas en el paquete del juego.
 La `Activity` conecta los controles mediante View Binding y muestra el estado;
 el `ViewModel` conserva la partida al rotar la pantalla. Escribe las reglas en Kotlin

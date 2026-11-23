@@ -13,6 +13,6 @@ class Juego2048Activity : AppCompatActivity() {
         val binding = ActivityJuego2048Binding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.root.aplicarMargenesDelSistema()
-        binding.btnVolver.setOnClickListener { finish() }
+        binding.encabezado.alVolver { finish() }
     }
 }

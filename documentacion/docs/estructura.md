@@ -19,7 +19,7 @@ Las rutas de esta tabla son relativas al paquete base de la aplicación bajo `ap
 | `juegos/kenken/KenKenViewModel.kt` | Conserva los números ingresados, la casilla seleccionada y el resultado de la comprobación. |
 | `juegos/kenken/ReglasKenKen.kt` | Comprueba filas, columnas y operaciones de las jaulas. |
 | `juegos/kenken/RompecabezasKenKen.kt` | Define las casillas de cada jaula, su objetivo y su operación. |
-| `compartido/ui/` | Funciones de interfaz que ya usan dos o más pantallas. Crear solo cuando exista esa necesidad. |
+| `compartido/ui/` | Vistas compuestas reutilizables (`TarjetaJuegoView`, `EncabezadoJuegoView`) y funciones de interfaz compartidas. |
 
 Registrar las cuatro `Activity` en `AndroidManifest.xml`. Solo el catálogo necesita ser la actividad de inicio. Volver al catálogo con Atrás o con `finish()` en el botón de regreso; no abrir otro catálogo encima del actual.
 
@@ -34,7 +34,7 @@ Registrar las cuatro `Activity` en `AndroidManifest.xml`. Solo el catálogo nece
 | `res/values/` | Textos, colores, tamaños, estilos y tema. |
 | `res/drawable/` | Fondos, bordes y estados visuales definidos en XML. |
 
-Declarar las vistas fijas en el propio XML de la pantalla, sin usar `<include>`. Android no admite subcarpetas arbitrarias dentro de `res/layout/`. Distinguir los recursos de cada juego por sus nombres. Para tres tarjetas fijas no hace falta un `RecyclerView` ni un adaptador.
+Declarar cada instancia de un componente por su nombre completo de clase en el XML de la pantalla, sin usar `<include>`. El componente carga su layout interno y lee sus atributos XML; la `Activity` conecta las acciones. Android no admite subcarpetas arbitrarias dentro de `res/layout/`. Distinguir los recursos de cada juego por sus nombres. Para tres tarjetas fijas no hace falta un `RecyclerView` ni un adaptador.
 
 ## Responsabilidades
 

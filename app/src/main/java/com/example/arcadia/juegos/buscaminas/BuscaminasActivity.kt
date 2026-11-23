@@ -13,6 +13,6 @@ class BuscaminasActivity : AppCompatActivity() {
         val binding = ActivityBuscaminasBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.root.aplicarMargenesDelSistema()
-        binding.btnVolver.setOnClickListener { finish() }
+        binding.encabezado.alVolver { finish() }
     }
 }

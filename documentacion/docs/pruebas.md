@@ -4,6 +4,7 @@ Comprobar las reglas por separado y recorrer las cuatro pantallas en un disposit
 
 ## Pruebas generales
 
+- Tras compilar el módulo, abrir `activity_main.xml` en **Design**: cada tarjeta debe mostrar su título, descripción y color sin ejecutar la `Activity`. Abrir los layouts de los juegos y comprobar que cada encabezado muestra el título de esa pantalla.
 - El catálogo abre los tres juegos y Atrás regresa al mismo catálogo sin duplicarlo.
 - Cada tablero tiene el número correcto de filas y casillas, con tamaño uniforme. Cabe en un teléfono pequeño sin desplazamiento horizontal. Los mensajes se leen y los controles no quedan bajo las barras del sistema.
 - Al rotar, se conservan el tablero y los datos de la partida. Al salir y volver a entrar, empieza otra partida.
