@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.button.MaterialButtonToggleGroup xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:baselineAligned="false"
-    android:orientation="horizontal"
-    app:checkedButton="@id/incrementar"
-    app:selectionRequired="true"
-    app:singleSelection="true">
+    android:orientation="horizontal">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/incrementar"
         style="@style/Widget.Arcadia.BotonIncrementarKenKen"
         android:layout_width="0dp"
-        android:layout_height="@dimen/alto_boton_kenken"
+        android:layout_height="@dimen/alto_modo_kenken"
         android:layout_weight="1"
+        android:layout_marginEnd="5dp"
+        android:text="@string/kenken_accion_sumar"
         android:contentDescription="@string/kenken_incrementar"
         android:tooltipText="@string/kenken_incrementar"
-        app:icon="@drawable/ic_sumar" />
+        android:checked="true"
+        app:icon="@drawable/kenken_sumar" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/decrementar"
         style="@style/Widget.Arcadia.BotonDecrementarKenKen"
         android:layout_width="0dp"
-        android:layout_height="@dimen/alto_boton_kenken"
+        android:layout_height="@dimen/alto_modo_kenken"
         android:layout_weight="1"
+        android:layout_marginHorizontal="5dp"
+        android:text="@string/kenken_accion_restar"
         android:contentDescription="@string/kenken_decrementar"
         android:tooltipText="@string/kenken_decrementar"
-        app:icon="@drawable/ic_restar" />
+        app:icon="@drawable/kenken_restar" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/borrar"
         style="@style/Widget.Arcadia.BotonBorrarKenKen"
         android:layout_width="0dp"
-        android:layout_height="@dimen/alto_boton_kenken"
+        android:layout_height="@dimen/alto_modo_kenken"
         android:layout_weight="1"
+        android:layout_marginStart="5dp"
+        android:text="@string/kenken_borrar"
         android:contentDescription="@string/kenken_borrar"
         android:tooltipText="@string/kenken_borrar"
-        app:icon="@drawable/ic_borrar" />
+        app:icon="@drawable/kenken_borrar" />
 
-</com.google.android.material.button.MaterialButtonToggleGroup>
+</LinearLayout>

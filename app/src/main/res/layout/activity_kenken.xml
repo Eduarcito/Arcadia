@@ -3,90 +3,122 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/margen_pantalla_juego">
+    android:background="@color/arcade_bg">
 
     <com.example.arcadia.compartido.ui.EncabezadoJuegoView
         android:id="@+id/encabezado"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:tituloEncabezado="@string/juego_kenken"
+        android:layout_height="64dp"
+        app:estiloArcade="true"
         app:mostrarReiniciar="true"
         app:mostrarTitulo="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/zona_tablero"
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/separacion_tablero_kenken"
-        android:layout_marginBottom="@dimen/separacion_tablero_kenken"
-        app:layout_constraintBottom_toTopOf="@id/controles"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/encabezado">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/encabezado"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/titulo_tablero"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/separacion_titulo_tablero_kenken"
-            android:accessibilityHeading="true"
-            android:text="@string/juego_kenken"
-            android:textAppearance="?attr/textAppearanceHeadlineSmall"
-            android:textColor="@color/arcadia_texto"
-            app:layout_constraintBottom_toTopOf="@id/tablero"
-            app:layout_constraintEnd_toEndOf="@id/tablero"
-            app:layout_constraintStart_toStartOf="@id/tablero"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintVertical_bias="0.5" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <com.example.arcadia.juegos.kenken.TableroKenKenView
-            android:id="@+id/tablero"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titulo_tablero" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/kenken_lema"
+                android:textSize="10sp"
+                android:letterSpacing="0.16"
+                android:textStyle="bold"
+                android:textColor="@color/kenken_acento" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/titulo_tablero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="20dp"
+                android:accessibilityHeading="true"
+                android:text="@string/juego_kenken"
+                android:textSize="38sp"
+                android:fontFamily="sans-serif-black"
+                android:textStyle="bold"
+                android:textColor="@color/arcade_ink" />
 
-    <com.example.arcadia.juegos.kenken.ControlesKenKenView
-        android:id="@+id/controles"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/separacion_controles_kenken"
-        app:layout_constraintBottom_toTopOf="@id/comprobar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <com.example.arcadia.compartido.ui.IndicadoresJuegoView
+                android:id="@+id/indicadores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:acentoBloque="@color/kenken_acento"
+                app:tamanoIndicador="20sp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/comprobar"
-        style="@style/Widget.Arcadia.BotonComprobarKenKen"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/kenken_comprobar"
-        app:icon="@drawable/ic_comprobar"
-        app:layout_constraintBottom_toTopOf="@id/estado"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="18dp"
+                android:gravity="center"
+                android:text="@string/kenken_gesto"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/arcade_muted" />
 
-    <TextView
-        android:id="@+id/estado"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/separacion_estado_kenken"
-        android:gravity="center"
-        android:minLines="3"
-        android:accessibilityLiveRegion="polite"
-        android:text="@string/kenken_instruccion_incrementar"
-        android:textAppearance="?attr/textAppearanceBodySmall"
-        android:textColor="@color/kenken_texto_secundario"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/zona_tablero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.example.arcadia.juegos.kenken.TableroKenKenView
+                    android:id="@+id/tablero"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/fondo_tablero_kenken"
+                    app:layout_constraintWidth_max="460dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/estado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="58dp"
+                android:paddingVertical="16dp"
+                android:gravity="center"
+                android:accessibilityLiveRegion="polite"
+                android:text="@string/kenken_instruccion_incrementar"
+                android:textSize="14sp"
+                android:textColor="@color/kenken_texto_secundario" />
+
+            <com.example.arcadia.juegos.kenken.ControlesKenKenView
+                android:id="@+id/controles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/comprobar"
+                style="@style/Widget.Arcadia.BotonComprobarKenKen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/kenken_comprobar"
+                app:icon="@drawable/kenken_comprobar" />
+
+            <com.example.arcadia.compartido.ui.AyudaJuegoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:acentoBloque="@color/kenken_acento"
+                app:textoAyuda="@string/kenken_ayuda" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

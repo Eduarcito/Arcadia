@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="kenken_incrementar">Incrementar</string>
+    <string name="kenken_accion_sumar">Sumar</string>
+    <string name="kenken_accion_restar">Restar</string>
+    <string name="kenken_lema">CADA NÚMERO EN SU LUGAR</string>
+    <string name="kenken_gesto">Elige un modo · Toca una casilla</string>
+    <string name="kenken_ayuda">Completa cada fila y columna con los números del 1 al 4, sin repetir. Las jaulas indican el resultado y la operación que deben cumplir sus casillas.</string>
+    <string name="kenken_casillas_completadas">CASILLAS\n%1$d / 16</string>
+    <string name="kenken_modo_indicador">MODO\n%1$s</string>
     <string name="kenken_decrementar">Decrementar</string>
     <string name="kenken_simbolo_incrementar">+</string>
     <string name="kenken_simbolo_decrementar">−</string>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kenken_linea_interna">#564761</color>
+    <color name="kenken_borde_seleccion">#D7ACF7</color>
+    <color name="kenken_texto_secundario">#B8AFBC</color>
+    <color name="kenken_celda_superior">#393044</color>
+    <color name="kenken_celda_inferior">#30283B</color>
+    <color name="kenken_celda_seleccion">#5B3C73</color>
+    <color name="kenken_texto_tablero">#F6EDFD</color>
+    <color name="kenken_borde_jaula">#AB96BE</color>
+    <color name="kenken_acento">#D8B4F3</color>
+    <color name="kenken_comprobar_fondo">#D8B4F3</color>
+    <color name="kenken_comprobar_texto">#2F1B3B</color>
+    <color name="kenken_incrementar_fondo">#24332F</color>
+    <color name="kenken_incrementar_activo">#244D43</color>
+    <color name="kenken_incrementar_tinte">#A9E7C6</color>
+    <color name="kenken_decrementar_fondo">#253141</color>
+    <color name="kenken_decrementar_activo">#2C4765</color>
+    <color name="kenken_decrementar_tinte">#A9D2FF</color>
+    <color name="kenken_borrar_fondo">#3A2B34</color>
+    <color name="kenken_borrar_activo">#623440</color>
+    <color name="kenken_borrar_tinte">#FFB8CA</color>
+</resources>

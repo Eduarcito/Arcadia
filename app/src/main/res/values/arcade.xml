@@ -81,7 +81,7 @@
     <string name="arcade_music">Música</string>
     <string name="arcade_dark">Modo oscuro</string>
     <string name="arcade_vibration">Vibración</string>
-    <string name="arcade_settings_note">Tus preferencias se guardan en este dispositivo. Los ajustes no cambian la configuración de KenKen.</string>
+    <string name="arcade_settings_note">Tus preferencias se guardan en este dispositivo. El tema se aplica a todos los juegos; los ajustes de audio y vibración no se aplican a KenKen.</string>
     <string name="arcade_settings_reset">Restablecer ajustes</string>
     <string name="arcade_saved">Partidas guardadas automáticamente</string>
     <color name="arcadia_icon_bg">#211829</color>

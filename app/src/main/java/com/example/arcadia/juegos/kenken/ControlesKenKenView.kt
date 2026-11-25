@@ -12,17 +12,17 @@ class ControlesKenKenView @JvmOverloads constructor(
     atributos: AttributeSet? = null
 ) : FrameLayout(contexto, atributos) {
     private val binding = ControlesKenkenBinding.inflate(LayoutInflater.from(contexto), this, true)
-    private var mostrandoEstado = false
     private var modoMostrado: ModoEntradaKenKen? = null
 
     fun alCambiarModo(accion: (ModoEntradaKenKen) -> Unit) {
-        binding.root.addOnButtonCheckedListener { _, identificador, marcado ->
-            if (marcado && !mostrandoEstado) {
-                val modo = when (identificador) {
-                    R.id.incrementar -> ModoEntradaKenKen.INCREMENTAR
-                    R.id.decrementar -> ModoEntradaKenKen.DECREMENTAR
-                    else -> ModoEntradaKenKen.BORRAR
-                }
+        val modos = listOf(
+            binding.incrementar to ModoEntradaKenKen.INCREMENTAR,
+            binding.decrementar to ModoEntradaKenKen.DECREMENTAR,
+            binding.borrar to ModoEntradaKenKen.BORRAR
+        )
+        for ((boton, modo) in modos) {
+            boton.setOnClickListener {
+                mostrarModo(modo)
                 accion(modo)
             }
         }
@@ -34,11 +34,9 @@ class ControlesKenKenView @JvmOverloads constructor(
             ModoEntradaKenKen.DECREMENTAR -> R.id.decrementar
             ModoEntradaKenKen.BORRAR -> R.id.borrar
         }
-        mostrandoEstado = true
-        binding.root.check(identificador)
-        mostrandoEstado = false
         val botones = listOf(binding.incrementar, binding.decrementar, binding.borrar)
         for (boton in botones) {
+            boton.isChecked = boton.id == identificador
             val grosor = if (boton.id == identificador) {
                 R.dimen.grosor_modo_activo_kenken
             } else {

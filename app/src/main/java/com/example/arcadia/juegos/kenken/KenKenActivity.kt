@@ -1,24 +1,21 @@
 package com.example.arcadia.juegos.kenken
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.arcadia.R
-import com.example.arcadia.compartido.ui.aplicarMargenesDelSistema
+import com.example.arcadia.compartido.ui.TemaArcadeActivity
 import com.example.arcadia.databinding.ActivityKenkenBinding
 
-class KenKenActivity : AppCompatActivity() {
+class KenKenActivity : TemaArcadeActivity() {
     private lateinit var binding: ActivityKenkenBinding
     private val viewModel: KenKenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityKenkenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.root.aplicarMargenesDelSistema()
+        margenes(binding.root)
         binding.encabezado.alVolver { finish() }
         binding.encabezado.alReiniciar {
             viewModel.reiniciar()
@@ -49,14 +46,23 @@ class KenKenActivity : AppCompatActivity() {
         val seleccion = viewModel.casillaSeleccionada
         val habilitado = viewModel.resultado != ResultadoComprobacionKenKen.CORRECTO
         binding.tablero.mostrarEstado(viewModel.obtenerValores(), seleccion, habilitado)
-        binding.controles.mostrarModo(viewModel.modoEntrada)
         binding.controles.habilitar(habilitado)
+        binding.controles.mostrarModo(viewModel.modoEntrada)
         binding.comprobar.isEnabled = habilitado
         val instruccion = when (viewModel.modoEntrada) {
             ModoEntradaKenKen.INCREMENTAR -> R.string.kenken_instruccion_incrementar
             ModoEntradaKenKen.DECREMENTAR -> R.string.kenken_instruccion_decrementar
             ModoEntradaKenKen.BORRAR -> R.string.kenken_instruccion_borrar
         }
+        val nombreModo = when (viewModel.modoEntrada) {
+            ModoEntradaKenKen.INCREMENTAR -> R.string.kenken_incrementar
+            ModoEntradaKenKen.DECREMENTAR -> R.string.kenken_decrementar
+            ModoEntradaKenKen.BORRAR -> R.string.kenken_borrar
+        }
+        binding.indicadores.mostrar(
+            getString(R.string.kenken_casillas_completadas, viewModel.obtenerValores().count { it != 0 }),
+            getString(R.string.kenken_modo_indicador, getString(nombreModo))
+        )
         val mensaje = when (viewModel.resultado) {
             ResultadoComprobacionKenKen.SIN_COMPROBAR -> instruccion
             ResultadoComprobacionKenKen.INCOMPLETO -> R.string.kenken_resultado_incompleto

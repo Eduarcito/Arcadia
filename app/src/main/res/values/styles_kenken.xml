@@ -1,47 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Widget.Arcadia.BotonModoKenKen" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="android:minHeight">@dimen/alto_boton_kenken</item>
+        <item name="android:minHeight">@dimen/alto_modo_kenken</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:paddingStart">@dimen/relleno_boton_kenken</item>
         <item name="android:paddingEnd">@dimen/relleno_boton_kenken</item>
-        <item name="android:textColor">@color/arcadia_texto</item>
-        <item name="cornerRadius">@dimen/radio_boton_kenken</item>
+        <item name="android:textColor">@color/kenken_tinte_modo</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:gravity">center</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:checkable">true</item>
+        <item name="toggleCheckedStateOnClick">false</item>
+        <item name="cornerRadius">@dimen/radio_modo_kenken</item>
         <item name="backgroundTint">@color/kenken_fondo_modo</item>
         <item name="strokeColor">@color/kenken_tinte_modo</item>
         <item name="iconTint">@color/kenken_tinte_modo</item>
-        <item name="iconGravity">textStart</item>
-        <item name="iconPadding">0dp</item>
-        <item name="iconSize">@dimen/tamano_icono_kenken</item>
+        <item name="iconGravity">textTop</item>
+        <item name="iconPadding">8dp</item>
+        <item name="iconSize">28dp</item>
     </style>
 
     <style name="Widget.Arcadia.BotonIncrementarKenKen" parent="Widget.Arcadia.BotonModoKenKen">
         <item name="backgroundTint">@color/kenken_fondo_incrementar</item>
         <item name="strokeColor">@color/kenken_tinte_incrementar</item>
         <item name="iconTint">@color/kenken_tinte_incrementar</item>
+        <item name="android:textColor">@color/kenken_tinte_incrementar</item>
     </style>
 
     <style name="Widget.Arcadia.BotonDecrementarKenKen" parent="Widget.Arcadia.BotonModoKenKen">
         <item name="backgroundTint">@color/kenken_fondo_decrementar</item>
         <item name="strokeColor">@color/kenken_tinte_decrementar</item>
         <item name="iconTint">@color/kenken_tinte_decrementar</item>
+        <item name="android:textColor">@color/kenken_tinte_decrementar</item>
     </style>
 
     <style name="Widget.Arcadia.BotonBorrarKenKen" parent="Widget.Arcadia.BotonModoKenKen">
         <item name="backgroundTint">@color/kenken_fondo_borrar</item>
         <item name="strokeColor">@color/kenken_tinte_borrar</item>
         <item name="iconTint">@color/kenken_tinte_borrar</item>
+        <item name="android:textColor">@color/kenken_tinte_borrar</item>
     </style>
 
     <style name="Widget.Arcadia.BotonComprobarKenKen" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/kenken_fondo_comprobar</item>
+        <item name="android:textColor">@color/kenken_texto_comprobar</item>
+        <item name="iconTint">@color/kenken_texto_comprobar</item>
         <item name="android:minHeight">@dimen/alto_boton_kenken</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="cornerRadius">@dimen/radio_boton_kenken</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="cornerRadius">@dimen/radio_modo_kenken</item>
         <item name="iconGravity">textStart</item>
-        <item name="iconSize">@dimen/tamano_icono_kenken</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconPadding">10dp</item>
     </style>
 </resources>

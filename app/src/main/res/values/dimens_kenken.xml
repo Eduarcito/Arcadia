@@ -4,6 +4,8 @@
     <dimen name="grosor_modo_inactivo_kenken">1dp</dimen>
     <dimen name="grosor_modo_activo_kenken">2dp</dimen>
     <dimen name="alto_boton_kenken">56dp</dimen>
+    <dimen name="alto_modo_kenken">88dp</dimen>
+    <dimen name="radio_modo_kenken">20dp</dimen>
     <dimen name="relleno_boton_kenken">8dp</dimen>
     <dimen name="radio_boton_kenken">28dp</dimen>
     <dimen name="separacion_controles_kenken">12dp</dimen>
