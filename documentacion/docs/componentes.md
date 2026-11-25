@@ -7,7 +7,9 @@ En Arcadia, cada pantalla de juego se construye en XML combinando controles de A
 | Componente | Qué configura el XML | Qué conecta la `Activity` |
 |---|---|---|
 | `TarjetaJuegoView` | `app:tituloJuego`, `app:descripcionJuego` y `app:cardBackgroundColor` | `alJugar { … }` abre el juego correspondiente. |
-| `EncabezadoJuegoView` | `app:tituloEncabezado` | `alVolver { finish() }` cierra la pantalla actual. |
+| `EncabezadoJuegoView` | `app:tituloEncabezado`, `app:mostrarReiniciar` y `app:mostrarTitulo` (opcionales) | `alVolver { finish() }` cierra la pantalla; `alReiniciar { … }` reinicia la partida. |
+| `TableroKenKenView` | Su plantilla y las plantillas de fila y casilla | `alSeleccionarCasilla { fila, columna -> … }` comunica el toque; `mostrarJaulas()` y `mostrarEstado()` representan los datos. |
+| `ControlesKenKenView` | Tres botones de modo con selección única | `alCambiarModo { … }` comunica el modo; `mostrarModo()` y `habilitar()` actualizan los controles. |
 
 El [catálogo](../../app/src/main/res/layout/activity_main.xml) muestra tres instancias de la misma tarjeta. Los tres juegos comparten el mismo encabezado: en el [layout de KenKen](../../app/src/main/res/layout/activity_kenken.xml), por ejemplo, el título se declara como `app:tituloEncabezado="@string/juego_kenken"`. Para cambiar el diseño de **Volver** en los tres juegos, se modifica una sola vez [encabezado_juego.xml](../../app/src/main/res/layout/encabezado_juego.xml).
 

@@ -26,7 +26,7 @@ Los tres juegos se ejecutan sin Internet. **Reiniciar** limpia el estado de la p
 - Tablero de **4 × 4** con un rompecabezas predefinido de solución única. Las cuatro filas y las cuatro columnas contienen los números del 1 al 4 sin repetir.
 - Agrupar las casillas en jaulas contiguas y mostrar el objetivo y la operación de cada una. Cada casilla pertenece a una sola jaula. Una jaula de una casilla fija su valor objetivo; limitar resta y división a dos casillas.
 - La suma y la multiplicación usan todos los valores de la jaula. Para la resta o la división, usar primero el valor mayor. La división debe ser exacta.
-- Seleccionar una casilla y usar botones del **1 al 4** o **Borrar**. No abrir el teclado del sistema.
+- Usar tres modos de entrada: **Incrementar**, **Decrementar** y **Borrar**, con un solo modo activo e **Incrementar** seleccionado al iniciar. Cada toque en una casilla aplica el modo: incrementar desde vacío empieza en 1 y se detiene en 4; decrementar desde vacío empieza en 4 y se detiene en 1; borrar elimina el valor inmediatamente. Cambiar de modo no modifica las casillas. Conservar el modo al rotar y no abrir el teclado del sistema.
 - **Comprobar** distingue entre tablero incompleto, tablero con errores y tablero correcto. La victoria requiere que todas las filas, columnas y jaulas sean válidas. Una comprobación fallida permite seguir corrigiendo.
 
 Referencias de alcance: [Arcadia](https://arcade-games-eosin.vercel.app/) para la experiencia de 2048 y Buscaminas, y [reglas de KenKen en video](https://youtu.be/774XJRKYZYc) como introducción al rompecabezas. Las reglas anteriores definen la entrega móvil.

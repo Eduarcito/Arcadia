@@ -79,7 +79,7 @@ private fun crearTablero() {
         for (columna in 0 until tamanoTablero) {
             val vistaCelda = CeldaKenkenBinding.inflate(layoutInflater, vistaFila.root, true)
             vistaCelda.root.setOnClickListener {
-                viewModel.seleccionarCasilla(fila, columna)
+                viewModel.aplicarModoEnCasilla(fila, columna)
                 actualizarPantalla()
             }
             celdas.add(vistaCelda)
@@ -88,7 +88,7 @@ private fun crearTablero() {
 }
 ```
 
-`FilaTableroBinding` y `CeldaKenkenBinding` se generan desde sus XML. `inflate()` crea la vista y, al pasar `true`, la añade al contenedor indicado. `until` recorre del `0` al `3` en este ejemplo. `seleccionarCasilla()` es una función propia del `ViewModel`. Las referencias quedan en la `Activity` por orden de fila y columna, para que `actualizarPantalla()` las use sin volver a inflarlas.
+`FilaTableroBinding` y `CeldaKenkenBinding` se generan desde sus XML. `inflate()` crea la vista y, al pasar `true`, la añade al contenedor indicado. `until` recorre del `0` al `3` en este ejemplo. `aplicarModoEnCasilla()` es una función propia del `ViewModel` que aplica el modo de entrada activo. Las referencias quedan en la `Activity` por orden de fila y columna, para que `actualizarPantalla()` las use sin volver a inflarlas.
 
 ## 3. Validar una regla sin importar Android
 

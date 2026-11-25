@@ -1,7 +1,8 @@
 # Arcadia
 
-Aplicación Android en Kotlin con un catálogo de tres juegos. Cada tarjeta abre
-una pantalla de desarrollo con un botón para volver. Las partidas aún no están implementadas.
+Aplicación Android en Kotlin con un catálogo de tres juegos. KenKen permite jugar
+un tablero de prueba 4 × 4 con jaulas, comprobar la respuesta y reiniciar.
+2048 y Buscaminas mantienen sus pantallas de desarrollo.
 
 ## Dónde trabajar
 
@@ -13,6 +14,12 @@ El código está en `app/src/main/java/com/example/arcadia/` y las vistas en `ap
 | 2048 | `juegos/juego2048/` | `activity_juego_2048.xml` |
 | Buscaminas | `juegos/buscaminas/` | `activity_buscaminas.xml` |
 | KenKen | `juegos/kenken/` | `activity_kenken.xml` |
+
+KenKen usa los componentes `TableroKenKenView` y `ControlesKenKenView`.
+Los modos **Incrementar**, **Decrementar** y **Borrar** se aplican al tocar una
+casilla. **Comprobar** distingue entre tablero incompleto, incorrecto y correcto;
+solo una comprobación correcta bloquea la partida hasta reiniciar.
+El rompecabezas fijo es temporal: la generación aleatoria corresponde a la siguiente etapa.
 
 Las tarjetas y los encabezados son **vistas compuestas** en `compartido/ui/`.
 Para reutilizarlos en otro layout, declara la etiqueta de `TarjetaJuegoView` como en

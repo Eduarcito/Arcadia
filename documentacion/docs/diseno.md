@@ -29,3 +29,11 @@ Usar **Material Components para vistas XML** (`com.google.android.material:mater
 | `drawable/` | Fondos redondeados y bordes de selección o de jaula. |
 
 Usar contraste suficiente y distinguir los estados por algo más que el color. Por ejemplo, una bandera debe tener un símbolo y una descripción; una casilla seleccionada de KenKen debe mostrar un borde. Dar nombres accesibles a los controles que solo muestran un icono y dejar espacio suficiente para tocarlos.
+
+Toda la aplicación usa el modo claro aunque el sistema esté en modo oscuro. La configuración se aplica una sola vez en `ArcadiaApplication` mediante AndroidX AppCompat, manteniendo el tema base Material 3 DayNight.
+
+En KenKen, distinguir las líneas internas finas y tenues de los bordes de jaula gruesos y oscuros; marcar la selección con fondo lavanda y borde violeta. El encabezado solo muestra las acciones de navegación y reinicio. Centrar el bloque de título y tablero entre el encabezado y el panel inferior, alineando el título al inicio del tablero con 12 dp de separación.
+
+Los tres modos usan iconos con descripciones accesibles, altura uniforme de 56 dp y colores propios: verde para incrementar, azul para decrementar y rojo suave para borrar. El modo activo intensifica su fondo y aumenta el contorno de 1 a 2 dp, sin depender solo del color. **Comprobar** es la acción principal, con texto e icono de verificación. Usar formas de cápsula y un mensaje secundario debajo de los controles, sin fijar el ancho del tablero.
+
+Las microinteracciones de KenKen usan las animaciones nativas de Android: respuesta de 160 ms al cambiar modo o valor, aparición de 180 ms del mensaje de comprobación y confirmación de victoria de 260 ms. Animar solo escala y opacidad, sin modificar el tamaño del layout ni repetir animaciones al recrear la pantalla. Respetar las animaciones desactivadas mediante `ValueAnimator.areAnimatorsEnabled()`.

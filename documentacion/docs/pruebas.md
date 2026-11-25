@@ -38,6 +38,12 @@ Comprobar las reglas por separado y recorrer las cuatro pantallas en un disposit
 - Una cuadrícula sin repetidos se rechaza si falla una jaula.
 - `4 ÷ 2` cumple un objetivo de 2; los valores `3` y `2` no cumplen un objetivo de 1.
 - **Borrar** limpia solo la casilla seleccionada. **Comprobar** sobre un tablero incompleto no declara victoria ni bloquea la partida.
+- **Incrementar** empieza en 1 y se detiene en 4; **Decrementar** empieza en 4 si la casilla está vacía y se detiene en 1. **Borrar** actúa con un solo toque. Cambiar de modo no altera los valores.
+- Las jaulas en forma de L se ven continuas entre filas y muestran una sola pista. Cada frontera de jaula se dibuja una sola vez, sin duplicar su grosor.
+- Una comprobación incorrecta permite seguir editando. Una comprobación correcta bloquea las jugadas; **Reiniciar** limpia valores, selección y resultado, y activa **Incrementar**.
+- Al rotar se conservan los valores, el modo y el resultado de la comprobación.
+- El título se mantiene junto al tablero y no se duplica en el encabezado. Los modos tienen colores distintos y el activo muestra un contorno más grueso.
+- Las microinteracciones no bloquean toques rápidos, no cambian valores por sí mismas y no se repiten al rotar. Con las animaciones del sistema desactivadas, todos los controles y mensajes siguen funcionando sin movimiento.
 
 ## Exposición
 

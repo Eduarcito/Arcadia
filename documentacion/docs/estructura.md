@@ -15,7 +15,7 @@ Las rutas de esta tabla son relativas al paquete base de la aplicación bajo `ap
 | `juegos/buscaminas/BuscaminasActivity.kt` | Muestra el tablero y permite elegir entre descubrir y marcar. |
 | `juegos/buscaminas/BuscaminasViewModel.kt` | Conserva las minas, las banderas, las casillas abiertas y el resultado. |
 | `juegos/buscaminas/ReglasBuscaminas.kt` | Aloja operaciones como calcular las casillas vecinas. |
-| `juegos/kenken/KenKenActivity.kt` | Conecta las casillas, el teclado numérico del juego y los controles. |
+| `juegos/kenken/KenKenActivity.kt` | Conecta las casillas, los modos de entrada y los botones para comprobar y reiniciar. |
 | `juegos/kenken/KenKenViewModel.kt` | Conserva los números ingresados, la casilla seleccionada y el resultado de la comprobación. |
 | `juegos/kenken/ReglasKenKen.kt` | Comprueba filas, columnas y operaciones de las jaulas. |
 | `juegos/kenken/RompecabezasKenKen.kt` | Define las casillas de cada jaula, su objetivo y su operación. |
