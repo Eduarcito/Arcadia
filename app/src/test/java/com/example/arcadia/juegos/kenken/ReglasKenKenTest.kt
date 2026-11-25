@@ -6,7 +6,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ReglasKenKenTest {
-    private val rompecabezas = crearRompecabezasDePrueba()
+    private val variantes = crearVariantesKenKen()
+    private val rompecabezas = variantes.first()
     private val solucion = listOf(
         1, 2, 3, 4,
         2, 3, 4, 1,
@@ -15,7 +16,7 @@ class ReglasKenKenTest {
     )
 
     @Test
-    fun aceptaLaSolucionDelTableroDePrueba() {
+    fun aceptaLaSolucionDelPrimerTablero() {
         assertEquals(ResultadoComprobacionKenKen.CORRECTO, comprobarTablero(solucion, rompecabezas))
     }
 
@@ -100,6 +101,72 @@ class ReglasKenKenTest {
 
     @Test
     fun cadaCasillaPerteneceAUnaJaulaContigua() {
+        for (variante in variantes) {
+            comprobarJaulasContiguas(variante)
+        }
+    }
+
+    @Test
+    fun elCatalogoContieneCincoVariantesDiferentesDeCuatroPorCuatro() {
+        assertEquals(5, variantes.size)
+        assertEquals(5, variantes.distinct().size)
+        for (variante in variantes) {
+            assertEquals(4, variante.tamano)
+            for (jaula in variante.jaulas) {
+                if (jaula.operacion == OperacionKenKen.RESTA ||
+                    jaula.operacion == OperacionKenKen.DIVISION
+                ) {
+                    assertEquals(2, jaula.casillas.size)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun cadaVarianteTieneUnaSolaSolucion() {
+        for (variante in variantes) {
+            assertEquals(1, contarSoluciones(variante, MutableList(16) { 0 }, 0))
+        }
+    }
+
+    @Test
+    fun aceptaLaSolucionPrevistaDeCadaVariante() {
+        val soluciones = listOf(
+            solucion,
+            listOf(
+                1, 3, 4, 2,
+                2, 1, 3, 4,
+                4, 2, 1, 3,
+                3, 4, 2, 1
+            ),
+            listOf(
+                2, 3, 4, 1,
+                1, 2, 3, 4,
+                4, 1, 2, 3,
+                3, 4, 1, 2
+            ),
+            listOf(
+                3, 2, 1, 4,
+                2, 3, 4, 1,
+                4, 1, 3, 2,
+                1, 4, 2, 3
+            ),
+            listOf(
+                4, 2, 1, 3,
+                3, 4, 2, 1,
+                2, 1, 3, 4,
+                1, 3, 4, 2
+            )
+        )
+        for ((indice, variante) in variantes.withIndex()) {
+            assertEquals(
+                ResultadoComprobacionKenKen.CORRECTO,
+                comprobarTablero(soluciones[indice], variante)
+            )
+        }
+    }
+
+    private fun comprobarJaulasContiguas(rompecabezas: RompecabezasKenKen) {
         val indices = rompecabezas.jaulas.flatMap { it.casillas }
         assertEquals((0 until 16).toList(), indices.sorted())
         for (jaula in rompecabezas.jaulas) {
@@ -122,11 +189,6 @@ class ReglasKenKenTest {
         }
     }
 
-    @Test
-    fun elRompecabezasDePruebaTieneUnaSolaSolucion() {
-        assertEquals(1, contarSoluciones(MutableList(16) { 0 }, 0))
-    }
-
     private fun crearJaulasIndividuales(valores: List<Int>): RompecabezasKenKen {
         val jaulas = valores.mapIndexed { indice, valor ->
             JaulaKenKen(listOf(indice), valor, OperacionKenKen.VALOR)
@@ -134,7 +196,11 @@ class ReglasKenKenTest {
         return RompecabezasKenKen(4, jaulas)
     }
 
-    private fun contarSoluciones(valores: MutableList<Int>, indice: Int): Int {
+    private fun contarSoluciones(
+        rompecabezas: RompecabezasKenKen,
+        valores: MutableList<Int>,
+        indice: Int
+    ): Int {
         if (indice == valores.size) {
             return if (comprobarTablero(valores, rompecabezas) ==
                 ResultadoComprobacionKenKen.CORRECTO
@@ -152,7 +218,7 @@ class ReglasKenKenTest {
             }
             if (disponible) {
                 valores[indice] = valor
-                cantidad += contarSoluciones(valores, indice + 1)
+                cantidad += contarSoluciones(rompecabezas, valores, indice + 1)
                 valores[indice] = 0
             }
         }

@@ -1,7 +1,9 @@
 package com.example.arcadia.juegos.kenken
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class KenKenViewModelTest {
@@ -153,8 +155,37 @@ class KenKenViewModelTest {
         assertEquals(List(16) { 0 }, modelo.obtenerValores())
     }
 
-    private fun crearModeloResuelto(): KenKenViewModel {
+    @Test
+    fun eligeUnaVarianteDelCatalogoAlIniciar() {
         val modelo = KenKenViewModel()
+        assertTrue(crearVariantesKenKen().contains(modelo.rompecabezas))
+    }
+
+    @Test
+    fun reiniciarEligeOtraVarianteDelCatalogo() {
+        val variantes = crearVariantesKenKen()
+        val modelo = KenKenViewModel()
+        repeat(20) {
+            val anterior = modelo.rompecabezas
+            modelo.reiniciar()
+            assertNotEquals(anterior, modelo.rompecabezas)
+            assertTrue(variantes.contains(modelo.rompecabezas))
+            assertEquals(List(16) { 0 }, modelo.obtenerValores())
+        }
+    }
+
+    @Test
+    fun jugarYCambiarModoNoCambianElRompecabezas() {
+        val modelo = KenKenViewModel()
+        val anterior = modelo.rompecabezas
+        modelo.aplicarModoEnCasilla(0, 0)
+        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
+        modelo.comprobar()
+        assertEquals(anterior, modelo.rompecabezas)
+    }
+
+    private fun crearModeloResuelto(): KenKenViewModel {
+        val modelo = KenKenViewModel(listOf(crearVariantesKenKen().first()))
         val solucion = listOf(
             1, 2, 3, 4,
             2, 3, 4, 1,
