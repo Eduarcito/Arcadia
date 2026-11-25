@@ -15,6 +15,7 @@ class KenKenActivity : TemaArcadeActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityKenkenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        androidx.core.view.ViewCompat.setAccessibilityHeading(binding.tituloTablero, true)
         margenes(binding.root)
         binding.encabezado.alVolver { finish() }
         binding.encabezado.alReiniciar {

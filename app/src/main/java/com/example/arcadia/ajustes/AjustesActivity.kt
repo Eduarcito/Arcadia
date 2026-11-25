@@ -27,6 +27,7 @@ class AjustesActivity : ArcadeActivity() {
         val binding = ActivityArcadeSettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         margenes(binding.root)
+        androidx.core.view.ViewCompat.setAccessibilityHeading(binding.title, true)
         binding.back.setOnClickListener { finish() }
 
         binding.volume.value = preferencias.getInt(CLAVE_VOLUMEN, VOLUMEN_INICIAL).toFloat()

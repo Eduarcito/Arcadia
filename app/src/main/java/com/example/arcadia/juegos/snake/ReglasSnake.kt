@@ -37,6 +37,23 @@ class ReglasSnake(private val azar: Random = Random.Default) {
         if (come) { puntos += 10; colocarComida(); if (victoria) terminada = true }
     }
 
+    fun peligroAdelante(): Boolean {
+        if (terminada) return false
+        val cabeza = cuerpo.first(); val fila = cabeza / lado; val columna = cabeza % lado
+        val siguienteFila = fila + when (pendiente) { Direccion.ARRIBA -> -1; Direccion.ABAJO -> 1; else -> 0 }
+        val siguienteColumna = columna + when (pendiente) { Direccion.IZQUIERDA -> -1; Direccion.DERECHA -> 1; else -> 0 }
+        if (siguienteFila !in 0 until lado || siguienteColumna !in 0 until lado) return true
+        val siguiente = siguienteFila * lado + siguienteColumna
+        val obstaculos = if (siguiente == comida) cuerpo else cuerpo.dropLast(1)
+        return siguiente in obstaculos
+    }
+
+    // (horizontal, vertical) desde la cabeza hacia la fruta, en casillas
+    fun direccionFruta(): Pair<Int, Int> {
+        val cabeza = cuerpo.first()
+        return (comida % lado - cabeza % lado) to (comida / lado - cabeza / lado)
+    }
+
     fun reiniciar() {
         cuerpo = posicionInicial(); direccion = Direccion.DERECHA; pendiente = direccion
         puntos = 0; terminada = false; colocarComida()

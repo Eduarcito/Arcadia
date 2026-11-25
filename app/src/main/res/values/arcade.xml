@@ -92,6 +92,14 @@ Cinco formas de jugar.</string>
     <string name="arcade_gesture_pet">1 toque: × · 2 toques: mascota</string>
     <string name="arcade_gesture_snake">Desliza para girar · Toca para pausar</string>
     <string name="arcade_snake_overlay_ready">DESLIZA PARA EMPEZAR</string>
+    <string name="arcade_snake_paso_a_paso">Paso a paso: cada deslizamiento avanza una casilla, toca el tablero para seguir recto.</string>
+    <string name="arcade_snake_fruta_direccion">Fruta %1$s, a %2$d casillas.</string>
+    <string name="arcade_snake_hacia_arriba">arriba</string>
+    <string name="arcade_snake_hacia_abajo">abajo</string>
+    <string name="arcade_snake_hacia_izquierda">a la izquierda</string>
+    <string name="arcade_snake_hacia_derecha">a la derecha</string>
+    <string name="arcade_snake_y">" y "</string>
+    <string name="arcade_snake_peligro">Peligro adelante.</string>
     <string name="arcade_snake_overlay_paused">TOCA PARA CONTINUAR</string>
     <string name="arcade_snake_overlay_over">FIN DE PARTIDA</string>
 </resources>

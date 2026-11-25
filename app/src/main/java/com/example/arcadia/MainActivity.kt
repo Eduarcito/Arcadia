@@ -19,6 +19,7 @@ class MainActivity : ArcadeActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root); margenes(binding.root)
+        androidx.core.view.ViewCompat.setAccessibilityHeading(binding.brand, true)
         binding.settings.setOnClickListener { binding.drawer.openDrawer(GravityCompat.START) }
         binding.menuGames.setOnClickListener { binding.drawer.closeDrawer(GravityCompat.START) }
         binding.menuSettings.setOnClickListener {

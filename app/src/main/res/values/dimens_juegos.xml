@@ -1,2 +1,3 @@
 <resources>
+    <dimen name="ancho_contenido_max">600dp</dimen>
 </resources>

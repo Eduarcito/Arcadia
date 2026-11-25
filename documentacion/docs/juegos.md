@@ -43,3 +43,5 @@ Los cinco juegos se ejecutan sin Internet. 2048, Buscaminas, Petdoku y Snake gua
 - **Comprobar** distingue entre tablero incompleto, tablero con errores y tablero correcto. La victoria requiere que todas las filas, columnas y jaulas sean válidas. Una comprobación fallida permite seguir corrigiendo.
 
 Referencias de alcance: [Arcadia](https://arcade-games-eosin.vercel.app/) para la experiencia de 2048 y Buscaminas, y [reglas de KenKen en video](https://youtu.be/774XJRKYZYc) como introducción al rompecabezas. Las reglas anteriores definen la entrega móvil.
+
+Con TalkBack activo, Snake juega paso a paso: cada deslizamiento avanza una casilla, el toque sigue recto y se anuncian la fruta y el peligro adelante.

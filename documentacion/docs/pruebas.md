@@ -61,3 +61,5 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los cinco jueg
 `EstructuraJuegosTest` contiene regresiones instrumentadas para las filas `LinearLayout`, el guardado al reabrir y los componentes, modos, rotación y reinicio de KenKen. `ArcadeFlowTest` conserva las pruebas de navegación, gestos, ajustes y guardado de los cuatro juegos nuevos. Ejecutarlas manualmente en Android Studio con un dispositivo de prueba; no usar un dispositivo con partidas que deban conservarse, porque `ArcadeFlowTest` restablece las preferencias.
 
 Cada integrante debe poder mostrar una jugada completa: **pulsación en la `Activity` → cambio de estado en el `ViewModel` → actualización de las casillas XML**. También debe poder explicar una regla del juego y señalar un componente XML reutilizado.
+
+Las pruebas de guardado usan Robolectric (`GuardadoPartidasTest`): recorren el ciclo completo de guardar y restaurar en cada juego, fijan las claves inmutables del formato (`2048`, `mines`, `petdoku`, `snake`) y cubren JSON corrupto y carga única.

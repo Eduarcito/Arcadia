@@ -16,6 +16,7 @@
     <string name="kenken_instruccion_decrementar">Decrementar: toca una casilla para reducir su valor hasta 1. Si está vacía, empieza en 4.</string>
     <string name="kenken_instruccion_borrar">Borrar: toca una casilla para eliminar su valor.</string>
     <string name="kenken_casilla_vacia">vacía</string>
+    <string name="kenken_anuncio_cambio">Fila %1$d, columna %2$d: %3$s</string>
     <string name="kenken_descripcion_casilla">Fila %1$d, columna %2$d: %3$s. %4$s</string>
     <string name="kenken_comprobar">Comprobar</string>
     <string name="kenken_resultado_incompleto">Tablero incompleto: todavía hay casillas vacías.</string>

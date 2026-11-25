@@ -177,4 +177,32 @@ class ReglasArcadeTest {
         val g=ReglasSnake();assertFalse(g.restaurar(listOf(0,20,21),1,30,0,false))
         repeat(20){g.paso()};assertTrue(g.terminada);g.reiniciar();assertFalse(g.terminada);assertEquals(3,g.cuerpo.size)
     }
+    @Test fun snakePeligroAdelanteDetectaPared() {
+        val g=ReglasSnake();g.restaurar(listOf(13,12,11),1,30,0,false)
+        assertTrue(g.peligroAdelante())
+    }
+    @Test fun snakePeligroAdelanteDetectaCuerpo() {
+        val g=ReglasSnake();g.restaurar(listOf(30,31,45,44,43,29),1,100,0,false)
+        assertTrue(g.peligroAdelante())
+    }
+    @Test fun snakePeligroAdelanteRespetaColaQueSeRetira() {
+        val g=ReglasSnake();g.restaurar(listOf(30,31,45,44),2,100,0,false)
+        assertFalse(g.peligroAdelante())
+    }
+    @Test fun snakePeligroAdelanteSigueLaDireccionPendiente() {
+        val g=ReglasSnake();g.restaurar(listOf(13,12,11),1,30,0,false)
+        assertTrue(g.peligroAdelante())
+        g.girar(Direccion.ABAJO)
+        assertFalse(g.peligroAdelante())
+    }
+    @Test fun snakeSinPeligroEnCaminoLibre() {
+        val g=ReglasSnake()
+        assertFalse(g.peligroAdelante())
+    }
+    @Test fun snakeDireccionFrutaEnCasillas() {
+        val g=ReglasSnake();g.restaurar(listOf(104,103,102),1,105,0,false)
+        assertEquals(1 to 0,g.direccionFruta())
+        g.restaurar(listOf(104,103,102),1,0,0,false)
+        assertEquals(-6 to -7,g.direccionFruta())
+    }
 }

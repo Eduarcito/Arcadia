@@ -86,6 +86,16 @@ class TableroKenKenView @JvmOverloads constructor(
                 textoValor,
                 descripcionesJaulas[indice]
             )
+            if (cambioValor) {
+                celda.root.announceForAccessibility(
+                    context.getString(
+                        R.string.kenken_anuncio_cambio,
+                        indice / TAMANO_TABLERO + 1,
+                        indice % TAMANO_TABLERO + 1,
+                        textoValor
+                    )
+                )
+            }
         }
         estadoMostrado = true
     }

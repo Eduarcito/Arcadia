@@ -35,6 +35,8 @@ La referencia actual es el catálogo ilustrado y las pantallas de 2048, Buscamin
 Los textos fijos van en `strings.xml` o archivos `strings_*`, colores en recursos `values`, tamaños compartidos en `dimens_*` y formas en `drawable`. Los atributos de las vistas compuestas configuran el contenido fijo y permiten previsualizarlo después de compilar.
 
 Mantener descripciones accesibles para iconos, casillas y controles. Comunicar errores y selección con algo más que el color. Las vistas no contienen reglas ni modifican la partida por sí mismas.
-- Los títulos de pantalla se marcan como encabezados de accesibilidad y los mensajes de estado de partida se anuncian solos a TalkBack.
+- Los títulos de pantalla se marcan como encabezados de accesibilidad con `ViewCompat` (cubre API 26–27) y los botones de icono responden al tacto con ripple y los mensajes de estado de partida se anuncian solos a TalkBack. En KenKen, cada cambio de valor en una casilla se anuncia con su fila y columna.
 - Las marcas de los juegos (mascota, bandera, mina) son vectores propios (`ic_mascota`, `ic_bandera`, `ic_mina`), no emojis, para que se vean igual en todos los dispositivos.
 - El tema se elige entre sistema, claro y oscuro; el mínimo de texto es 11sp.
+- Snake entra en modo paso a paso cuando TalkBack está activo: no hay temporizador, cada deslizamiento avanza una casilla y tocar el tablero sigue recto; tras cada paso se anuncia la dirección y distancia de la fruta y el peligro inmediato.
+- En pantallas anchas el contenido se centra con un tope de 600dp (`ancho_contenido_max`); no se estiran tarjetas ni textos en tabletas, horizontal o multiventana.

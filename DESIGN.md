@@ -141,7 +141,10 @@ es una cuadrícula de dos columnas de tarjetas. Las partidas comparten una armad
 cabecera de juego arriba (volver, marca de puntos, reinicio, ajustes), fila de
 tarjetas de estadísticas, tablero cuadrado centrado (tope 460dp) y pista al pie.
 Ritmo de espaciado en múltiplos de 6dp: 12/18/24dp dominan. El tablero se mide a lo
-ancho disponible y recorta su altura; nunca se estira en horizontal.
+ancho disponible y recorta su altura; nunca se estira en horizontal. En pantallas
+anchas (tabletas, horizontal, multiventana) el contenido se limita a 600dp
+(`ancho_contenido_max`) centrado: la composición de teléfono se conserva intacta y
+los márgenes laterales respiran en vez de estirar tarjetas y textos.
 
 ## Elevation & Depth
 
