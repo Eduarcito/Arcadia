@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="separacion_titulo_tablero_kenken">12dp</dimen>
+    <dimen name="grosor_modo_inactivo_kenken">1dp</dimen>
+    <dimen name="grosor_modo_activo_kenken">2dp</dimen>
+    <dimen name="alto_boton_kenken">56dp</dimen>
+    <dimen name="relleno_boton_kenken">8dp</dimen>
+    <dimen name="radio_boton_kenken">28dp</dimen>
+    <dimen name="separacion_controles_kenken">12dp</dimen>
+    <dimen name="separacion_estado_kenken">8dp</dimen>
+    <dimen name="tamano_icono_kenken">24dp</dimen>
+    <dimen name="grosor_borde_jaula_kenken">3dp</dimen>
+    <dimen name="grosor_seleccion_kenken">2dp</dimen>
+    <dimen name="separacion_tablero_kenken">16dp</dimen>
+    <dimen name="relleno_celda_kenken">4dp</dimen>
+    <dimen name="grosor_borde_celda_kenken">0.5dp</dimen>
+    <dimen name="tamano_pista_kenken">14sp</dimen>
+    <dimen name="tamano_valor_kenken">24sp</dimen>
+</resources>

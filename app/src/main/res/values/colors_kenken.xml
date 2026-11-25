@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kenken_linea_interna">#CDD3CE</color>
+    <color name="kenken_borde_seleccion">#70538B</color>
+    <color name="kenken_texto_secundario">#53665B</color>
+    <color name="kenken_incrementar_fondo">#E4F1E7</color>
+    <color name="kenken_incrementar_activo">#BDE3C8</color>
+    <color name="kenken_incrementar_tinte">#24623D</color>
+    <color name="kenken_decrementar_fondo">#E7EFFB</color>
+    <color name="kenken_decrementar_activo">#C4D9F5</color>
+    <color name="kenken_decrementar_tinte">#285B91</color>
+    <color name="kenken_borrar_fondo">#FBE9E7</color>
+    <color name="kenken_borrar_activo">#F4C7C3</color>
+    <color name="kenken_borrar_tinte">#9D3737</color>
+</resources>

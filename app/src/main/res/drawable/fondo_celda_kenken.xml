@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:drawable="@drawable/celda_kenken_resaltada" />
+    <item android:state_focused="true" android:drawable="@drawable/celda_kenken_resaltada" />
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/arcadia_fondo" />
+            <stroke
+                android:width="@dimen/grosor_borde_celda_kenken"
+                android:color="@color/kenken_linea_interna" />
+        </shape>
+    </item>
+</selector>

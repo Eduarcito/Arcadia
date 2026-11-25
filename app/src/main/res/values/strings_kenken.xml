@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="kenken_incrementar">Incrementar</string>
+    <string name="kenken_decrementar">Decrementar</string>
+    <string name="kenken_simbolo_incrementar">+</string>
+    <string name="kenken_simbolo_decrementar">−</string>
+    <string name="kenken_borrar">Borrar</string>
+    <string name="kenken_instruccion_incrementar">Incrementar: toca una casilla para aumentar su valor hasta 4.</string>
+    <string name="kenken_instruccion_decrementar">Decrementar: toca una casilla para reducir su valor hasta 1. Si está vacía, empieza en 4.</string>
+    <string name="kenken_instruccion_borrar">Borrar: toca una casilla para eliminar su valor.</string>
+    <string name="kenken_casilla_vacia">vacía</string>
+    <string name="kenken_descripcion_casilla">Fila %1$d, columna %2$d: %3$s. %4$s</string>
+    <string name="kenken_comprobar">Comprobar</string>
+    <string name="kenken_resultado_incompleto">Tablero incompleto: todavía hay casillas vacías.</string>
+    <string name="kenken_resultado_incorrecto">Hay errores en las filas, columnas o jaulas. Puedes seguir corrigiendo.</string>
+    <string name="kenken_resultado_correcto">¡Tablero correcto! Has resuelto el KenKen.</string>
+    <string name="kenken_pista_jaula">%1$d%2$s</string>
+    <string name="kenken_descripcion_jaula">Jaula con objetivo %1$d, operación: %2$s.</string>
+    <string name="kenken_simbolo_multiplicar">×</string>
+    <string name="kenken_simbolo_dividir">÷</string>
+    <string name="kenken_operacion_valor">valor único</string>
+    <string name="kenken_operacion_suma">suma</string>
+    <string name="kenken_operacion_resta">resta</string>
+    <string name="kenken_operacion_multiplicacion">multiplicación</string>
+    <string name="kenken_operacion_division">división exacta</string>
+</resources>

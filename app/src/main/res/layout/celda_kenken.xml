@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/fondo_celda_kenken"
+    android:clickable="true"
+    android:focusable="true"
+    android:importantForAccessibility="yes"
+    tools:layout_width="80dp"
+    tools:layout_height="80dp">
+
+    <TextView
+        android:id="@+id/pista_jaula"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/relleno_celda_kenken"
+        android:layout_marginTop="@dimen/relleno_celda_kenken"
+        android:layout_marginEnd="@dimen/relleno_celda_kenken"
+        android:importantForAccessibility="no"
+        android:includeFontPadding="false"
+        android:textColor="@color/arcadia_texto"
+        android:textSize="@dimen/tamano_pista_kenken"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="6+" />
+
+    <TextView
+        android:id="@+id/valor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/relleno_celda_kenken"
+        android:layout_marginEnd="@dimen/relleno_celda_kenken"
+        android:layout_marginBottom="@dimen/relleno_celda_kenken"
+        android:importantForAccessibility="no"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:textColor="@color/arcadia_texto"
+        android:textSize="@dimen/tamano_valor_kenken"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pista_jaula"
+        tools:text="3" />
+
+    <View
+        android:id="@+id/borde_superior"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/grosor_borde_jaula_kenken"
+        android:background="@color/arcadia_texto"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/borde_inferior"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/grosor_borde_jaula_kenken"
+        android:background="@color/arcadia_texto"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/borde_inicio"
+        android:layout_width="@dimen/grosor_borde_jaula_kenken"
+        android:layout_height="0dp"
+        android:background="@color/arcadia_texto"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/borde_fin"
+        android:layout_width="@dimen/grosor_borde_jaula_kenken"
+        android:layout_height="0dp"
+        android:background="@color/arcadia_texto"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
