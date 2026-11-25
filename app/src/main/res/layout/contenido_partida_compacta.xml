@@ -11,7 +11,7 @@
     </LinearLayout>
     <TextView android:id="@+id/nombre" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/arcade_ink"
         app:layout_constraintTop_toBottomOf="@id/cabecera" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-    <TextView android:id="@+id/gesto" android:layout_width="0dp" android:layout_height="wrap_content" android:paddingVertical="6dp" android:gravity="center" android:textSize="12sp" android:textColor="@color/arcade_muted"
+    <TextView android:id="@+id/gesto" android:layout_width="0dp" android:layout_height="wrap_content" android:paddingVertical="6dp" android:gravity="center" android:textSize="13sp" android:textColor="@color/arcade_muted"
         app:layout_constraintTop_toBottomOf="@id/nombre" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
     <FrameLayout android:id="@+id/previsualizacion" android:layout_width="0dp" android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/gesto" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />

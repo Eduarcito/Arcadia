@@ -20,7 +20,7 @@ class Juego2048Activity : PartidaArcadeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preparar(ActivityJuego2048Binding.inflate(layoutInflater).root)
-        botonDeshacer = com.google.android.material.button.MaterialButton(this).apply {
+        botonDeshacer = com.example.arcadia.compartido.ui.botonAccionArcade(this, getColor(R.color.acento_2048)).apply {
             setText(R.string.arcade_deshacer)
             setOnClickListener {
                 if (modelo.deshacer()) { modelo.guardar(guardado); mostrar() }

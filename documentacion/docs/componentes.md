@@ -9,7 +9,7 @@ Cada pantalla combina controles de Android y vistas compuestas declaradas por su
 | `TarjetaJuegoView` | `tituloJuego`, `tintaTarjeta`, `indicePortada` y `cardBackgroundColor`. `alJugar` comunica la selección. |
 | `EncabezadoJuegoView` | `mostrarReiniciar`. `alVolver` y `alReiniciar` ocultan los botones internos a la actividad. |
 | `PantallaPartidaView` | Hereda de `ConstraintLayout`. Configura `tituloPartida`, `instruccionesPartida`, `lemaPartida`, `gestoPartida` y `acentoPartida` en el XML de cada juego nuevo. |
-| `IndicadoresJuegoView` | Dos tarjetas de estado con `acentoBloque` y `tamanoIndicador`. `mostrar` actualiza sus valores y `describirDerecha` aporta una descripción accesible. |
+| `IndicadoresJuegoView` | Dos tarjetas de estado centradas con `acentoBloque` y `tamanoIndicador`; la etiqueta ocupa el 70 % del tamaño del valor para no bajar de 11 sp. `mostrar` actualiza sus valores y `describirDerecha` aporta una descripción accesible. |
 | `AyudaJuegoView` | Tarjeta de instrucciones con `textoAyuda` y `acentoBloque`. |
 | `TableroArcadeView` | Infla filas y casillas con View Binding y comunica toques, pulsaciones largas, dobles toques, trazos y direcciones. `mostrar` actualiza las casillas existentes. |
 
@@ -33,5 +33,6 @@ Los seis juegos usan la misma distribución: `PantallaPartidaView.usarPantallaCo
 5. Inflar filas y casillas una vez y actualizar solo su estado. Las filas son `LinearLayout` horizontales dentro de otro vertical; no usar `GridLayout`.
 6. Mantener las particularidades del renderizado actual de Snake en `Canvas`, incluido el movimiento interpolado.
 7. Conservar el contrato de guardado descrito en [Estructura](estructura.md) al reorganizar componentes.
+8. Las acciones principales en la zona de herramientas usan `botonAccionArcade` (relleno redondeado con el acento del juego, texto en contraste por luminancia), el mismo estilo del botón **Comprobar** de KenKen.
 
 `inflate()` pertenece a las clases generadas por View Binding; los controles y `Canvas` son del SDK de Android. `ConstraintLayout`, los auxiliares de AndroidX Core y Material Components son las dependencias existentes. No se añaden bibliotecas para estos componentes.

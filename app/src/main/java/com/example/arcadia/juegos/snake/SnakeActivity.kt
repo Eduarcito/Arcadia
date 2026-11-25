@@ -33,7 +33,7 @@ class SnakeActivity : PartidaArcadeActivity() {
         super.onCreate(savedInstanceState)
         preparar(ActivitySnakeBinding.inflate(layoutInflater).root)
         if (!pasoAPaso) {
-            botonPausa = com.google.android.material.button.MaterialButton(this).apply {
+            botonPausa = com.example.arcadia.compartido.ui.botonAccionArcade(this, getColor(R.color.acento_snake)).apply {
                 textoPausa()
                 setOnClickListener { alternarPausa() }
             }

@@ -27,7 +27,7 @@ class PetdokuActivity : PartidaArcadeActivity() {
         super.onCreate(savedInstanceState)
         preparar(ActivityPetdokuBinding.inflate(layoutInflater).root);modelo.cargar(guardado)
         reglasVisuales = ReglasVisualesPetdokuView(this)
-        val botonNivel = com.google.android.material.button.MaterialButton(this).apply {
+        val botonNivel = com.example.arcadia.compartido.ui.botonAccionArcade(this, getColor(R.color.acento_petdoku)).apply {
             setText(R.string.arcade_pet_next)
             setOnClickListener { mostrarSelectorNivel() }
         }

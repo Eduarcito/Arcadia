@@ -50,6 +50,13 @@ class IndicadoresJuegoView @JvmOverloads constructor(
         binding.statRight.text = formato(derecha)
     }
 
+    init {
+        listOf(binding.statLeft, binding.statRight).forEach {
+            it.gravity = android.view.Gravity.CENTER
+            it.setLineSpacing(0f, 1.15f)
+        }
+    }
+
     fun describirDerecha(texto: String) {
         binding.statRight.contentDescription = texto
     }
@@ -66,7 +73,7 @@ class IndicadoresJuegoView @JvmOverloads constructor(
         return SpannableString(texto).apply {
             val fin = texto.indexOf('\n')
             if (fin > 0) {
-                setSpan(RelativeSizeSpan(.43f), 0, fin, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(RelativeSizeSpan(.7f), 0, fin, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 setSpan(
                     ForegroundColorSpan(context.getColor(R.color.arcade_muted)),
                     0, fin, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
