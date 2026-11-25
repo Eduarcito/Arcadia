@@ -38,6 +38,8 @@ Mantener descripciones accesibles para iconos, casillas y controles. Comunicar e
 - Los títulos de pantalla se marcan como encabezados de accesibilidad con `ViewCompat` (cubre API 26–27) y los botones de icono responden al tacto con ripple y los mensajes de estado de partida se anuncian solos a TalkBack. En KenKen, cada cambio de valor en una casilla se anuncia con su fila y columna.
 - Las marcas de Buscaminas (bandera, mina) son vectores propios (`ic_bandera`, `ic_mina`), no emojis, para que se vean igual en todos los dispositivos. Las mascotas de Petdoku son ilustraciones por nivel (ver «Mascota y suma en vivo»).
 - El tema se elige entre sistema, claro y oscuro; el mínimo de texto es 11sp.
+- 2048 tiene botón **Deshacer** con historial de sesión (no se guarda en disco). Buscaminas muestra el cronómetro de la partida y el mejor tiempo junto al contador. Petdoku abre un selector para saltar a cualquiera de los doce niveles con tablero limpio.
+- El volumen se ajusta por separado para efectos y música; KenKen usa el mismo audio y vibración que el resto de los juegos.
 - Snake entra en modo paso a paso cuando TalkBack está activo: no hay temporizador, cada deslizamiento avanza una casilla y tocar el tablero sigue recto; tras cada paso se anuncia la dirección y distancia de la fruta y el peligro inmediato.
 - Las regiones de Petdoku se delimitan con bordes gruesos entre colores distintos (`bordesRegion` en `CasillaArcade`), no solo por color, para jugadores daltónicos.
 - Snake tiene botón propio de pausa/continuar; el toque sobre el tablero solo avanza en el modo paso a paso, para que un deslizamiento corto no pause por accidente.

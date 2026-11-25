@@ -29,6 +29,7 @@ class PetdokuActivity : PartidaArcadeActivity() {
         reglasVisuales = ReglasVisualesPetdokuView(this)
         pantalla.mostrarReglasVisuales(reglasVisuales)
         pantalla.compactarCabecera()
+        pantalla.alSiguienteNivel { mostrarSelectorNivel() }
         pantalla.tablero.alTocar={ tocar(it,false) }
         pantalla.tablero.alDobleTocar={ tocar(it,true) }
         pantalla.tablero.alIniciarTrazo = { borrando = modelo.juego.marcas[it] == 2 }
@@ -67,13 +68,27 @@ class PetdokuActivity : PartidaArcadeActivity() {
         val corazones = List(3) { if (it < juego.vidas) "♥" else "♡" }.joinToString(" ")
         estadisticas(getString(R.string.arcade_pet_level,juego.nivel+1),getString(R.string.arcade_pet_lives,corazones))
         pantalla.describirEstadisticaDerecha(getString(R.string.arcade_pet_lives_description,juego.vidas))
-        pantalla.mostrarSiguienteNivel(false)
         pantalla.mostrarEstado(when {
             juego.vidas == 0 -> getString(R.string.arcade_pet_lost)
             juego.victoria -> getString(R.string.arcade_pet_won)
             else -> getString(R.string.arcade_pet_progress,juego.mascotas.size) + "\n" + getString(if(juego.vidas<3) R.string.arcade_pet_error else R.string.arcade_pet_hint)
         })
         resolverFinDePartida()
+        pantalla.mostrarSiguienteNivel(true)
+    }
+
+    private fun mostrarSelectorNivel() {
+        val niveles = Array(12) { getString(R.string.catalogo_nivel, it + 1) }
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.petdoku_elegir_nivel)
+            .setSingleChoiceItems(niveles, modelo.juego.nivel) { dialogo, cual ->
+                dialogo.dismiss()
+                if (cual != modelo.juego.nivel) {
+                    cancelarAvance()
+                    modelo.irANivel(cual); modelo.guardar(guardado); mostrar()
+                }
+            }
+            .show()
     }
 
     private fun resolverFinDePartida() {

@@ -9,6 +9,7 @@ import com.example.arcadia.compartido.estado.CLAVE_MUSICA
 import com.example.arcadia.compartido.estado.CLAVE_SONIDO
 import com.example.arcadia.compartido.estado.CLAVE_VIBRACION
 import com.example.arcadia.compartido.estado.CLAVE_VOLUMEN
+import com.example.arcadia.compartido.estado.CLAVE_VOLUMEN_MUSICA
 import com.example.arcadia.compartido.estado.VOLUMEN_INICIAL
 
 // Comparte el tema global y agrega audio y vibracion a las pantallas que los utilizan
@@ -33,7 +34,8 @@ open class ArcadeActivity : TemaArcadeActivity() {
         }
         if (preferencias.getBoolean(CLAVE_MUSICA, false)) {
             if (musica == null) musica = MediaPlayer.create(applicationContext, R.raw.arcade_loop)?.apply { isLooping = true }
-            val volumen = preferencias.getInt(CLAVE_VOLUMEN, VOLUMEN_INICIAL) / 100f * 0.25f
+            val volumenMusica = preferencias.getInt(CLAVE_VOLUMEN_MUSICA, preferencias.getInt(CLAVE_VOLUMEN, VOLUMEN_INICIAL))
+            val volumen = volumenMusica / 100f * 0.25f
             musica?.setVolume(volumen, volumen)
             if (musica?.isPlaying != true) musica?.start()
         } else { musica?.release(); musica = null }

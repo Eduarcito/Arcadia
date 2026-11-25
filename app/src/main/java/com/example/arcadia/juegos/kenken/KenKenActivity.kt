@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.example.arcadia.R
-import com.example.arcadia.compartido.ui.TemaArcadeActivity
+import com.example.arcadia.compartido.ui.ArcadeActivity
 import com.example.arcadia.databinding.ActivityKenkenBinding
 
-class KenKenActivity : TemaArcadeActivity() {
+class KenKenActivity : ArcadeActivity() {
     private lateinit var binding: ActivityKenkenBinding
     private val viewModel: KenKenViewModel by viewModels()
 
@@ -30,10 +30,13 @@ class KenKenActivity : TemaArcadeActivity() {
             actualizarPantalla()
         }
         binding.controles.alIntroducirValor { valor ->
+            val antes = viewModel.obtenerValores()
             viewModel.establecerValor(valor)
+            if (viewModel.obtenerValores() != antes) respuesta()
             actualizarPantalla()
         }
         binding.comprobar.setOnClickListener {
+            respuesta()
             viewModel.comprobar()
             actualizarPantalla()
             animarRespuestaKenKen(binding.estado, escalaInicial = 1f, duracion = 180L)

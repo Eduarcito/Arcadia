@@ -15,6 +15,15 @@ class BuscaminasActivity : PartidaArcadeActivity() {
     private val guardado by lazy { getSharedPreferences("arcade_games",MODE_PRIVATE) }
     override val partidaPerdida get() = modelo.juego.terminada && !modelo.juego.victoria
     private lateinit var controles: ControlesBuscaminasView
+    private val reloj = android.os.Handler(android.os.Looper.getMainLooper())
+    private val tic = object : Runnable {
+        override fun run() {
+            if (!modelo.juego.iniciada || modelo.juego.terminada) return
+            modelo.segundos++
+            controles.mostrarTiempo(modelo.segundos, modelo.mejorTiempo)
+            reloj.postDelayed(this, 1000)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preparar(ActivityBuscaminasBinding.inflate(layoutInflater).root);modelo.cargar(guardado)
@@ -44,11 +53,15 @@ class BuscaminasActivity : PartidaArcadeActivity() {
         },!juego.terminada)
         estadisticas(getString(R.string.minas_racha,modelo.racha),getString(R.string.minas_record,modelo.recordRacha))
         controles.mostrar(juego.cantidadMinas-juego.banderas.size,modelo.modoBandera,!modelo.pistaUsada && !juego.terminada)
+        controles.mostrarTiempo(modelo.segundos,modelo.mejorTiempo)
+        reloj.removeCallbacks(tic)
+        if (juego.iniciada && !juego.terminada) reloj.postDelayed(tic,1000)
         pantalla.mostrarEstado(if(juego.victoria)R.string.arcade_mines_won else if(juego.terminada)R.string.arcade_mines_lost else R.string.arcade_mines_start)
         comprobarDerrota()
     }
     override fun reinicioPierdeProgreso() = !modelo.juego.terminada &&
         (modelo.juego.iniciada || modelo.juego.banderas.isNotEmpty())
     override fun reiniciar() { modelo.reiniciar();modelo.guardar(guardado);mostrar() }
-    override fun onPause() { modelo.guardar(guardado);super.onPause() }
+    override fun onPause() { reloj.removeCallbacks(tic);modelo.guardar(guardado);super.onPause() }
+    override fun onDestroy() { reloj.removeCallbacks(tic);super.onDestroy() }
 }

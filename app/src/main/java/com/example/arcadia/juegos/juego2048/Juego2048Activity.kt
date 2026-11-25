@@ -16,10 +16,17 @@ class Juego2048Activity : PartidaArcadeActivity() {
     private val guardado by lazy { getSharedPreferences("arcade_games",MODE_PRIVATE) }
     override val partidaPerdida get() = modelo.juego.terminado
     private var dialogoVictoria: AlertDialog? = null
+    private var botonDeshacer: com.google.android.material.button.MaterialButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preparar(ActivityJuego2048Binding.inflate(layoutInflater).root)
-        pantalla.usarPantallaCompleta()
+        botonDeshacer = com.google.android.material.button.MaterialButton(this).apply {
+            setText(R.string.arcade_deshacer)
+            setOnClickListener {
+                if (modelo.deshacer()) { modelo.guardar(guardado); mostrar() }
+            }
+        }
+        pantalla.usarPantallaCompleta(herramientas = botonDeshacer)
         modelo.cargar(guardado)
         pantalla.tablero.alDeslizar=::mover
         mostrar();modelo.guardar(guardado)
@@ -36,6 +43,7 @@ class Juego2048Activity : PartidaArcadeActivity() {
         pantalla.tablero.mostrar(4,juego.celdas.map {
             CasillaArcade(if(it==0) "" else it.toString(), colores[it] ?: getColor(R.color.ficha_2048_superior))
         },false)
+        botonDeshacer?.isEnabled = modelo.puedeDeshacer
         estadisticas(getString(R.string.arcade_score,juego.puntos),getString(R.string.arcade_best,modelo.record))
         pantalla.mostrarEstado(if(juego.terminado)R.string.arcade_2048_over else if(juego.victoria)R.string.arcade_2048_win else R.string.arcade_2048_hint)
         comprobarDerrota()

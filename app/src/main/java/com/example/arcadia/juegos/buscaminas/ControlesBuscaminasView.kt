@@ -13,6 +13,10 @@ class ControlesBuscaminasView @JvmOverloads constructor(context:Context,attrs:At
         binding.modo.addOnButtonCheckedListener { _,id,checked -> if(checked)accion(id==R.id.marcar) }
     }
     fun alPedirPista(accion:()->Unit){binding.pista.setOnClickListener { accion() }}
+    fun mostrarTiempo(segundos:Int,mejor:Int){
+        val texto=resources.getString(R.string.minas_tiempo,segundos/60,segundos%60)
+        binding.tiempo.text=if(mejor>0) texto+resources.getString(R.string.minas_mejor_tiempo,mejor/60,mejor%60) else texto
+    }
     fun mostrar(minas:Int,banderas:Boolean,pistaDisponible:Boolean){
         binding.minasRestantes.text=resources.getString(R.string.minas_contador,minas)
         binding.minasRestantes.contentDescription=resources.getString(R.string.minas_contador_descripcion,minas)

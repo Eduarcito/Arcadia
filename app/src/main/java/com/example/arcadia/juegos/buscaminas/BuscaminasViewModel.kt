@@ -12,6 +12,8 @@ class BuscaminasViewModel : PartidaViewModel() {
     var racha=0; private set
     var recordRacha=0; private set
     var pistaUsada=false; private set
+    var segundos=0
+    var mejorTiempo=0; private set
     private var resultadoRegistrado=false
     fun actuar(indice: Int, bandera: Boolean): Boolean {
         val cambio = if (bandera) juego.marcar(indice) else juego.abrir(indice)
@@ -23,6 +25,7 @@ class BuscaminasViewModel : PartidaViewModel() {
         resultadoRegistrado=true
         racha=if(juego.victoria) racha+1 else 0
         recordRacha=maxOf(recordRacha,racha)
+        if (juego.victoria && segundos > 0) mejorTiempo=if (mejorTiempo==0) segundos else minOf(mejorTiempo,segundos)
     }
     fun pista(): Boolean {
         if (pistaUsada || juego.terminada) return false
@@ -35,15 +38,17 @@ class BuscaminasViewModel : PartidaViewModel() {
         if (juego.iniciada && !juego.terminada) racha=0
         juego.reiniciar()
         modoBandera = false
-        pistaUsada=false;resultadoRegistrado=false
+        pistaUsada=false;resultadoRegistrado=false;segundos=0
     }
     override fun restaurar(json: JSONObject) {
         juego.restaurar(json.enteros("mines").toSet(),json.enteros("open").toSet(),json.enteros("flags").toSet(),json.getBoolean("started"),json.getInt("hit"))
         modoBandera=json.optBoolean("flagMode")
         racha=json.optInt("streak").coerceAtLeast(0);recordRacha=maxOf(racha,json.optInt("bestStreak"))
         pistaUsada=json.optBoolean("hintUsed");resultadoRegistrado=json.optBoolean("recorded",juego.terminada)
+        segundos=json.optInt("time").coerceAtLeast(0);mejorTiempo=json.optInt("bestTime").coerceAtLeast(0)
     }
     override fun estado()=JSONObject().lista("mines",juego.minas).lista("open",juego.abiertas).lista("flags",juego.banderas)
         .put("started",juego.iniciada).put("hit",juego.explosion).put("flagMode",modoBandera)
         .put("streak",racha).put("bestStreak",recordRacha).put("hintUsed",pistaUsada).put("recorded",resultadoRegistrado)
+        .put("time",segundos).put("bestTime",mejorTiempo)
 }

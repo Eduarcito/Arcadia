@@ -55,7 +55,7 @@
     <string name="arcade_pet_level">NIVEL\n%1$d / 12</string>
     <string name="arcade_pet_hint">Arrastra para marcar varias ×; empieza sobre una × para borrarlas. No se borran tus mascotas.</string>
     <string name="arcade_pet_won">¡Todas las mascotas encontraron su lugar!</string>
-    <string name="arcade_pet_next">Siguiente nivel</string>
+    <string name="arcade_pet_next">Elegir nivel</string>
     <string name="arcade_snake_title">Snake</string>
     <string name="arcade_snake_help">Desliza el dedo para dirigir la serpiente, incluso sin levantarlo. Usa el botón de pausa para detenerla o continuar. Come fruta y evita las paredes y tu cola.</string>
     <string name="arcade_snake_ready">Desliza en la dirección que quieras para empezar.</string>
@@ -64,7 +64,8 @@
     <string name="arcade_snake_over">¡Choque! Toca el icono de reinicio para volver a jugar.</string>
     <string name="arcade_snake_win">¡Increíble! Llenaste todo el tablero.</string>
     <string name="arcade_settings_caption">A tu manera</string>
-    <string name="arcade_volume">Volumen</string>
+    <string name="arcade_volume">Volumen de efectos</string>
+    <string name="arcade_volume_music">Volumen de música</string>
     <string name="arcade_volume_value">%1$d %%</string>
     <string name="arcade_sound">Efectos de sonido</string>
     <string name="arcade_music">Música</string>
@@ -73,7 +74,7 @@
     <string name="arcade_theme_light">Claro</string>
     <string name="arcade_theme_dark">Oscuro</string>
     <string name="arcade_vibration">Vibración</string>
-    <string name="arcade_settings_note">Tus preferencias se guardan en este dispositivo. El tema se aplica a todos los juegos; los ajustes de audio y vibración no se aplican a KenKen.</string>
+    <string name="arcade_settings_note">Tus preferencias se guardan en este dispositivo y se aplican a todos los juegos.</string>
     <string name="arcade_settings_reset">Restablecer ajustes</string>
     <string name="arcade_settings_reset_title">¿Restablecer los ajustes?</string>
     <string name="arcade_settings_reset_message">Volumen, efectos, música, vibración y modo oscuro volverán a sus valores iniciales. Tus partidas guardadas no se borran.</string>
@@ -103,4 +104,8 @@
     <string name="catalogo_record">Récord %1$d</string>
     <string name="catalogo_nivel">Nivel %1$d/12</string>
     <string name="catalogo_racha">Racha %1$d</string>
+    <string name="arcade_deshacer">Deshacer</string>
+    <string name="minas_tiempo">%1$d:%2$02d</string>
+    <string name="minas_mejor_tiempo"> · mejor %1$d:%2$02d</string>
+    <string name="petdoku_elegir_nivel">Elige un nivel</string>
 </resources>

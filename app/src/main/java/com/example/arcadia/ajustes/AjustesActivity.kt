@@ -6,6 +6,7 @@ import com.example.arcadia.compartido.estado.CLAVE_MUSICA
 import com.example.arcadia.compartido.estado.CLAVE_SONIDO
 import com.example.arcadia.compartido.estado.CLAVE_VIBRACION
 import com.example.arcadia.compartido.estado.CLAVE_VOLUMEN
+import com.example.arcadia.compartido.estado.CLAVE_VOLUMEN_MUSICA
 import com.example.arcadia.compartido.estado.CLAVE_TEMA
 import com.example.arcadia.compartido.estado.TEMA_CLARO
 import com.example.arcadia.compartido.estado.TEMA_OSCURO
@@ -43,6 +44,22 @@ class AjustesActivity : ArcadeActivity() {
             override fun onStopTrackingTouch(slider: Slider) {
                 actualizarAudio()
                 respuesta()
+            }
+        })
+
+        val volumenMusicaInicial = preferencias.getInt(CLAVE_VOLUMEN_MUSICA, preferencias.getInt(CLAVE_VOLUMEN, VOLUMEN_INICIAL))
+        binding.volumeMusic.value = volumenMusicaInicial.toFloat()
+        binding.volumeMusicValue.text = getString(R.string.arcade_volume_value, volumenMusicaInicial)
+        binding.volumeMusic.addOnChangeListener { _, valor, usuario ->
+            if (usuario) {
+                preferencias.edit().putInt(CLAVE_VOLUMEN_MUSICA, valor.toInt()).apply()
+                binding.volumeMusicValue.text = getString(R.string.arcade_volume_value, valor.toInt())
+            }
+        }
+        binding.volumeMusic.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
+            override fun onStartTrackingTouch(slider: Slider) {}
+            override fun onStopTrackingTouch(slider: Slider) {
+                actualizarAudio()
             }
         })
 

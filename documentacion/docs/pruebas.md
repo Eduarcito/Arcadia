@@ -13,6 +13,8 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los seis juego
 
 ## 2048
 
+- **Deshacer** restaura tablero y puntaje de la jugada anterior, repetible hasta agotar el historial; los movimientos que no cambian el tablero no entran al historial y reiniciar lo vacía. El historial no sobrevive al cerrar la aplicación.
+
 | Caso | Resultado esperado |
 |---|---|
 | Mover `2, 2, 2, 2` a la izquierda. | La fila queda `4, 4, 0, 0` antes de generar la ficha nueva; el puntaje aumenta en 8. |
@@ -30,11 +32,12 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los seis juego
 - Revelar una casilla sin minas vecinas abre las zonas vacías conectadas, sin abrir minas ni casillas con bandera.
 - Revelar una mina termina la partida. Abrir las 54 casillas seguras da la victoria sin exigir banderas.
 - Salir y volver conserva minas, banderas y casillas abiertas, sin regenerarlas.
+- El cronómetro corre solo con la partida iniciada y sin terminar; se conserva al salir y el mejor tiempo se actualiza en cada victoria.
 
 ## Petdoku y Snake
 
 - Petdoku distingue toque simple, doble y arrastre en todas las filas tras cambiar a `LinearLayout`. Los trazos no afectan a mascotas ni errores.
-- Petdoku conserva nivel, marcas y vidas al salir. Tres fallos bloquean la partida con un diálogo de reintento; reiniciar devuelve las vidas y ganar avanza al siguiente nivel tras una breve pausa.
+- Petdoku conserva nivel, marcas y vidas al salir. Tres fallos bloquean la partida con un diálogo de reintento; reiniciar devuelve las vidas y ganar avanza al siguiente nivel tras una breve pausa. El botón **Elegir nivel** salta a cualquier nivel con tablero limpio y tres vidas.
 - Snake permite varios giros sin levantar el dedo. La pausa usa su propio botón; un deslizamiento corto no debe pausar la partida. En modo paso a paso el toque sobre el tablero sigue avanzando recto.
 - Snake se pausa al salir, rotar o reiniciar; no avanza en segundo plano y conserva el cuerpo guardado.
 

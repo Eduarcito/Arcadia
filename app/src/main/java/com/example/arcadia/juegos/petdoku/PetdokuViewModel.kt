@@ -17,6 +17,11 @@ class PetdokuViewModel : PartidaViewModel() {
     fun siguiente() = juego.siguiente()
     fun reiniciar() = juego.reiniciar()
 
+    /** Salta al nivel [n] con el tablero limpio y las vidas completas. */
+    fun irANivel(n: Int) {
+        juego.restaurar(n, List(36) { 0 }, 3)
+    }
+
     override fun restaurar(json: JSONObject) {
         juego.restaurar(json.getInt("level"), json.enteros("marks"), json.optInt("lives", 3))
     }
