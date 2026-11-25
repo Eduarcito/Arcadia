@@ -8,11 +8,13 @@ import android.graphics.Path
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
+import com.example.arcadia.R
 
 // Dibuja las ilustraciones a la resolucion de la pantalla
 class PortadaJuegoView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : View(context,attrs) {
     var juego = 0
     private val p = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val mascota by lazy { context.getDrawable(R.drawable.petdoku_perrito)?.mutate() }
     private fun color(hex: String) = Color.parseColor(hex)
     private fun rect(c: Canvas,x:Float,y:Float,w:Float,h:Float,hex:String,r:Float=10f) {
         p.style=Paint.Style.FILL; p.color=color(hex); c.drawRoundRect(x,y,x+w,y+h,r,r,p)
@@ -44,7 +46,7 @@ class PortadaJuegoView @JvmOverloads constructor(context: Context, attrs: Attrib
                 val colors=listOf("#F1A8C6","#8CD4AF","#A7D9F0","#F4CE8E")
                 for(i in 0..8){val x=7f+(i%3)*52;val y=2f+(i/3)*52;rect(c,x,y,47f,47f,colors[(i+i/3)%4]);
                     if(i in listOf(0,5,7)) text(c,"×",x+24,y+37,43f,"#FFFFFF")}
-                cat(c,82f,24f);cat(c,30f,129f);cat(c,137f,128f)
+                perrito(c,82f,24f);perrito(c,30f,129f);perrito(c,137f,128f)
             }
             3 -> {
                 val path=Path();path.moveTo(13f,143f);path.lineTo(13f,110f);path.quadTo(13f,90f,35f,90f);path.lineTo(119f,90f);path.quadTo(149f,90f,149f,62f);path.quadTo(149f,35f,120f,35f);path.lineTo(65f,35f)
@@ -52,6 +54,14 @@ class PortadaJuegoView @JvmOverloads constructor(context: Context, attrs: Attrib
                 p.color=color("#B8F77C");c.drawCircle(61f,35f,23f,p)
                 for(x in listOf(53f,68f)){p.color=Color.WHITE;c.drawCircle(x,29f,7f,p);p.color=color("#192A23");c.drawCircle(x-1,29f,3f,p)}
                 p.color=color("#FF7A9A");c.drawCircle(73f,135f,12f,p);p.color=color("#C3F488");c.drawOval(76f,115f,86f,125f,p)
+            }
+            5 -> {
+                c.rotate(-6f,85f,80f)
+                val nums=listOf("4","8","32","4","4","16","64","4","8")
+                val colors=listOf("#A275EA","#F9C900","#60C1F0","#A275EA","#A275EA","#87C85C","#FFB276","#A275EA","#F9C900")
+                for(i in 0..8){val x=7f+(i%3)*52;val y=2f+(i/3)*52;rect(c,x,y,47f,47f,colors[i]);text(c,nums[i],x+24,y+34,28f,"#2C333F")}
+                p.color=Color.WHITE;p.strokeWidth=4f;p.strokeCap=Paint.Cap.ROUND
+                c.drawLine(31f,26f,31f,78f,p);c.drawLine(31f,78f,83f,78f,p);c.drawLine(83f,78f,83f,130f,p)
             }
             else -> {
                 c.rotate(-7f,85f,80f)
@@ -61,10 +71,10 @@ class PortadaJuegoView @JvmOverloads constructor(context: Context, attrs: Attrib
         }
         c.restore()
     }
-    private fun cat(c:Canvas,x:Float,y:Float) {
-        p.color=color("#FFF5E9");c.drawCircle(x,y,20f,p)
-        val ears=Path();ears.moveTo(x-19,y-3);ears.lineTo(x-18,y-27);ears.lineTo(x-4,y-17);ears.moveTo(x+19,y-3);ears.lineTo(x+18,y-27);ears.lineTo(x+4,y-17);c.drawPath(ears,p)
-        p.color=color("#42363B");c.drawCircle(x-7,y-2,3f,p);c.drawCircle(x+7,y-2,3f,p)
-        p.color=color("#DF8CA7");c.drawCircle(x,y+6,3f,p)
+    private fun perrito(c: Canvas, x: Float, y: Float) {
+        mascota?.let {
+            it.setBounds((x-24).toInt(),(y-24).toInt(),(x+24).toInt(),(y+24).toInt())
+            it.draw(c)
+        }
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:tituloPartida="@string/juego_buscaminas"
-    app:instruccionesPartida="@string/arcade_mines_help"
+    app:instruccionesPartida="@string/minas_ayuda"
     app:lemaPartida="@string/arcade_mines_caption"
     app:gestoPartida="@string/arcade_gesture_mines"
     app:acentoPartida="@color/acento_buscaminas" />

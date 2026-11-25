@@ -1,11 +1,11 @@
 # Pruebas y criterios de entrega
 
-Comprobar las reglas por separado y recorrer catálogo, ajustes y los cinco juegos en un dispositivo o emulador. Si se agregan pruebas locales con JUnit, ubicarlas en `app/src/test/` y reflejar el paquete del juego que prueban.
+Comprobar las reglas por separado y recorrer catálogo, ajustes y los seis juegos en un dispositivo o emulador. Si se agregan pruebas locales con JUnit, ubicarlas en `app/src/test/` y reflejar el paquete del juego que prueban.
 
 ## Pruebas generales
 
-- Tras compilar el módulo, abrir `activity_main.xml` en **Design**: las cinco tarjetas deben mostrar su título, ilustración y color sin ejecutar la `Activity`. Abrir los layouts de los juegos nuevos y comprobar el contenido configurado mediante atributos.
-- El catálogo abre los cinco juegos y Atrás regresa al mismo catálogo sin duplicarlo.
+- Tras compilar el módulo, abrir `activity_main.xml` en **Design**: las seis tarjetas deben mostrar su título, ilustración y color sin ejecutar la `Activity`. Abrir los layouts de los juegos nuevos y comprobar el contenido configurado mediante atributos.
+- El catálogo abre los seis juegos y Atrás regresa al mismo catálogo sin duplicarlo.
 - Cada tablero tiene el número correcto de filas y casillas, con tamaño uniforme. Cabe en un teléfono pequeño sin desplazamiento horizontal. Los mensajes se leen y los controles no quedan bajo las barras del sistema.
 - Al rotar, se conservan el tablero y los datos de la partida. Al salir y volver a entrar, 2048, Buscaminas, Petdoku y Snake recuperan su guardado; comprobar también tras cerrar y volver a abrir la aplicación. KenKen inicia otra partida al volver a abrirse.
 - **Reiniciar** restablece el tablero y los indicadores. Tras ganar o perder, no se aceptan nuevas jugadas hasta reiniciar.
@@ -61,3 +61,7 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los cinco jueg
 `EstructuraJuegosTest` contiene regresiones instrumentadas para las filas `LinearLayout`, el guardado al reabrir y los componentes, modos, rotación y reinicio de KenKen. `ArcadeFlowTest` conserva las pruebas de navegación, gestos, ajustes y guardado de los cuatro juegos nuevos. Ejecutarlas manualmente en Android Studio con un dispositivo de prueba; no usar un dispositivo con partidas que deban conservarse, porque `ArcadeFlowTest` restablece las preferencias.
 
 Cada integrante debe poder mostrar una jugada completa: **pulsación en la `Activity` → cambio de estado en el `ViewModel` → actualización de las casillas XML**. También debe poder explicar una regla del juego y señalar un componente XML reutilizado.
+
+## Tableros completos y Number Connect
+
+`JuegosCompletosTest` comprueba tableros completamente visibles, selector y pista de Buscaminas, racha sin duplicados, fusiones por arrastre, guardado, reinicio y derrota de Number Connect. Restaura las preferencias originales al terminar cada prueba. `NumberConnectTest` comprueba conexiones diagonales, caminos inválidos, gravedad, puntuación, fin de partida y recuperación del estado.

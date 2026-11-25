@@ -54,6 +54,14 @@ class IndicadoresJuegoView @JvmOverloads constructor(
         binding.statRight.contentDescription = texto
     }
 
+    fun compactar(tamano: Float = 24f, padding: Int = 12) {
+        val margen = (padding * resources.displayMetrics.density).toInt()
+        listOf(binding.statLeft, binding.statRight).forEach {
+            it.textSize = tamano
+            it.setPadding(margen, margen, margen, margen)
+        }
+    }
+
     private fun formato(texto: String): SpannableString {
         return SpannableString(texto).apply {
             val fin = texto.indexOf('\n')

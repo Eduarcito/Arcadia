@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:padding="10dp"
+    android:background="@color/arcade_bg">
+    <LinearLayout android:id="@+id/cabecera" android:layout_width="0dp" android:layout_height="72dp" android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/back" android:layout_width="48dp" android:layout_height="48dp" android:padding="13dp" android:background="@drawable/arcade_icon_button" android:src="@drawable/arcade_back" android:contentDescription="@string/arcade_back" />
+        <FrameLayout android:id="@+id/marcadores" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginHorizontal="8dp" />
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/restart" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:background="@drawable/arcade_icon_button" android:src="@drawable/arcade_restart" android:contentDescription="@string/arcade_restart" />
+    </LinearLayout>
+    <TextView android:id="@+id/nombre" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/arcade_ink"
+        app:layout_constraintTop_toBottomOf="@id/cabecera" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+    <TextView android:id="@+id/gesto" android:layout_width="0dp" android:layout_height="wrap_content" android:paddingVertical="6dp" android:gravity="center" android:textSize="12sp" android:textColor="@color/arcade_muted"
+        app:layout_constraintTop_toBottomOf="@id/nombre" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+    <FrameLayout android:id="@+id/previsualizacion" android:layout_width="0dp" android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/gesto" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+    <FrameLayout android:id="@+id/zona_tablero" android:layout_width="0dp" android:layout_height="0dp" android:layout_marginVertical="8dp"
+        app:layout_constraintTop_toBottomOf="@id/previsualizacion" app:layout_constraintBottom_toTopOf="@id/herramientas" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+    <FrameLayout android:id="@+id/herramientas" android:layout_width="0dp" android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/pie" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout android:id="@+id/pie" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <TextView android:id="@+id/status" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:padding="8dp" android:gravity="center" android:textSize="13sp" android:maxLines="3" android:ellipsize="end" android:accessibilityLiveRegion="polite" android:textColor="@color/arcade_ink" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/ayuda" style="@style/Widget.Material3.Button.TextButton" android:layout_width="48dp" android:layout_height="48dp" android:minWidth="0dp" android:padding="0dp" android:text="?" android:textSize="22sp" android:contentDescription="@string/arcade_help_title" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

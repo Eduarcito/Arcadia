@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="arcade_help_title">Cómo jugar</string>
+    <string name="minas_descubrir">Descubrir casillas</string>
+    <string name="minas_marcar">Colocar banderas</string>
+    <string name="minas_pista">Revelar una casilla segura, una vez por partida</string>
+    <string name="minas_contador">✹ %1$d</string>
+    <string name="minas_contador_descripcion">Minas sin marcar: %1$d</string>
+    <string name="minas_racha">RACHA\n%1$d</string>
+    <string name="minas_record">RÉCORD\n%1$d</string>
+    <string name="minas_gestos">Toca para descubrir · Mantén para marcar</string>
+    <string name="minas_ayuda">Descubre las casillas seguras. Cada número indica cuántas minas lo rodean. Mantén pulsado para poner una bandera o selecciona el modo de banderas y toca. La bombilla descubre una casilla segura una vez por partida. Gana partidas seguidas para aumentar tu racha.</string>
+    <string name="connect_title">Number Connect</string>
+    <string name="connect_card">NUMBER\nCONNECT</string>
+    <string name="connect_caption">UNE, COMBINA Y SUPÉRATE</string>
+    <string name="connect_gesto">Arrastra entre números iguales y suelta para combinar</string>
+    <string name="connect_ayuda">Une al menos dos números iguales y vecinos arrastrando el dedo. Puedes moverte en horizontal, vertical o diagonal, sin repetir casillas. Retrocede una casilla para corregir el trazo. Al soltar, se fusionan en la última casilla: la suma sube a la siguiente potencia de 2 (por ejemplo, tres 8 forman 32). Las fichas caen y aparecen nuevas. La partida termina cuando no hay pares vecinos iguales. Con un lector de pantalla, selecciona las casillas y activa Combinar selección.</string>
+    <string name="connect_hint">Conecta al menos 2 fichas iguales.</string>
+    <string name="connect_preview">%1$d fichas de %2$d → %3$d</string>
+    <string name="connect_score">PUNTOS\n%1$d</string>
+    <string name="connect_best">RÉCORD\n%1$d</string>
+    <string name="connect_over">No quedan números iguales juntos.</string>
+    <string name="connect_merge">Combinar selección</string>
+    <color name="connect_acento">#A892F5</color>
+    <color name="connect_portada">#232B43</color>
+    <color name="connect_tinta">#2C333F</color>
+    <array name="paleta_connect">
+        <item>#E4DCD0</item><item>#A275EA</item><item>#F9C900</item><item>#87C85C</item>
+        <item>#60C1F0</item><item>#FFB276</item><item>#5E8EDB</item><item>#B48D6D</item>
+        <item>#EE889F</item><item>#8D80F2</item><item>#80EBEE</item><item>#8795B1</item>
+    </array>
+    <array name="pistas_minas_compacto">
+        <item>#ADB5B8</item><item>#00BCD9</item><item>#36B34A</item><item>#FF5252</item><item>#9D7EF5</item>
+        <item>#F8B64C</item><item>#38C5AA</item><item>#E777AE</item><item>#899BAC</item>
+    </array>
+    <string name="connect_suma_titulo">SUMA DEL TRAZO</string>
+    <string name="connect_ficha_titulo">FICHA FINAL</string>
+    <string name="connect_preview_vacio">Une números iguales</string>
+    <string name="connect_preview_sin_ficha">—</string>
+    <string name="connect_producto">%1$d × %2$d</string>
+    <string name="connect_suma">%1$s = %2$d</string>
+</resources>

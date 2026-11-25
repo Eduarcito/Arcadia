@@ -1,6 +1,6 @@
 # Reglas y alcance de los juegos
 
-Los cinco juegos se ejecutan sin Internet. 2048, Buscaminas, Petdoku y Snake guardan automáticamente la partida como JSON en preferencias privadas. **Reiniciar** limpia la partida y conserva los récords; KenKen no tiene guardado persistente. Tras un resultado definitivo se bloquean nuevas jugadas, salvo que 2048 permita continuar después de ganar.
+Los seis juegos se ejecutan sin Internet. 2048, Buscaminas, Petdoku, Snake y Number Connect guardan automáticamente la partida como JSON en preferencias privadas. **Reiniciar** limpia la partida y conserva los récords; KenKen no tiene guardado persistente. Tras un resultado definitivo se bloquean nuevas jugadas, salvo que 2048 permita continuar después de ganar.
 
 ## 2048
 
@@ -16,10 +16,11 @@ Los cinco juegos se ejecutan sin Internet. 2048, Buscaminas, Petdoku y Snake gua
 
 - Tablero de **8 × 8** con **10 minas**. Colocarlas al revelar la primera casilla válida, fuera de esa casilla y de todas sus vecinas.
 - Contar como vecinas las casillas contiguas horizontales, verticales y diagonales dentro del tablero.
-- Un toque descubre una casilla; una pulsación larga coloca o retira la bandera. Una casilla marcada no se puede descubrir hasta retirar la bandera.
+- El selector inferior permite descubrir o marcar con un toque. En modo descubrir, un toque descubre una casilla; una pulsación larga coloca o retira la bandera. Una casilla marcada no se puede descubrir hasta retirar la bandera.
 - Revelar un número cuando haya minas vecinas. Si no hay ninguna, revelar también las casillas seguras contiguas y continuar la expansión mientras se encuentren casillas vacías. No abrir casillas marcadas en la expansión.
 - Perder al revelar una mina. Ganar al abrir las **54 casillas seguras**, aunque no se hayan colocado banderas.
-- Guardar minas, casillas abiertas, banderas y estado de la partida.
+- Guardar minas, casillas abiertas, banderas, modo y estado de la partida.
+- Mostrar racha y mejor racha; una victoria incrementa la racha una sola vez, perder o abandonar una partida iniciada la reinicia. Una pista gratuita por partida revela una casilla segura; su consumo también se guarda.
 
 ## Petdoku
 
@@ -33,6 +34,14 @@ Los cinco juegos se ejecutan sin Internet. 2048, Buscaminas, Petdoku y Snake gua
 - Tablero de **14 × 14**. Deslizar dirige la serpiente, también sin levantar el dedo; tocar el tablero pausa o continúa.
 - Comer aumenta la longitud y la puntuación, con velocidad progresiva. Chocar con paredes o cuerpo termina la partida.
 - Guardar cuerpo, dirección, comida, puntuación, récord y resultado. Al salir se pausa y se eliminan los callbacks; al volver no se reanuda automáticamente.
+
+## Number Connect
+
+- Tablero de **5 × 7** con potencias de dos. Arrastrar conecta dos o más números iguales vecinos, incluidas diagonales. Retroceder sobre la casilla anterior acorta el trazo.
+- Al levantar el dedo, combinar en la última casilla: sumar la selección y redondear hacia arriba a la siguiente potencia de dos (tres fichas de 8 producen 32). Aplicar gravedad y rellenar desde arriba.
+- Sumar el valor obtenido a la puntuación. No fusionar toques aislados ni gestos cancelados. Las reglas validan cada casilla agregada.
+- Guardar tablero, puntuación y récord. Cuando no queden parejas iguales vecinas, mostrar reintentar o menú principal.
+- El tablero se adapta al espacio disponible sin desplazamiento, como los de 2048, Buscaminas y Snake.
 
 ## KenKen
 

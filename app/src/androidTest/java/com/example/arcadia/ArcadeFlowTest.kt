@@ -8,6 +8,7 @@ import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.arcadia.ajustes.AjustesActivity
@@ -55,7 +56,7 @@ class ArcadeFlowTest {
     @Test fun deslizar2048FusionaYConservaAlRecrear() {
         saves.edit().putString("2048",JSONObject().put("cells",JSONArray(listOf(2,2)+List(14){0})).put("score",0).toString()).commit()
         ActivityScenario.launch(Juego2048Activity::class.java).use { scenario->
-            onView(withId(R.id.board)).perform(scrollTo(),swipeLeft())
+            onView(withId(R.id.board)).perform(swipeLeft())
             assertEquals(4L,state("2048").getLong("score"))
             val before=state("2048").getJSONArray("cells").toString()
             scenario.recreate()
@@ -71,16 +72,16 @@ class ArcadeFlowTest {
     @Test fun victoria2048PermiteContinuar() {
         saves.edit().putString("2048",JSONObject().put("cells",JSONArray(listOf(1024,1024)+List(14){0})).put("score",0).toString()).commit()
         ActivityScenario.launch(Juego2048Activity::class.java).use {
-            onView(withId(R.id.board)).perform(scrollTo(),swipeLeft())
+            onView(withId(R.id.board)).perform(swipeLeft())
             onView(withId(android.R.id.button1)).check(matches(withText(R.string.arcade_continue))).perform(click())
             assertTrue(state("2048").getBoolean("win"))
-            onView(withId(R.id.board)).perform(scrollTo(),swipeDown())
+            onView(withId(R.id.board)).perform(swipeDown())
             assertTrue(state("2048").getJSONArray("cells").toString().contains("2048"))
         }
     }
     @Test fun buscaminasBanderaPrimerToqueYGuardado() {
         ActivityScenario.launch(BuscaminasActivity::class.java).use { scenario->
-            onView(cell(1,1)).perform(scrollTo(),longClick())
+            onView(cell(1,1)).perform(longClick())
             assertEquals(1,state("mines").getJSONArray("flags").length())
             onView(cell(1,1)).perform(longClick(),click())
             assertTrue(state("mines").getBoolean("started"));assertEquals(-1,state("mines").getInt("hit"))
@@ -114,16 +115,16 @@ class ArcadeFlowTest {
             screenshot("petdoku_jugando")
             onView(cell(1,2)).perform(doubleClick());onView(cell(1,3)).perform(doubleClick());esperarToque()
             assertEquals(0,state("petdoku").getInt("lives"))
-            onView(withId(R.id.status)).check(matches(withText(R.string.arcade_pet_lost)))
-            onView(cell(2,3)).perform(doubleClick());esperarToque()
-            assertEquals(0,state("petdoku").getJSONArray("marks").getInt(8))
-            onView(withId(R.id.restart)).perform(click());onView(withId(android.R.id.button1)).perform(click())
+            onView(withText(R.string.petdoku_sin_vidas)).inRoot(isDialog()).check(matches(isDisplayed()))
+            scenario.recreate()
+            onView(withText(R.string.petdoku_sin_vidas)).inRoot(isDialog()).check(matches(isDisplayed()))
+            onView(withText(R.string.petdoku_reintentar)).inRoot(isDialog()).perform(click())
             assertEquals(3,state("petdoku").getInt("lives"));assertEquals(0,state("petdoku").getJSONArray("marks").getInt(0))
         }
     }
     @Test fun snakeSePausaAlSalirYAlRecrear() {
         ActivityScenario.launch(SnakeActivity::class.java).use { scenario->
-            onView(withId(R.id.board)).perform(scrollTo(),swipeUp())
+            onView(withId(R.id.board)).perform(swipeUp())
             Thread.sleep(500)
             scenario.moveToState(Lifecycle.State.CREATED)
             val body=state("snake").getJSONArray("body").toString()
@@ -179,7 +180,7 @@ class ArcadeFlowTest {
 
     @Test fun snakeSePausaYContinuaTocandoElTableroSinBotones() {
         ActivityScenario.launch(SnakeActivity::class.java).use {
-            onView(withId(R.id.board)).perform(scrollTo(),swipeUp())
+            onView(withId(R.id.board)).perform(swipeUp())
             assertTrue(state("snake").getBoolean("started"))
             onView(withId(R.id.board)).perform(click())
             onView(withId(R.id.status)).check(matches(withText(R.string.arcade_snake_paused)))

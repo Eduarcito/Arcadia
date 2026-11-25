@@ -5,20 +5,20 @@ La referencia actual es el catálogo ilustrado y las pantallas de 2048, Buscamin
 ## Tema y catálogo
 
 - Usar Material Components para vistas XML, con tema base `Theme.Material3.DayNight.NoActionBar`, sin Compose.
-- El catálogo y los cuatro juegos nuevos usan `Theme.Arcade`, colores claros y oscuros definidos en recursos y los ajustes locales existentes.
+- El catálogo y los cinco juegos nuevos usan `Theme.Arcade`, colores claros y oscuros definidos en recursos y los ajustes locales existentes.
 - KenKen usa el mismo `Theme.Arcade` y el modo claro u oscuro global mediante `TemaArcadeActivity`, sin añadir audio ni vibración. Sus colores de casillas, texto, selección y controles tienen variantes nocturnas.
-- Mantener las cinco tarjetas ilustradas en dos columnas, esquinas redondeadas, contorno y textos configurados desde XML mediante `TarjetaJuegoView`.
+- Mantener las seis tarjetas ilustradas en dos columnas, esquinas redondeadas, contorno y textos configurados desde XML mediante `TarjetaJuegoView`.
 - Conservar el menú lateral con **Mis juegos** y **Ajustes** y el icono adaptativo.
 
 ## Pantallas de juego
 
 - Usar `ConstraintLayout`, directamente o mediante `PantallaPartidaView`. El encabezado compartido se declara con `estiloArcade="true"`: volver, marca y reinicio.
 - Mostrar lema, título, tarjetas de indicadores, instrucción de interacción, tablero y mensaje de estado. Reutilizar `IndicadoresJuegoView` y `AyudaJuegoView`.
-- En los cuatro juegos nuevos, configurar título, instrucciones, lema, gesto y acento desde atributos XML de `PantallaPartidaView`.
-- Mantener los tamaños, márgenes, tipografía y colores existentes de esos cuatro juegos. No añadir botones direccionales ni selectores al refactorizar.
-- Construir los tableros de casillas con filas horizontales en un contenedor vertical. Repartir las filas y casillas con pesos; mantener el tablero cuadrado, centrado y sin desplazamiento horizontal.
+- En los cinco juegos nuevos, configurar título, instrucciones, lema, gesto y acento desde atributos XML de `PantallaPartidaView`.
+- 2048, Buscaminas, Snake y Number Connect usan encabezado compacto, tablero ajustado al espacio disponible y ayuda desplegable mediante **?**, sin botones direccionales. Buscaminas incluye selector de descubrir/bandera, contador y una pista por partida, con casillas cerradas blancas y abiertas transparentes.
+- Construir los tableros de casillas con filas horizontales en un contenedor vertical. Repartir las filas y casillas con pesos; mantener el tablero centrado y sin desplazamiento horizontal. Number Connect conserva la proporción 5:7; los demás tableros son cuadrados.
 - Snake conserva el dibujo interpolado en `Canvas`. Los gestos y las acciones accesibles siguen funcionando.
-- Admitir desplazamiento vertical cuando el contenido no quepa en teléfonos pequeños.
+- En 2048, Buscaminas, Snake y Number Connect, reducir el tablero para que quepa completo en el alto disponible, sin desplazamiento vertical.
 
 ## KenKen
 
@@ -35,3 +35,9 @@ La referencia actual es el catálogo ilustrado y las pantallas de 2048, Buscamin
 Los textos fijos van en `strings.xml` o archivos `strings_*`, colores en recursos `values`, tamaños compartidos en `dimens_*` y formas en `drawable`. Los atributos de las vistas compuestas configuran el contenido fijo y permiten previsualizarlo después de compilar.
 
 Mantener descripciones accesibles para iconos, casillas y controles. Comunicar errores y selección con algo más que el color. Las vistas no contienen reglas ni modifican la partida por sí mismas.
+
+## Mascota y suma en vivo
+
+Petdoku tiene siete ilustraciones transparentes `drawable-nodpi/petdoku_*.png`, que se alternan entre los doce niveles. `MascotasPetdoku` asigna perrito, gatito, conejito, zorrito, panda, tigre y osito, en ese orden. El tablero y las reglas muestran la misma mascota; reiniciar y recuperar la partida conservan la del nivel guardado. El catálogo mantiene el perrito. `CasillaIlustradaView` escala la imagen sin cambiar las descripciones accesibles ni los gestos.
+
+Number Connect reserva una tarjeta de 64 dp encima del tablero para mostrar la suma del trazo y la ficha final. Se actualiza al arrastrar y retroceder; al cancelar o soltar vuelve a su estado inicial. El espacio permanece reservado para evitar que el tablero se mueva durante el gesto.

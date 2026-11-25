@@ -12,6 +12,7 @@ import com.example.arcadia.databinding.ActivitySnakeBinding
 class SnakeActivity : PartidaArcadeActivity() {
     private val modelo: SnakeViewModel by viewModels()
     private val guardado by lazy { getSharedPreferences("arcade_games",MODE_PRIVATE) }
+    override val partidaPerdida get() = modelo.juego.terminada && !modelo.juego.victoria
     private val reloj = Handler(Looper.getMainLooper())
     private val paso = object : Runnable {
         override fun run() {
@@ -28,6 +29,7 @@ class SnakeActivity : PartidaArcadeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preparar(ActivitySnakeBinding.inflate(layoutInflater).root)
+        pantalla.usarPantallaCompleta()
         modelo.cargar(guardado)
         pantalla.tablero.gestoContinuo = true
         pantalla.tablero.alDeslizar = ::girar
@@ -78,6 +80,7 @@ class SnakeActivity : PartidaArcadeActivity() {
             modelo.empezada -> R.string.arcade_snake_paused
             else -> R.string.arcade_snake_ready
         })
+        comprobarDerrota()
     }
 
     override fun reiniciar() { reloj.removeCallbacks(paso); modelo.reiniciar(); modelo.guardar(guardado); mostrar() }
