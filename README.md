@@ -1,5 +1,24 @@
 # Arcadia
 
+## Antes de continuar el desarrollo
+
+**Todo cambio debe seguir la documentación del proyecto.** Antes de modificar o
+añadir funcionalidades, lee las [reglas obligatorias](documentacion/AGENTS.md) y
+consulta las guías correspondientes:
+
+- [Estructura](documentacion/docs/estructura.md): paquetes, clases y recursos.
+- [Componentes](documentacion/docs/componentes.md): vistas compuestas y reutilización.
+- [Diseño](documentacion/docs/diseno.md): estilos, controles y temas.
+- [Juegos](documentacion/docs/juegos.md): reglas y alcance.
+- [Sintaxis](documentacion/docs/sintaxis.md): convenciones y ejemplos.
+- [Pruebas](documentacion/docs/pruebas.md): comprobaciones y criterios de entrega.
+
+Si utilizas un agente de IA, indícale que lea `documentacion/AGENTS.md` antes de
+trabajar. Acuerda con el equipo cualquier cambio que se aparte de estas guías y
+actualiza la documentación para mantenerla alineada con la implementación.
+
+## Descripción
+
 Aplicación Android en Kotlin con cinco juegos disponibles sin conexión y un catálogo
 de tarjetas ilustradas. Los ajustes permiten cambiar el volumen, los efectos de
 sonido, la música, la vibración y el modo oscuro. KenKen conserva sus reglas y
