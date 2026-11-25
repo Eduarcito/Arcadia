@@ -4,7 +4,7 @@
     <string name="minas_descubrir">Descubrir casillas</string>
     <string name="minas_marcar">Colocar banderas</string>
     <string name="minas_pista">Revelar una casilla segura, una vez por partida</string>
-    <string name="minas_contador">✹ %1$d</string>
+    <string name="minas_contador">%1$d</string>
     <string name="minas_contador_descripcion">Minas sin marcar: %1$d</string>
     <string name="minas_racha">RACHA\n%1$d</string>
     <string name="minas_record">RÉCORD\n%1$d</string>

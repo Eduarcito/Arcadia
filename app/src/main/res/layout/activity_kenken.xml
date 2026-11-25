@@ -114,13 +114,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/kenken_comprobar"
                 app:icon="@drawable/kenken_comprobar" />
-
-            <com.example.arcadia.compartido.ui.AyudaJuegoView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:acentoBloque="@color/kenken_acento"
-                app:textoAyuda="@string/kenken_ayuda" />
         </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

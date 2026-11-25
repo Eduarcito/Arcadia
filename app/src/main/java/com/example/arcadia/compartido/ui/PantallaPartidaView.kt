@@ -43,6 +43,11 @@ class PantallaPartidaView @JvmOverloads constructor(
             acento = getColor(R.styleable.PantallaPartidaView_acentoPartida, acento)
         }
         ViewCompat.setAccessibilityHeading(binding.title, true)
+        binding.encabezado.alMostrarAyuda {
+            com.google.android.material.dialog.MaterialAlertDialogBuilder(contexto).setTitle(R.string.arcade_help_title)
+                .setMessage(instrucciones).setPositiveButton(android.R.string.ok, null).show()
+        }
+        binding.ayuda.isVisible = false
         val oscuro = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
             Configuration.UI_MODE_NIGHT_YES
         val tinta = if (oscuro) acento else ColorUtils.blendARGB(acento, Color.BLACK, .48f)

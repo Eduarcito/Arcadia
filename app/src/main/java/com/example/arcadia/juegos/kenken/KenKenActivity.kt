@@ -19,6 +19,13 @@ class KenKenActivity : ArcadeActivity() {
         margenes(binding.root)
         binding.encabezado.mostrarTitulo(getString(R.string.juego_kenken))
         binding.encabezado.alVolver { finish() }
+        binding.encabezado.alMostrarAyuda {
+            com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.arcade_help_title)
+                .setMessage(R.string.kenken_ayuda)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        }
         binding.encabezado.alReiniciar {
             viewModel.reiniciar()
             binding.tablero.mostrarJaulas(viewModel.rompecabezas)

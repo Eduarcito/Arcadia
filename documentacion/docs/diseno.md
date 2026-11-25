@@ -43,7 +43,8 @@ Mantener descripciones accesibles para iconos, casillas y controles. Comunicar e
 - Snake entra en modo paso a paso cuando TalkBack está activo: no hay temporizador, cada deslizamiento avanza una casilla y tocar el tablero sigue recto; tras cada paso se anuncia la dirección y distancia de la fruta y el peligro inmediato.
 - Las regiones de Petdoku se delimitan con bordes gruesos entre colores distintos (`bordesRegion` en `CasillaArcade`), no solo por color, para jugadores daltónicos.
 - Snake tiene botón propio de pausa/continuar; el toque sobre el tablero solo avanza en el modo paso a paso, para que un deslizamiento corto no pause por accidente.
-- El encabezado de cada pantalla de juego muestra el nombre del juego en lugar de la marca.
+- El encabezado de cada pantalla de juego muestra el nombre del juego en lugar de la marca y lleva el botón **?** con las instrucciones en diálogo en todos los juegos; ninguna pantalla mantiene la tarjeta de ayuda siempre visible.
+- Los controles usan vectores propios, no emojis: pico (`ic_pico`), bandera (`ic_bandera`), bombilla de pista (`ic_bombilla`) en Buscaminas; el contador de minas usa `ic_mina` como drawable compuesto.
 - En pantallas anchas el contenido se centra con un tope de 600dp (`ancho_contenido_max`); no se estiran tarjetas ni textos en tabletas, horizontal o multiventana.
 
 ## Mascota y suma en vivo

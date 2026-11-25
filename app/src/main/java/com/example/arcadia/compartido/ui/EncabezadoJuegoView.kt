@@ -17,6 +17,12 @@ class EncabezadoJuegoView @JvmOverloads constructor(
     private val volver: View
     private val reiniciar: View
     private var titulo: android.widget.TextView? = null
+    private var ayuda: View? = null
+
+    fun alMostrarAyuda(accion: () -> Unit) {
+        ayuda?.isVisible = true
+        ayuda?.setOnClickListener { accion() }
+    }
 
     fun mostrarTitulo(texto: CharSequence) {
         titulo?.text = texto
@@ -32,6 +38,7 @@ class EncabezadoJuegoView @JvmOverloads constructor(
         volver = binding.back
         reiniciar = binding.restart
         reiniciar.isVisible = mostrarReiniciar
+        ayuda = binding.help
     }
 
     fun alVolver(accion: () -> Unit) {
