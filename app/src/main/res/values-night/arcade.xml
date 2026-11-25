@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="arcade_bg">#19191C</color>
+    <color name="arcade_surface">#252428</color>
+    <color name="arcade_ink">#FFF9F3</color>
+    <color name="arcade_muted">#B8AFBC</color>
+</resources>

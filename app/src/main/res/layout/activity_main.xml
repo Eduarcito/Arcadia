@@ -1,68 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
-    tools:context=".MainActivity">
-
-    <ScrollView
-        android:id="@+id/desplazamiento_catalogo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txv_titulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:accessibilityHeading="true"
-                android:text="@string/catalogo_titulo"
-                android:textAppearance="?attr/textAppearanceHeadlineMedium"
-                android:textColor="?attr/colorOnSurface"
-                android:textStyle="bold" />
-
-            <com.example.arcadia.compartido.ui.TarjetaJuegoView
-                android:id="@+id/tarjeta_2048"
-                style="@style/TarjetaCatalogo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/catalogo_ocre"
-                app:descripcionJuego="@string/catalogo_descripcion_2048"
-                app:tituloJuego="@string/juego_2048" />
-
-            <com.example.arcadia.compartido.ui.TarjetaJuegoView
-                android:id="@+id/tarjeta_buscaminas"
-                style="@style/TarjetaCatalogo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/catalogo_verde_azulado"
-                app:descripcionJuego="@string/catalogo_descripcion_buscaminas"
-                app:tituloJuego="@string/juego_buscaminas" />
-
-            <com.example.arcadia.compartido.ui.TarjetaJuegoView
-                android:id="@+id/tarjeta_kenken"
-                style="@style/TarjetaCatalogo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/catalogo_lavanda"
-                app:descripcionJuego="@string/catalogo_descripcion_kenken"
-                app:tituloJuego="@string/juego_kenken" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/arcade_root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/arcade_bg">
+<androidx.drawerlayout.widget.DrawerLayout android:id="@+id/drawer" android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout android:id="@+id/main_content" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/arcade_bg">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="76dp" android:paddingHorizontal="16dp" android:gravity="center_vertical">
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/settings" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:background="@drawable/arcade_icon_button" android:src="@drawable/arcade_menu" android:contentDescription="@string/arcade_open_menu"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/arcade_brand" android:textColor="@color/arcade_ink" android:textSize="25sp" android:textStyle="bold" android:letterSpacing="0.09" android:gravity="center"/>
+        <ImageView android:layout_width="44dp" android:layout_height="44dp" android:src="@mipmap/ic_arcadia" android:importantForAccessibility="no"/>
+    </LinearLayout>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="16dp" android:paddingBottom="24dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/arcade_subtitle" android:textColor="@color/arcade_muted" android:textSize="11sp" android:letterSpacing="0.15"/>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/arcade_collection" android:textColor="@color/arcade_ink" android:textSize="25sp" android:textStyle="bold"/>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:layout_marginBottom="22dp" android:text="@string/arcade_offline" android:textColor="@color/arcade_muted" android:textSize="13sp"/>
+            <LinearLayout android:id="@+id/catalog_rows" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"/>
         </LinearLayout>
     </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+<LinearLayout android:id="@+id/menu_panel" android:layout_width="280dp" android:layout_height="match_parent" android:layout_gravity="start" android:orientation="vertical" android:padding="24dp" android:background="@color/arcade_surface">
+    <ImageView android:layout_width="112dp" android:layout_height="112dp" android:layout_marginTop="32dp" android:src="@mipmap/ic_arcadia" android:importantForAccessibility="no"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="@string/arcade_brand" android:textColor="@color/arcade_ink" android:textSize="30sp" android:textStyle="bold"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:layout_marginBottom="28dp" android:text="@string/arcade_offline" android:textColor="@color/arcade_muted" android:textSize="14sp"/>
+    <com.google.android.material.button.MaterialButton android:id="@+id/menu_games" style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent" android:layout_height="56dp" android:text="@string/arcade_my_games" android:gravity="start|center_vertical"/>
+    <com.google.android.material.button.MaterialButton android:id="@+id/menu_settings" android:layout_width="match_parent" android:layout_height="56dp" android:text="@string/arcade_settings"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="@string/arcade_menu_message" android:textColor="@color/arcade_muted" android:textSize="14sp" android:lineSpacingExtra="4dp"/>
+</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
+</FrameLayout>
