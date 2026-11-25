@@ -18,6 +18,12 @@ Cada pantalla combina controles de Android y vistas compuestas declaradas por su
 KenKen usa el mismo encabezado ilustrado, los indicadores y la ayuda. Mantiene `TableroKenKenView` y `ControlesKenKenView` en su propio paquete para representar las jaulas y los tres modos de entrada.
 
 El catálogo declara cinco instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador.
+El catálogo declara seis instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador. Las variantes anteriores de tarjeta y encabezado se conservan para no romper otros layouts.
+
+`PantallaPartidaView.usarPantallaCompleta` utiliza `contenido_partida_compacta.xml`: marcadores en el encabezado, tablero centrado y ajustado a la altura disponible, herramientas inferiores y ayuda en diálogo. 2048, Buscaminas, Snake y Number Connect usan esta distribución sin scroll.
+
+`ControlesBuscaminasView`, declarado en `herramientas_buscaminas.xml`, encapsula contador, selector y pista. `TableroNumberConnectView`, declarado en `tablero_number_connect.xml`, infla filas y casillas XML; dibuja únicamente la línea del trazo en Canvas y consulta la validez al modelo.
+
 
 ## Al crear o ampliar un juego
 

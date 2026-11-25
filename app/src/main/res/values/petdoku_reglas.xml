@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="petdoku_sin_vidas">Te quedaste sin vidas</string>
+    <string name="petdoku_reintento_mensaje">Puedes reintentar este nivel con 3 vidas o volver al menú principal.</string>
+    <string name="petdoku_reintentar">Reintentar</string>
+    <string name="petdoku_menu_principal">Menú principal</string>
+    <string name="petdoku_regla_color">1 mascota por color</string>
+    <string name="petdoku_regla_fila">1 mascota por columna y fila</string>
+    <string name="petdoku_regla_contacto">Las mascotas no pueden tocarse</string>
+</resources>

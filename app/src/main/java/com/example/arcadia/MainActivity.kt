@@ -13,6 +13,7 @@ import com.example.arcadia.juegos.juego2048.Juego2048Activity
 import com.example.arcadia.juegos.kenken.KenKenActivity
 import com.example.arcadia.juegos.petdoku.PetdokuActivity
 import com.example.arcadia.juegos.snake.SnakeActivity
+import com.example.arcadia.juegos.numberconnect.NumberConnectActivity
 
 class MainActivity : ArcadeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,8 @@ class MainActivity : ArcadeActivity() {
             binding.tarjetaBuscaminas to BuscaminasActivity::class.java,
             binding.tarjetaPetdoku to PetdokuActivity::class.java,
             binding.tarjetaSnake to SnakeActivity::class.java,
-            binding.tarjetaKenken to KenKenActivity::class.java
+            binding.tarjetaKenken to KenKenActivity::class.java,
+            binding.tarjetaConnect to NumberConnectActivity::class.java
         )
         for ((tarjeta, destino) in juegos) {
             tarjeta.alJugar {

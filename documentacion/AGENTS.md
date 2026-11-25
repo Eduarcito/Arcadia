@@ -1,6 +1,6 @@
 # Juegos que estimulan el pensamiento
 
-Estas reglas se aplican al desarrollo de una aplicación Android con cinco juegos: **2048, Buscaminas, Petdoku, Snake y KenKen**, catálogo y ajustes. Al incorporar estas guías al proyecto Android, copiar la carpeta `documentacion/` completa a la raíz del proyecto. Pedir al agente que lea `documentacion/AGENTS.md` antes de trabajar.
+Estas reglas se aplican al desarrollo de una aplicación Android con seis juegos: **2048, Buscaminas, Petdoku, Snake, Number Connect y KenKen**, catálogo y ajustes. Al incorporar estas guías al proyecto Android, copiar la carpeta `documentacion/` completa a la raíz del proyecto. Pedir al agente que lea `documentacion/AGENTS.md` antes de trabajar.
 
 ## Reglas obligatorias
 
@@ -13,9 +13,9 @@ Estas reglas se aplican al desarrollo de una aplicación Android con cinco juego
 7. La aplicación debe funcionar sin Internet. No agregar cuentas ni base de datos.
 8. Mantener `documentacion/` en el repositorio mientras se comparte la guía con la persona encargada de continuar el proyecto.
 9. Usar Material Components de Google para vistas XML: tema Material 3, `MaterialCardView` para las tarjetas, `MaterialButton` para los controles y `MaterialAlertDialogBuilder` para el diálogo de 2048. Esto no sustituye `ConstraintLayout`, `LinearLayout` ni View Binding.
-10. Conservar los controles actuales: 2048 se maneja con gestos y acciones de accesibilidad, sin botones direccionales ni selector. Buscaminas usa toque y pulsación larga; Petdoku usa toque simple, doble y arrastre; Snake usa deslizamientos continuos y toque para pausar. No cambiar estas interacciones al adaptar la estructura.
+10. Conservar los controles actuales: 2048 se maneja con gestos y acciones de accesibilidad, sin botones direccionales ni selector. Buscaminas usa toque, pulsación larga y selector para descubrir o marcar; Number Connect usa arrastre sobre números iguales; Petdoku usa toque simple, doble y arrastre; Snake usa deslizamientos continuos y toque para pausar. No cambiar estas interacciones al adaptar la estructura.
 11. Construir las pantallas de **todos los juegos** según la [guía de componentes](docs/componentes.md). Encapsular los bloques visuales reutilizables en vistas compuestas y declararlas por su nombre de clase en XML. Configurar el contenido fijo mediante atributos XML, comunicar las acciones a la `Activity` y mantener las reglas de la partida en el `ViewModel` y en funciones Kotlin. No usar `<include>` en layouts.
-12. Conservar el guardado automático existente de 2048, Buscaminas, Petdoku y Snake: JSON en `SharedPreferences` privadas `arcade_games`, con las mismas claves y formato. Al salir o cerrar la aplicación, las partidas se recuperan al volver. Reiniciar conserva los récords. KenKen conserva solo el estado durante la recreación de su pantalla, sin guardado persistente. Los ajustes se guardan por separado en `arcade_settings`; el modo claro u oscuro se aplica también a KenKen, sin añadirle audio ni vibración.
+12. Conservar el guardado automático existente de 2048, Buscaminas, Petdoku y Snake: JSON en `SharedPreferences` privadas `arcade_games`, con las mismas claves y formato. Number Connect utiliza la clave adicional `number_connect`. Al salir o cerrar la aplicación, las partidas se recuperan al volver. Reiniciar conserva los récords. KenKen conserva solo el estado durante la recreación de su pantalla, sin guardado persistente. Los ajustes se guardan por separado en `arcade_settings`; el modo claro u oscuro se aplica también a KenKen, sin añadirle audio ni vibración.
 
 ## Guías
 

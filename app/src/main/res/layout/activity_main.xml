@@ -53,7 +53,10 @@
                         app:tituloJuego="@string/tarjeta_kenken" app:indicePortada="4"
                         app:tintaTarjeta="@color/tarjeta_tinta_kenken"
                         app:cardBackgroundColor="@color/tarjeta_fondo_kenken" />
-                    <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:layout_marginStart="6dp" />
+                    <com.example.arcadia.compartido.ui.TarjetaJuegoView
+                        android:id="@+id/tarjeta_connect" style="@style/TarjetaArcade"
+                        android:layout_marginStart="6dp" app:tituloJuego="@string/connect_card" app:indicePortada="5"
+                        app:tintaTarjeta="@color/connect_acento" app:cardBackgroundColor="@color/connect_portada" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

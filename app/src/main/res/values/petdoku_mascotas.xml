@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="petdoku_animal_perrito">Perrito</string>
+    <string name="petdoku_animal_gatito">Gatito</string>
+    <string name="petdoku_animal_conejito">Conejito</string>
+    <string name="petdoku_animal_zorrito">Zorrito</string>
+    <string name="petdoku_animal_panda">Panda</string>
+    <string name="petdoku_animal_osito">Osito</string>
+    <string name="petdoku_animal_tigre">Tigre</string>
+    <string name="petdoku_animal_descubierto">%1$s descubierto</string>
+</resources>

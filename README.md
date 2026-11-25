@@ -19,7 +19,7 @@ actualiza la documentación para mantenerla alineada con la implementación.
 
 ## Descripción
 
-Aplicación Android en Kotlin con cinco juegos disponibles sin conexión y un catálogo
+Aplicación Android en Kotlin con seis juegos disponibles sin conexión y un catálogo
 de tarjetas ilustradas. Los ajustes permiten cambiar el volumen, los efectos de
 sonido, la música, la vibración y el modo oscuro. KenKen conserva sus reglas y
 controles, y comparte el estilo de encabezado, tarjetas y ayuda con los otros juegos.
@@ -31,23 +31,32 @@ controles, y comparte el estilo de encabezado, tarjetas y ayuda con los otros ju
 - **Petdoku:** 12 niveles de solución única. Coloca una mascota en cada fila, columna
   y región de color, sin contacto diagonal. Un toque marca o quita una ×; dos toques
   descubren una mascota. Un intento incorrecto deja una × roja fija y consume una
-  de las 3 vidas; al agotarlas se bloquea el tablero hasta reiniciar. Arrastrar marca
+  de las 3 vidas; al agotarlas aparece un diálogo para reintentar o volver al menú.
+  Al completar un nivel, el siguiente se abre automáticamente tras una breve pausa.
+  Las reglas ilustradas y el encabezado compacto dejan visible el tablero completo.
+  Arrastrar marca
   varias casillas, o borra notas si el trazo empieza en una ×, sin quitar mascotas
   ni errores. Las vidas y las marcas se guardan al salir.
 - **Snake:** deslizamientos con dirección continua sin levantar el dedo, crecimiento
   al comer, velocidad progresiva, récord y colisiones con paredes o cuerpo. Tocar
   el tablero pausa o continúa; un deslizamiento inicia la partida. Se pausa al salir.
+- **Number Connect:** tablero 5 × 7; arrastra sobre números iguales vecinos, también en diagonal, y suelta para combinarlos. Incluye puntuación, récord, guardado y diálogo de derrota.
 - **KenKen:** cinco variantes 4 × 4 con jaulas, comprobación y reinicio.
 
-Los cuatro juegos nuevos guardan automáticamente su progreso en el dispositivo,
-incluso al cerrar la aplicación. El tema se aplica también a KenKen; los ajustes de
+Los cinco juegos nuevos guardan automáticamente su progreso en el dispositivo,
+incluido el fin de la partida, incluso al cerrar la aplicación.
+Al perder en 2048, Buscaminas o Snake, un diálogo
+permite reintentar o volver al menú principal; los récords se conservan al reintentar.
+El tema se aplica también a KenKen; los ajustes de
 audio y vibración no modifican ese juego. Las ilustraciones
 del catálogo son vectores dibujados en código; la melodía incluida es original.
+
+2048, Buscaminas, Snake y Number Connect ajustan el tablero al ancho y alto disponibles, sin desplazamiento. La ayuda completa se abre con **?**. Buscaminas muestra casillas blancas, números de colores, racha, récord, selector para descubrir o marcar y una pista gratuita por partida.
 
 El menú lateral se abre con las tres líneas de la esquina superior izquierda y
 contiene Mis juegos y Ajustes. El icono adaptativo de Android usa la imagen generada
 `drawable-nodpi/arcadia_app_icon.png`, con margen para el recorte del launcher.
-Las cuatro pantallas nuevas usan colores propios, marcadores separados y tableros
+Las cinco pantallas nuevas usan colores propios, marcadores separados y tableros
 con relieve. Las fichas cambian con una animación breve y Snake se dibuja con
 interpolación entre pasos. No hay botones direccionales; 2048 y Snake también
 exponen las direcciones como acciones de accesibilidad del tablero.
@@ -64,6 +73,7 @@ El código está en `app/src/main/java/com/example/arcadia/` y las vistas en `ap
 | Buscaminas | `juegos/buscaminas/` | `activity_buscaminas.xml` |
 | Petdoku | `juegos/petdoku/` | `activity_petdoku.xml` |
 | Snake | `juegos/snake/` | `activity_snake.xml` |
+| Number Connect | `juegos/numberconnect/` | `activity_number_connect.xml` |
 | KenKen | `juegos/kenken/` | `activity_kenken.xml` |
 
 KenKen usa los componentes `TableroKenKenView` y `ControlesKenKenView`.
@@ -75,7 +85,7 @@ Reiniciar selecciona otra variante sin repetir la anterior de inmediato.
 Rotar la pantalla conserva el rompecabezas y sus valores. No se utiliza un generador.
 
 Los componentes visuales compartidos están en `compartido/ui/`. El catálogo declara
-las tarjetas en XML y los cuatro juegos nuevos usan `PantallaPartidaView`, una vista
+las tarjetas en XML y los cinco juegos nuevos usan `PantallaPartidaView`, una vista
 compuesta basada en `ConstraintLayout`, con contenido fijo configurado por atributos.
 `activity_arcade_game.xml` es su plantilla interna. Todos los juegos reutilizan
 `EncabezadoJuegoView`, `IndicadoresJuegoView` y `AyudaJuegoView`.

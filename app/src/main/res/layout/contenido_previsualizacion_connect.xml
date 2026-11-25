@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="64dp"
+    app:cardBackgroundColor="@color/arcade_surface" app:cardCornerRadius="14dp"
+    app:strokeColor="@color/connect_acento" app:strokeWidth="1dp" app:cardElevation="0dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="horizontal" android:gravity="center_vertical" android:paddingHorizontal="12dp">
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/connect_suma_titulo" android:textSize="10sp" android:textStyle="bold" android:textColor="@color/arcade_muted" />
+            <TextView android:id="@+id/suma_connect" android:layout_width="match_parent" android:layout_height="26dp"
+                android:gravity="center_vertical" android:textSize="18sp" android:textStyle="bold" android:maxLines="1"
+                android:textColor="@color/arcade_ink" app:autoSizeTextType="uniform" app:autoSizeMinTextSize="10sp" app:autoSizeMaxTextSize="18sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="80dp" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/connect_ficha_titulo"
+                android:textSize="10sp" android:textColor="@color/arcade_muted" />
+            <TextView android:id="@+id/resultado_connect" android:layout_width="match_parent" android:layout_height="32dp"
+                android:gravity="center" android:textSize="25sp" android:textStyle="bold" android:maxLines="1"
+                android:textColor="@color/connect_acento" app:autoSizeTextType="uniform" app:autoSizeMinTextSize="12sp" app:autoSizeMaxTextSize="25sp" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

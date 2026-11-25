@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="arcade_defeat_title">Fin de la partida</string>
+    <string name="arcade_defeat_message">Puedes reintentar con una nueva partida o volver al menú principal.</string>
+    <string name="arcade_retry">Reintentar</string>
+    <string name="arcade_main_menu">Menú principal</string>
+</resources>

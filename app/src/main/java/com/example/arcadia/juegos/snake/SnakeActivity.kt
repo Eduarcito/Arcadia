@@ -10,11 +10,11 @@ import com.example.arcadia.R
 import com.example.arcadia.compartido.ui.PartidaArcadeActivity
 import com.example.arcadia.compartido.estado.Direccion
 import com.example.arcadia.databinding.ActivitySnakeBinding
-import com.example.arcadia.compartido.estado.ARCHIVO_PARTIDAS
 
 class SnakeActivity : PartidaArcadeActivity() {
     private val modelo: SnakeViewModel by viewModels()
-    private val guardado by lazy { getSharedPreferences(ARCHIVO_PARTIDAS,MODE_PRIVATE) }
+    private val guardado by lazy { getSharedPreferences("arcade_games",MODE_PRIVATE) }
+    override val partidaPerdida get() = modelo.juego.terminada && !modelo.juego.victoria
     private val reloj = Handler(Looper.getMainLooper())
     private val paso = object : Runnable {
         override fun run() {
@@ -31,6 +31,7 @@ class SnakeActivity : PartidaArcadeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preparar(ActivitySnakeBinding.inflate(layoutInflater).root)
+        pantalla.usarPantallaCompleta()
         modelo.cargar(guardado)
         pantalla.tablero.gestoContinuo = true
         pantalla.tablero.alDeslizar = ::girar
@@ -121,6 +122,7 @@ class SnakeActivity : PartidaArcadeActivity() {
             modelo.empezada -> R.string.arcade_snake_paused
             else -> R.string.arcade_snake_ready
         })
+        comprobarDerrota()
     }
 
     override fun reinicioPierdeProgreso() = modelo.empezada && !modelo.juego.terminada
