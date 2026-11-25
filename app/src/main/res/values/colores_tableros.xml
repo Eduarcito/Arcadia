@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="paleta_2048">
+        <item>#343039</item><item>#F1E7DA</item><item>#F1D79C</item>
+        <item>#FFBA80</item><item>#FF9A79</item><item>#F88384</item>
+        <item>#EE718B</item><item>#E9BF6E</item><item>#F1CA64</item>
+        <item>#EAC355</item><item>#E9B845</item><item>#FFDC70</item>
+    </array>
+    <color name="ficha_2048_superior">#C1ED9A</color>
+    <array name="pistas_buscaminas">
+        <item>#30575A</item><item>#2866AE</item><item>#236B4D</item>
+        <item>#A33356</item><item>#7051A2</item><item>#8C542B</item>
+        <item>#1D686B</item><item>#4C4B53</item><item>#4C4B53</item>
+    </array>
+    <color name="mina_explosion">#F2889C</color>
+    <color name="mina_revelada">#F5C3AC</color>
+    <color name="bandera_buscaminas">#F7D683</color>
+    <color name="casilla_abierta_buscaminas">#D5EBE6</color>
+    <color name="casilla_cerrada_buscaminas">#4E8B8C</color>
+    <array name="regiones_petdoku">
+        <item>#F2AAC8</item><item>#9AD7AF</item><item>#A6D9EF</item>
+        <item>#F3CD90</item><item>#C8B5EB</item><item>#F1B5A4</item>
+    </array>
+    <color name="tinta_casilla">#27202B</color>
+    <color name="tinta_error_petdoku">#B80F30</color>
+    <array name="fondo_tablero_2048">
+        <item>#51404C</item><item>#342C37</item>
+    </array>
+    <array name="fondo_tablero_buscaminas">
+        <item>#285A57</item><item>#153C3C</item>
+    </array>
+    <array name="fondo_tablero_petdoku">
+        <item>#574054</item><item>#362F43</item>
+    </array>
+    <array name="fondo_tablero_snake">
+        <item>#3D7052</item><item>#214432</item>
+    </array>
+</resources>

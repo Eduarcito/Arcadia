@@ -1,6 +1,6 @@
 package com.example.arcadia.juegos.snake
 
-import com.example.arcadia.juegos.juego2048.Direccion
+import com.example.arcadia.compartido.estado.Direccion
 import kotlin.random.Random
 
 class ReglasSnake(private val azar: Random = Random.Default) {

@@ -3,5 +3,6 @@
         <attr name="tituloEncabezado" format="string" />
         <attr name="mostrarReiniciar" format="boolean" />
         <attr name="mostrarTitulo" format="boolean" />
+        <attr name="estiloArcade" format="boolean" />
     </declare-styleable>
 </resources>

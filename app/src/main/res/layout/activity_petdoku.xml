@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.arcadia.compartido.ui.PantallaPartidaView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:tituloPartida="@string/arcade_pet_title"
+    app:instruccionesPartida="@string/arcade_pet_help"
+    app:lemaPartida="@string/arcade_pet_caption"
+    app:gestoPartida="@string/arcade_gesture_pet"
+    app:acentoPartida="@color/acento_petdoku" />

@@ -1,14 +1,21 @@
 package com.example.arcadia.juegos.buscaminas
 
-import com.example.arcadia.arcade.PartidaViewModel
-import com.example.arcadia.arcade.enteros
-import com.example.arcadia.arcade.lista
+import com.example.arcadia.compartido.estado.PartidaViewModel
+import com.example.arcadia.compartido.estado.enteros
+import com.example.arcadia.compartido.estado.lista
 import org.json.JSONObject
 
 class BuscaminasViewModel : PartidaViewModel() {
     override val clave="mines"
     val juego=ReglasBuscaminas()
     var modoBandera=false
+    fun actuar(indice: Int, bandera: Boolean): Boolean {
+        return if (bandera) juego.marcar(indice) else juego.abrir(indice)
+    }
+    fun reiniciar() {
+        juego.reiniciar()
+        modoBandera = false
+    }
     override fun restaurar(json: JSONObject) {
         juego.restaurar(json.enteros("mines").toSet(),json.enteros("open").toSet(),json.enteros("flags").toSet(),json.getBoolean("started"),json.getInt("hit"))
         modoBandera=json.optBoolean("flagMode")

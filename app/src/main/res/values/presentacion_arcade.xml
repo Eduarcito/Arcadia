@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tarjeta_2048">2048</string>
+    <string name="tarjeta_buscaminas">BUSCA\nMINAS</string>
+    <string name="tarjeta_petdoku">PETDOKU</string>
+    <string name="tarjeta_snake">SNAKE</string>
+    <string name="tarjeta_kenken">KENKEN</string>
+    <color name="tarjeta_fondo_2048">#3B293D</color>
+    <color name="tarjeta_fondo_buscaminas">#163E41</color>
+    <color name="tarjeta_fondo_petdoku">#FFF0DB</color>
+    <color name="tarjeta_fondo_snake">#182C2B</color>
+    <color name="tarjeta_fondo_kenken">#30273F</color>
+    <color name="tarjeta_tinta_2048">#FFD270</color>
+    <color name="tarjeta_tinta_buscaminas">#9EEAE1</color>
+    <color name="tarjeta_tinta_petdoku">#B02D6C</color>
+    <color name="tarjeta_tinta_snake">#B5EC72</color>
+    <color name="tarjeta_tinta_kenken">#DAB9FF</color>
+    <style name="TarjetaArcade">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="estiloArcade">true</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">#343237</item>
+        <item name="rippleColor">#338E529F</item>
+    </style>
+</resources>

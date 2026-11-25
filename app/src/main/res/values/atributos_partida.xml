@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PantallaPartidaView">
+        <attr name="tituloPartida" format="string" />
+        <attr name="instruccionesPartida" format="string" />
+        <attr name="lemaPartida" format="string" />
+        <attr name="gestoPartida" format="string" />
+        <attr name="acentoPartida" format="color" />
+    </declare-styleable>
+    <color name="acento_2048">#EDBB63</color>
+    <color name="acento_buscaminas">#66D2C6</color>
+    <color name="acento_petdoku">#EE94BD</color>
+    <color name="acento_snake">#B4EB7C</color>
+</resources>

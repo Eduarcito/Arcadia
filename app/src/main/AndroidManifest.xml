@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_arcadia"
         android:supportsRtl="true"
         android:theme="@style/Theme.Arcadia">
-        <activity android:name=".arcade.AjustesActivity" android:exported="false" android:theme="@style/Theme.Arcade" />
+        <activity android:name=".ajustes.AjustesActivity" android:exported="false" android:theme="@style/Theme.Arcade" />
         <activity android:name=".juegos.petdoku.PetdokuActivity" android:exported="false" android:theme="@style/Theme.Arcade" />
         <activity android:name=".juegos.snake.SnakeActivity" android:exported="false" android:theme="@style/Theme.Arcade" />
         <activity android:name=".juegos.juego2048.Juego2048Activity"

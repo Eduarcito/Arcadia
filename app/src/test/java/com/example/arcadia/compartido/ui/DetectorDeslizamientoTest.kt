@@ -1,6 +1,6 @@
-package com.example.arcadia.arcade
+package com.example.arcadia.compartido.ui
 
-import com.example.arcadia.juegos.juego2048.Direccion
+import com.example.arcadia.compartido.estado.Direccion
 import com.example.arcadia.juegos.petdoku.ReglasPetdoku
 import org.junit.Assert.*
 import org.junit.Test

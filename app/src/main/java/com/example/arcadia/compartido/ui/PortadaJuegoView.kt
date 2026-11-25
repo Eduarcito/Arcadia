@@ -1,4 +1,4 @@
-package com.example.arcadia.arcade
+package com.example.arcadia.compartido.ui
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,7 +9,7 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
 
-/** Original vector illustrations, drawn at the display resolution. */
+// Dibuja las ilustraciones a la resolucion de la pantalla
 class PortadaJuegoView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : View(context,attrs) {
     var juego = 0
     private val p = Paint(Paint.ANTI_ALIAS_FLAG)

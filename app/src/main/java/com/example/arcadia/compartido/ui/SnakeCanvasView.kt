@@ -1,4 +1,4 @@
-package com.example.arcadia.arcade
+package com.example.arcadia.compartido.ui
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -9,9 +9,9 @@ import android.graphics.Path
 import android.graphics.Typeface
 import android.view.View
 import android.view.animation.LinearInterpolator
-import com.example.arcadia.juegos.juego2048.Direccion
+import com.example.arcadia.compartido.estado.Direccion
 
-/** Smooth, connected Snake body; the containing board owns touch input. */
+// El tablero contenedor gestiona los gestos de la serpiente
 class SnakeCanvasView(context: Context) : View(context) {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val path = Path()

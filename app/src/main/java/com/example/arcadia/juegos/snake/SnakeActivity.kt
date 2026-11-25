@@ -5,8 +5,9 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
 import com.example.arcadia.R
-import com.example.arcadia.arcade.PartidaArcadeActivity
-import com.example.arcadia.juegos.juego2048.Direccion
+import com.example.arcadia.compartido.ui.PartidaArcadeActivity
+import com.example.arcadia.compartido.estado.Direccion
+import com.example.arcadia.databinding.ActivitySnakeBinding
 
 class SnakeActivity : PartidaArcadeActivity() {
     private val modelo: SnakeViewModel by viewModels()
@@ -26,12 +27,12 @@ class SnakeActivity : PartidaArcadeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        preparar(R.string.arcade_snake_title,R.string.arcade_snake_help)
+        preparar(ActivitySnakeBinding.inflate(layoutInflater).root)
         modelo.cargar(guardado)
-        binding.board.gestoContinuo = true
-        binding.board.alDeslizar = ::girar
-        binding.board.alPulsarTablero = ::alternarPausa
-        binding.restart.setOnClickListener {
+        pantalla.tablero.gestoContinuo = true
+        pantalla.tablero.alDeslizar = ::girar
+        pantalla.tablero.alPulsarTablero = ::alternarPausa
+        pantalla.alReiniciar {
             detener()
             confirmar { reiniciar() }
         }
@@ -40,7 +41,7 @@ class SnakeActivity : PartidaArcadeActivity() {
 
     private fun girar(direccion: Direccion) {
         if (modelo.juego.terminada) return
-        if (modelo.juego.girar(direccion) && !modelo.corriendo) empezar()
+        if (modelo.girar(direccion) && !modelo.corriendo) empezar()
     }
 
     private fun empezar() {
@@ -68,9 +69,9 @@ class SnakeActivity : PartidaArcadeActivity() {
             modelo.empezada -> getString(R.string.arcade_snake_overlay_paused)
             else -> getString(R.string.arcade_snake_overlay_ready)
         }
-        binding.board.mostrarSnake(juego.cuerpo,juego.comida,juego.direccion,mensaje,modelo.corriendo)
+        pantalla.tablero.mostrarSnake(juego.cuerpo,juego.comida,juego.direccion,mensaje,modelo.corriendo)
         estadisticas(getString(R.string.arcade_score,juego.puntos),getString(R.string.arcade_best,modelo.record))
-        binding.status.setText(when {
+        pantalla.mostrarEstado(when {
             juego.victoria -> R.string.arcade_snake_win
             juego.terminada -> R.string.arcade_snake_over
             modelo.corriendo -> R.string.arcade_snake_running

@@ -1,8 +1,9 @@
 package com.example.arcadia.juegos.juego2048
 
-import com.example.arcadia.arcade.PartidaViewModel
-import com.example.arcadia.arcade.enteros
-import com.example.arcadia.arcade.lista
+import com.example.arcadia.compartido.estado.Direccion
+import com.example.arcadia.compartido.estado.PartidaViewModel
+import com.example.arcadia.compartido.estado.enteros
+import com.example.arcadia.compartido.estado.lista
 import org.json.JSONObject
 
 class Juego2048ViewModel : PartidaViewModel() {

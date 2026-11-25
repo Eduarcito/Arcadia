@@ -2,7 +2,7 @@ package com.example.arcadia.juegos.juego2048
 
 import kotlin.random.Random
 
-enum class Direccion { ARRIBA, DERECHA, ABAJO, IZQUIERDA }
+import com.example.arcadia.compartido.estado.Direccion
 
 class Reglas2048(val azar: Random = Random.Default) {
     var celdas = List(16) { 0 }; private set

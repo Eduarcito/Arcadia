@@ -1,11 +1,13 @@
 package com.example.arcadia.juegos.juego2048
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.arcadia.R
-import com.example.arcadia.arcade.CasillaArcade
-import com.example.arcadia.arcade.PartidaArcadeActivity
+import com.example.arcadia.compartido.estado.Direccion
+import com.example.arcadia.compartido.ui.CasillaArcade
+import com.example.arcadia.compartido.ui.PartidaArcadeActivity
+import com.example.arcadia.compartido.ui.coloresJuego
+import com.example.arcadia.databinding.ActivityJuego2048Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class Juego2048Activity : PartidaArcadeActivity() {
@@ -14,9 +16,9 @@ class Juego2048Activity : PartidaArcadeActivity() {
     private var dialogo=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        preparar(R.string.juego_2048,R.string.arcade_2048_help)
+        preparar(ActivityJuego2048Binding.inflate(layoutInflater).root)
         modelo.cargar(guardado)
-        binding.board.alDeslizar=::mover
+        pantalla.tablero.alDeslizar=::mover
         mostrar();modelo.guardar(guardado)
     }
     override fun onResume() { super.onResume(); victoria() }
@@ -26,10 +28,13 @@ class Juego2048Activity : PartidaArcadeActivity() {
     }
     private fun mostrar() {
         val juego=modelo.juego
-        val colores=mapOf(0 to "#343039",2 to "#F1E7DA",4 to "#F1D79C",8 to "#FFBA80",16 to "#FF9A79",32 to "#F88384",64 to "#EE718B",128 to "#E9BF6E",256 to "#F1CA64",512 to "#EAC355",1024 to "#E9B845",2048 to "#FFDC70")
-        binding.board.mostrar(4,juego.celdas.map { CasillaArcade(if(it==0) "" else it.toString(),Color.parseColor(colores[it]?:"#C1ED9A")) },false)
+        val colores = listOf(0,2,4,8,16,32,64,128,256,512,1024,2048)
+            .zip(resources.coloresJuego(R.array.paleta_2048)).toMap()
+        pantalla.tablero.mostrar(4,juego.celdas.map {
+            CasillaArcade(if(it==0) "" else it.toString(), colores[it] ?: getColor(R.color.ficha_2048_superior))
+        },false)
         estadisticas(getString(R.string.arcade_score,juego.puntos),getString(R.string.arcade_best,modelo.record))
-        binding.status.setText(if(juego.terminado)R.string.arcade_2048_over else if(juego.victoria)R.string.arcade_2048_win else R.string.arcade_2048_hint)
+        pantalla.mostrarEstado(if(juego.terminado)R.string.arcade_2048_over else if(juego.victoria)R.string.arcade_2048_win else R.string.arcade_2048_hint)
     }
     private fun victoria() {
         if(!modelo.juego.victoria || modelo.victoriaVista || dialogo)return

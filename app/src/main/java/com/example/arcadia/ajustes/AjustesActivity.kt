@@ -1,9 +1,10 @@
-package com.example.arcadia.arcade
+package com.example.arcadia.ajustes
 
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.arcadia.R
+import com.example.arcadia.compartido.ui.ArcadeActivity
 import com.example.arcadia.databinding.ActivityArcadeSettingsBinding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.materialswitch.MaterialSwitch

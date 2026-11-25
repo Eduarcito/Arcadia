@@ -1,4 +1,4 @@
-package com.example.arcadia.arcade
+package com.example.arcadia.compartido.estado
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel

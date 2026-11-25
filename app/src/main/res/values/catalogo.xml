@@ -10,6 +10,9 @@
     <declare-styleable name="TarjetaJuegoView">
         <attr name="tituloJuego" format="string" />
         <attr name="descripcionJuego" format="string" />
+        <attr name="estiloArcade" />
+        <attr name="tintaTarjeta" format="color" />
+        <attr name="indicePortada" format="integer" />
     </declare-styleable>
 
     <style name="TarjetaCatalogo">

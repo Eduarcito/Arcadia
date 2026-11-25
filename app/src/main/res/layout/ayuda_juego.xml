@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="18dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/arcade_how_to_play"
+        android:textSize="11sp"
+        android:letterSpacing="0.12"
+        android:textStyle="bold"
+        android:textColor="@color/arcade_muted" />
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/arcade_muted" />
+</LinearLayout>

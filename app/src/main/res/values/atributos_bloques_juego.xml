@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IndicadoresJuegoView">
+        <attr name="acentoBloque" format="color" />
+        <attr name="tamanoIndicador" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="AyudaJuegoView">
+        <attr name="acentoBloque" />
+        <attr name="textoAyuda" format="string" />
+    </declare-styleable>
+</resources>

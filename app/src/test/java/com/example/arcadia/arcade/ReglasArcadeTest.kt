@@ -1,5 +1,7 @@
 package com.example.arcadia.arcade
 
+import com.example.arcadia.compartido.estado.Direccion
+
 import com.example.arcadia.juegos.juego2048.*
 import com.example.arcadia.juegos.buscaminas.ReglasBuscaminas
 import com.example.arcadia.juegos.petdoku.*

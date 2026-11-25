@@ -1,4 +1,4 @@
-package com.example.arcadia.arcade
+package com.example.arcadia.compartido.ui
 
 import android.content.Context
 import android.graphics.Color
@@ -9,14 +9,15 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.widget.FrameLayout
-import android.widget.GridLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.widget.TextViewCompat
 import com.example.arcadia.R
 import com.example.arcadia.databinding.CeldaArcadeBinding
+import com.example.arcadia.databinding.FilaTableroBinding
 import com.example.arcadia.databinding.TableroArcadeBinding
-import com.example.arcadia.juegos.juego2048.Direccion
+import com.example.arcadia.compartido.estado.Direccion
 import kotlin.math.abs
 
 data class CasillaArcade(val texto: String = "", val color: Int = Color.LTGRAY,
@@ -68,12 +69,13 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     private fun fondo(n:Int) {
-        val colores=when(n) {
-            4 -> intArrayOf(0xFF51404C.toInt(),0xFF342C37.toInt())
-            8 -> intArrayOf(0xFF285A57.toInt(),0xFF153C3C.toInt())
-            6 -> intArrayOf(0xFF574054.toInt(),0xFF362F43.toInt())
-            else -> intArrayOf(0xFF3D7052.toInt(),0xFF214432.toInt())
+        val paleta=when(n) {
+            4 -> R.array.fondo_tablero_2048
+            8 -> R.array.fondo_tablero_buscaminas
+            6 -> R.array.fondo_tablero_petdoku
+            else -> R.array.fondo_tablero_snake
         }
+        val colores = resources.coloresJuego(paleta).toIntArray()
         background=GradientDrawable(GradientDrawable.Orientation.TL_BR,colores).apply { cornerRadius=24*densidad;setStroke((1*densidad).toInt(),0x33FFFFFF) }
     }
 
@@ -83,11 +85,13 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
         if (lado != n) {
             cancelarToquesPendientes(); detectoresToque.clear()
             lado=n; fondo(n); binding.root.removeAllViews(); celdas.clear(); anteriores=emptyList()
-            binding.root.columnCount=n; binding.root.rowCount=n
+            val filas = List(n) {
+                FilaTableroBinding.inflate(LayoutInflater.from(context), binding.root, true).root
+            }
             repeat(n*n) { i ->
-                val celda=CeldaArcadeBinding.inflate(LayoutInflater.from(context),binding.root,false).root
-                celda.layoutParams=GridLayout.LayoutParams(GridLayout.spec(i/n,1f),GridLayout.spec(i%n,1f)).apply {
-                    width=0; height=0
+                val fila = filas[i / n]
+                val celda=CeldaArcadeBinding.inflate(LayoutInflater.from(context),fila,false).root
+                celda.layoutParams=LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.MATCH_PARENT,1f).apply {
                     val margen=((if(n==4)4 else 2)*densidad).toInt();setMargins(margen,margen,margen,margen)
                 }
                 TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(celda,9,if(n==4)36 else 24,1,android.util.TypedValue.COMPLEX_UNIT_SP)
@@ -118,7 +122,7 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
                     if (celda.isClickable) alDobleTocar?.invoke(i)
                     true
                 }
-                binding.root.addView(celda);celdas.add(celda)
+                fila.addView(celda);celdas.add(celda)
             }
         }
         valores.forEachIndexed { i,valor ->
@@ -127,7 +131,10 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
             celda.isLongClickable=interactivo && alMantener!=null
             if(anteriores.getOrNull(i)!=valor) {
                 celda.text=valor.texto;celda.setTextColor(valor.tinta)
-                celda.contentDescription="Fila ${i/n+1}, columna ${i%n+1}: ${valor.descripcion.ifEmpty{"vacía"}}"
+                celda.contentDescription = resources.getString(
+                    R.string.casilla_arcade_descripcion, i/n+1, i%n+1,
+                    valor.descripcion.ifEmpty { resources.getString(R.string.casilla_arcade_vacia) }
+                )
                 val inferior=androidx.core.graphics.ColorUtils.blendARGB(valor.color,Color.BLACK,0.07f)
                 celda.background=GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,intArrayOf(valor.color,inferior)).apply {
                     cornerRadius=(if(n==4)12f else 7f)*densidad
@@ -146,7 +153,9 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
         if(lado!=14){lado=14;fondo(14)}
         binding.root.visibility=GONE;serpiente.visibility=VISIBLE
         serpiente.mensaje=mensaje;serpiente.mostrar(cuerpo,comida,direccion,animar)
-        contentDescription="Snake. Cabeza en fila ${cuerpo.first()/14+1}, columna ${cuerpo.first()%14+1}. $mensaje"
+        contentDescription = resources.getString(
+            R.string.snake_descripcion, cuerpo.first()/14+1, cuerpo.first()%14+1, mensaje
+        )
     }
 
     override fun onMeasure(widthMeasureSpec:Int,heightMeasureSpec:Int) {
@@ -193,7 +202,11 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
     }
     private fun indice(x:Float,y:Float):Int {
         val gx=x-binding.root.left;val gy=y-binding.root.top
-        return celdas.indexOfFirst { gx>=it.left && gx<it.right && gy>=it.top && gy<it.bottom }
+        return celdas.indexOfFirst {
+            val fila = it.parent as LinearLayout
+            gx >= fila.left + it.left && gx < fila.left + it.right &&
+                gy >= fila.top + it.top && gy < fila.top + it.bottom
+        }
     }
     private fun pintarHasta(x:Float,y:Float) {
         val pasos=maxOf(1,(maxOf(abs(x-ultimoX),abs(y-ultimoY))/(width.toFloat()/maxOf(lado,1)/3)).toInt())

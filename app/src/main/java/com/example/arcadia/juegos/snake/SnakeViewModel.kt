@@ -1,8 +1,9 @@
 package com.example.arcadia.juegos.snake
 
-import com.example.arcadia.arcade.PartidaViewModel
-import com.example.arcadia.arcade.enteros
-import com.example.arcadia.arcade.lista
+import com.example.arcadia.compartido.estado.PartidaViewModel
+import com.example.arcadia.compartido.estado.Direccion
+import com.example.arcadia.compartido.estado.enteros
+import com.example.arcadia.compartido.estado.lista
 import org.json.JSONObject
 
 class SnakeViewModel : PartidaViewModel() {
@@ -11,6 +12,7 @@ class SnakeViewModel : PartidaViewModel() {
     var record=0
     var empezada=false
     var corriendo=false
+    fun girar(direccion: Direccion) = juego.girar(direccion)
     override fun restaurar(json: JSONObject) {
         if(juego.restaurar(json.enteros("body"),json.getInt("direction"),json.getInt("food"),json.getInt("score"),json.getBoolean("over"))) {
             record=maxOf(json.optInt("best"),juego.puntos);empezada=json.optBoolean("started")

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/arcade_root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/arcade_bg">
-<androidx.drawerlayout.widget.DrawerLayout android:id="@+id/drawer" android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/arcade_root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/arcade_bg">
+<androidx.drawerlayout.widget.DrawerLayout android:id="@+id/drawer" android:layout_width="0dp" android:layout_height="0dp"
+    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent">
 <LinearLayout android:id="@+id/main_content" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/arcade_bg">
     <LinearLayout android:layout_width="match_parent" android:layout_height="76dp" android:paddingHorizontal="16dp" android:gravity="center_vertical">
         <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/settings" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:background="@drawable/arcade_icon_button" android:src="@drawable/arcade_menu" android:contentDescription="@string/arcade_open_menu"/>
@@ -12,7 +16,45 @@
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/arcade_subtitle" android:textColor="@color/arcade_muted" android:textSize="11sp" android:letterSpacing="0.15"/>
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/arcade_collection" android:textColor="@color/arcade_ink" android:textSize="25sp" android:textStyle="bold"/>
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:layout_marginBottom="22dp" android:text="@string/arcade_offline" android:textColor="@color/arcade_muted" android:textSize="13sp"/>
-            <LinearLayout android:id="@+id/catalog_rows" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"/>
+            <LinearLayout android:id="@+id/catalog_rows" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:orientation="horizontal" android:baselineAligned="false">
+                    <com.example.arcadia.compartido.ui.TarjetaJuegoView
+                        android:id="@+id/tarjeta_2048" style="@style/TarjetaArcade"
+                        android:layout_marginEnd="6dp"
+                        app:tituloJuego="@string/tarjeta_2048" app:indicePortada="0"
+                        app:tintaTarjeta="@color/tarjeta_tinta_2048"
+                        app:cardBackgroundColor="@color/tarjeta_fondo_2048" />
+                    <com.example.arcadia.compartido.ui.TarjetaJuegoView
+                        android:id="@+id/tarjeta_buscaminas" style="@style/TarjetaArcade"
+                        android:layout_marginStart="6dp"
+                        app:tituloJuego="@string/tarjeta_buscaminas" app:indicePortada="1"
+                        app:tintaTarjeta="@color/tarjeta_tinta_buscaminas"
+                        app:cardBackgroundColor="@color/tarjeta_fondo_buscaminas" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:orientation="horizontal" android:baselineAligned="false">
+                    <com.example.arcadia.compartido.ui.TarjetaJuegoView
+                        android:id="@+id/tarjeta_petdoku" style="@style/TarjetaArcade"
+                        android:layout_marginEnd="6dp"
+                        app:tituloJuego="@string/tarjeta_petdoku" app:indicePortada="2"
+                        app:tintaTarjeta="@color/tarjeta_tinta_petdoku"
+                        app:cardBackgroundColor="@color/tarjeta_fondo_petdoku" />
+                    <com.example.arcadia.compartido.ui.TarjetaJuegoView
+                        android:id="@+id/tarjeta_snake" style="@style/TarjetaArcade"
+                        android:layout_marginStart="6dp"
+                        app:tituloJuego="@string/tarjeta_snake" app:indicePortada="3"
+                        app:tintaTarjeta="@color/tarjeta_tinta_snake"
+                        app:cardBackgroundColor="@color/tarjeta_fondo_snake" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:orientation="horizontal" android:baselineAligned="false">
+                    <com.example.arcadia.compartido.ui.TarjetaJuegoView
+                        android:id="@+id/tarjeta_kenken" style="@style/TarjetaArcade"
+                        android:layout_marginEnd="6dp"
+                        app:tituloJuego="@string/tarjeta_kenken" app:indicePortada="4"
+                        app:tintaTarjeta="@color/tarjeta_tinta_kenken"
+                        app:cardBackgroundColor="@color/tarjeta_fondo_kenken" />
+                    <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:layout_marginStart="6dp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
@@ -25,4 +67,4 @@
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="@string/arcade_menu_message" android:textColor="@color/arcade_muted" android:textSize="14sp" android:lineSpacingExtra="4dp"/>
 </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="casilla_arcade_descripcion">Fila %1$d, columna %2$d: %3$s</string>
+    <string name="casilla_arcade_vacia">vacía</string>
+    <string name="snake_descripcion">Snake. Cabeza en fila %1$d, columna %2$d. %3$s</string>
+    <string name="mina_descripcion">Mina</string>
+    <string name="bandera_descripcion">Bandera</string>
+    <string name="casilla_segura_descripcion">Segura</string>
+    <string name="minas_vecinas_descripcion">%1$d minas vecinas</string>
+    <string name="casilla_cerrada_descripcion">Sin descubrir</string>
+    <string name="region_petdoku_descripcion">Región %1$d, %2$s</string>
+    <string name="mascota_descubierta_descripcion">mascota descubierta</string>
+    <string name="casilla_descartada_descripcion">descartada</string>
+    <string name="error_petdoku_descripcion">error, casilla sin mascota</string>
+</resources>
