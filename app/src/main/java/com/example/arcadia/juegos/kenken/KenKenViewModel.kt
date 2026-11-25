@@ -2,8 +2,12 @@ package com.example.arcadia.juegos.kenken
 
 import androidx.lifecycle.ViewModel
 
-class KenKenViewModel : ViewModel() {
-    val rompecabezas = crearRompecabezasDePrueba()
+class KenKenViewModel(
+    private val variantes: List<RompecabezasKenKen> = crearVariantesKenKen()
+) : ViewModel() {
+    var rompecabezas = variantes.random()
+        private set
+
     private val valores = MutableList(rompecabezas.tamano * rompecabezas.tamano) { 0 }
 
     var resultado: ResultadoComprobacionKenKen = ResultadoComprobacionKenKen.SIN_COMPROBAR
@@ -53,6 +57,8 @@ class KenKenViewModel : ViewModel() {
     }
 
     fun reiniciar() {
+        val alternativas = variantes.filter { it != rompecabezas }
+        rompecabezas = alternativas.randomOrNull() ?: rompecabezas
         valores.fill(0)
         casillaSeleccionada = null
         modoEntrada = ModoEntradaKenKen.INCREMENTAR

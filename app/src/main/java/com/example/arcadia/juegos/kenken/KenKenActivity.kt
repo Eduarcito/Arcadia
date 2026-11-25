@@ -22,6 +22,7 @@ class KenKenActivity : AppCompatActivity() {
         binding.encabezado.alVolver { finish() }
         binding.encabezado.alReiniciar {
             viewModel.reiniciar()
+            binding.tablero.mostrarJaulas(viewModel.rompecabezas)
             actualizarPantalla()
         }
         binding.tablero.mostrarJaulas(viewModel.rompecabezas)

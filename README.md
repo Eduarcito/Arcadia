@@ -1,7 +1,7 @@
 # Arcadia
 
 Aplicación Android en Kotlin con un catálogo de tres juegos. KenKen permite jugar
-un tablero de prueba 4 × 4 con jaulas, comprobar la respuesta y reiniciar.
+cinco variantes 4 × 4 con jaulas, comprobar la respuesta y reiniciar.
 2048 y Buscaminas mantienen sus pantallas de desarrollo.
 
 ## Dónde trabajar
@@ -19,7 +19,9 @@ KenKen usa los componentes `TableroKenKenView` y `ControlesKenKenView`.
 Los modos **Incrementar**, **Decrementar** y **Borrar** se aplican al tocar una
 casilla. **Comprobar** distingue entre tablero incompleto, incorrecto y correcto;
 solo una comprobación correcta bloquea la partida hasta reiniciar.
-El rompecabezas fijo es temporal: la generación aleatoria corresponde a la siguiente etapa.
+Cada partida elige al azar una de cinco variantes predefinidas de solución única.
+Reiniciar selecciona otra variante sin repetir la anterior de inmediato.
+Rotar la pantalla conserva el rompecabezas y sus valores. No se utiliza un generador.
 
 Las tarjetas y los encabezados son **vistas compuestas** en `compartido/ui/`.
 Para reutilizarlos en otro layout, declara la etiqueta de `TarjetaJuegoView` como en

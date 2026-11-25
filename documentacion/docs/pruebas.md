@@ -33,7 +33,8 @@ Comprobar las reglas por separado y recorrer las cuatro pantallas en un disposit
 
 ## KenKen
 
-- La solución prevista es válida y el rompecabezas no admite otra solución.
+- Las cinco variantes tienen una solución prevista válida y cada una admite una sola solución. Todas las casillas pertenecen a una sola jaula contigua.
+- Al abrir KenKen se elige una de las cinco variantes; **Reiniciar** cambia las pistas y las jaulas, evita repetir inmediatamente la variante anterior y limpia los valores. Rotar conserva la variante actual.
 - Una fila o columna con números repetidos se rechaza aunque las jaulas cumplan sus objetivos.
 - Una cuadrícula sin repetidos se rechaza si falla una jaula.
 - `4 ÷ 2` cumple un objetivo de 2; los valores `3` y `2` no cumplen un objetivo de 1.
