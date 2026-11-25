@@ -10,17 +10,83 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:tituloEncabezado="@string/juego_kenken"
+        app:mostrarReiniciar="true"
+        app:mostrarTitulo="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/estado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/estado_en_desarrollo"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/zona_tablero"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/separacion_tablero_kenken"
+        android:layout_marginBottom="@dimen/separacion_tablero_kenken"
+        app:layout_constraintBottom_toTopOf="@id/controles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/encabezado" />
+        app:layout_constraintTop_toBottomOf="@id/encabezado">
+
+        <TextView
+            android:id="@+id/titulo_tablero"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/separacion_titulo_tablero_kenken"
+            android:accessibilityHeading="true"
+            android:text="@string/juego_kenken"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textColor="@color/arcadia_texto"
+            app:layout_constraintBottom_toTopOf="@id/tablero"
+            app:layout_constraintEnd_toEndOf="@id/tablero"
+            app:layout_constraintStart_toStartOf="@id/tablero"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <com.example.arcadia.juegos.kenken.TableroKenKenView
+            android:id="@+id/tablero"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titulo_tablero" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.example.arcadia.juegos.kenken.ControlesKenKenView
+        android:id="@+id/controles"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/separacion_controles_kenken"
+        app:layout_constraintBottom_toTopOf="@id/comprobar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/comprobar"
+        style="@style/Widget.Arcadia.BotonComprobarKenKen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/kenken_comprobar"
+        app:icon="@drawable/ic_comprobar"
+        app:layout_constraintBottom_toTopOf="@id/estado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/estado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/separacion_estado_kenken"
+        android:gravity="center"
+        android:minLines="3"
+        android:accessibilityLiveRegion="polite"
+        android:text="@string/kenken_instruccion_incrementar"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        android:textColor="@color/kenken_texto_secundario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
