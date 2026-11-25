@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="catalogo_titulo">Juegos que estimulan el pensamiento</string>
-    <string name="catalogo_descripcion_2048">Desliza las fichas y combina números iguales hasta llegar a 2048.</string>
-    <string name="catalogo_descripcion_buscaminas">Usa las pistas numéricas para descubrir las casillas seguras sin tocar una mina.</string>
-    <string name="catalogo_descripcion_kenken">Completa cada jaula con la operación indicada, sin repetir números en filas ni columnas.</string>
-    <string name="catalogo_jugar">Jugar</string>
     <string name="catalogo_jugar_a">Jugar a %1$s</string>
 
     <declare-styleable name="TarjetaJuegoView">
         <attr name="tituloJuego" format="string" />
-        <attr name="descripcionJuego" format="string" />
-        <attr name="estiloArcade" />
         <attr name="tintaTarjeta" format="color" />
         <attr name="indicePortada" format="integer" />
     </declare-styleable>
 
-    <style name="TarjetaCatalogo">
-        <item name="cardCornerRadius">24dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="strokeWidth">0dp</item>
-    </style>
-
-    <style name="NombreJuegoCatalogo">
-        <item name="android:textAppearance">?attr/textAppearanceHeadlineSmall</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="DescripcionJuegoCatalogo">
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-    </style>
 </resources>

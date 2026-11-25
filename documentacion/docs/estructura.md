@@ -7,7 +7,7 @@ Organizar el código por funcionalidad dentro de un único módulo `app`. Las ru
 | Ruta | Responsabilidad |
 |---|---|
 | `MainActivity.kt` | Catálogo: conecta las tarjetas XML con cada juego y controla el menú lateral. |
-| `ajustes/AjustesActivity.kt` | Ajustes de volumen, sonido, música, vibración y modo oscuro. |
+| `ajustes/AjustesActivity.kt` | Ajustes de volumen (con lectura del porcentaje), sonido, música, vibración y tema (sistema, claro u oscuro). |
 | `juegos/juego2048/` | `Juego2048Activity`, `Juego2048ViewModel` y `Reglas2048`. |
 | `juegos/buscaminas/` | `BuscaminasActivity`, `BuscaminasViewModel` y `ReglasBuscaminas`. |
 | `juegos/petdoku/` | `PetdokuActivity`, `PetdokuViewModel` y `ReglasPetdoku`, con sus niveles. |
@@ -34,8 +34,8 @@ Registrar las siete actividades en `AndroidManifest.xml`. Solo el catálogo es l
 | `layout/fila_tablero.xml` | Fila horizontal compartida, con peso para repartir el alto. |
 | `layout/tablero_arcade.xml`, `celda_arcade.xml` | Contenedor vertical y casillas de 2048, Buscaminas y Petdoku. |
 | `layout/tablero_kenken.xml`, `celda_kenken.xml` | Contenedor vertical y casillas con pistas y bordes de jaula. |
-| `layout/encabezado_juego.xml`, `encabezado_arcade.xml` | Variantes internas de `EncabezadoJuegoView`. |
-| `layout/contenido_tarjeta_juego.xml`, `tarjeta_arcade.xml` | Variantes internas de `TarjetaJuegoView`. |
+| `layout/encabezado_arcade.xml` | Plantilla interna de `EncabezadoJuegoView`. |
+| `layout/tarjeta_arcade.xml` | Plantilla interna de `TarjetaJuegoView`. |
 | `layout/indicadores_juego.xml`, `ayuda_juego.xml` | Bloques compartidos de indicadores y ayuda. |
 | `values/` | Textos, atributos, colores, tamaños, estilos y temas. |
 | `drawable/` | Fondos, bordes y estados visuales. |

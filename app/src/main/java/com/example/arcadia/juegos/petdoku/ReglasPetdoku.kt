@@ -23,31 +23,31 @@ val NIVELES_PETDOKU = listOf(
 class ReglasPetdoku {
     val lado = 6
     var nivel = 0; private set
-    val marcas = MutableList(36) { 0 } // 0 vacía, 1 mascota descubierta, 2 ×, 3 × roja
+    val marcas = MutableList(36) { VACIA }
     val regiones get() = NIVELES_PETDOKU[nivel]
-    val mascotas get() = marcas.indices.filter { marcas[it] == 1 }
-    val vidas get() = 3 - marcas.count { it == 3 }
+    val mascotas get() = marcas.indices.filter { marcas[it] == MASCOTA }
+    val vidas get() = 3 - marcas.count { it == ERROR }
     val victoria get() = mascotas.size == lado
     val terminada get() = victoria || vidas == 0
 
     /** Single tap adds/removes a note; confirmed pets and red errors stay visible. */
     fun tocar(i: Int): Boolean {
-        if (i !in marcas.indices || terminada || marcas[i] == 1 || marcas[i] == 3) return false
-        marcas[i] = if (marcas[i] == 2) 0 else 2
+        if (i !in marcas.indices || terminada || marcas[i] == MASCOTA || marcas[i] == ERROR) return false
+        marcas[i] = if (marcas[i] == DESCARTADA) VACIA else DESCARTADA
         return true
     }
 
     /** One incorrect discovery costs one life; the same known error is not charged again. */
     fun descubrir(i: Int): Boolean {
-        if (i !in marcas.indices || terminada || marcas[i] == 1 || marcas[i] == 3) return false
-        marcas[i] = if (i in soluciones[nivel]) 1 else 3
+        if (i !in marcas.indices || terminada || marcas[i] == MASCOTA || marcas[i] == ERROR) return false
+        marcas[i] = if (i in soluciones[nivel]) MASCOTA else ERROR
         return true
     }
 
-    fun reiniciar() { marcas.fill(0) }
+    fun reiniciar() { marcas.fill(VACIA) }
     fun pintarDescarte(i: Int, borrar: Boolean): Boolean {
-        if (i !in marcas.indices || terminada || marcas[i] == 1 || marcas[i] == 3) return false
-        val valor = if (borrar) 0 else 2
+        if (i !in marcas.indices || terminada || marcas[i] == MASCOTA || marcas[i] == ERROR) return false
+        val valor = if (borrar) VACIA else DESCARTADA
         if (marcas[i] == valor) return false
         marcas[i] = valor
         return true
@@ -55,16 +55,22 @@ class ReglasPetdoku {
     fun siguiente() { nivel = (nivel + 1) % NIVELES_PETDOKU.size; reiniciar() }
 
     fun restaurar(n: Int, m: List<Int>, vidasGuardadas: Int = 3): Boolean {
-        if (n !in NIVELES_PETDOKU.indices || m.size != 36 || m.any { it !in 0..3 } ||
-            vidasGuardadas !in 0..3 || m.count { it == 3 } != 3 - vidasGuardadas ||
-            m.indices.any { m[it] == 3 && it in soluciones[n] }) return false
+        if (n !in NIVELES_PETDOKU.indices || m.size != 36 || m.any { it !in VACIA..ERROR } ||
+            vidasGuardadas !in 0..3 || m.count { it == ERROR } != 3 - vidasGuardadas ||
+            m.indices.any { m[it] == ERROR && it in soluciones[n] }) return false
         nivel = n
         // Old saves allowed unverified pets: preserve those guesses as ordinary notes.
-        m.forEachIndexed { i, v -> marcas[i] = if (v == 1 && i !in soluciones[n]) 2 else v }
+        m.forEachIndexed { i, v -> marcas[i] = if (v == MASCOTA && i !in soluciones[n]) DESCARTADA else v }
         return true
     }
 
     companion object {
+        // Estados de cada casilla; los valores se conservan en el guardado JSON
+        const val VACIA = 0
+        const val MASCOTA = 1
+        const val DESCARTADA = 2
+        const val ERROR = 3
+
         private val soluciones: List<Set<Int>> by lazy {
             NIVELES_PETDOKU.map { regiones ->
                 val columnas = IntArray(6) { -1 }

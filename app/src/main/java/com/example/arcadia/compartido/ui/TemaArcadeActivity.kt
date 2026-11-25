@@ -10,23 +10,31 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.arcadia.R
+import com.example.arcadia.compartido.estado.ARCHIVO_AJUSTES
+import com.example.arcadia.compartido.estado.TEMA_CLARO
+import com.example.arcadia.compartido.estado.TEMA_OSCURO
+import com.example.arcadia.compartido.estado.temaGuardado
 
 open class TemaArcadeActivity : AppCompatActivity() {
     protected val preferencias by lazy {
-        getSharedPreferences("arcade_settings", Context.MODE_PRIVATE)
+        getSharedPreferences(ARCHIVO_AJUSTES, Context.MODE_PRIVATE)
     }
     private var modoOscuro = true
+    private var tema = TEMA_OSCURO
     protected val temaVigente: Boolean
-        get() = modoOscuro == preferencias.getBoolean("dark", true)
+        get() = tema == temaGuardado(preferencias)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Arcade)
-        modoOscuro = preferencias.getBoolean("dark", true)
-        delegate.localNightMode = if (modoOscuro) {
-            AppCompatDelegate.MODE_NIGHT_YES
-        } else {
-            AppCompatDelegate.MODE_NIGHT_NO
+        tema = temaGuardado(preferencias)
+        delegate.localNightMode = when (tema) {
+            TEMA_CLARO -> AppCompatDelegate.MODE_NIGHT_NO
+            TEMA_OSCURO -> AppCompatDelegate.MODE_NIGHT_YES
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
         }
+        modoOscuro = resources.configuration.uiMode and
+            android.content.res.Configuration.UI_MODE_NIGHT_MASK ==
+            android.content.res.Configuration.UI_MODE_NIGHT_YES
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
     }

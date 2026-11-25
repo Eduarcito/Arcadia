@@ -6,8 +6,6 @@
         android:id="@+id/encabezado"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        app:estiloArcade="true"
-        app:mostrarTitulo="false"
         app:mostrarReiniciar="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,10 +16,10 @@
         app:layout_constraintTop_toBottomOf="@id/encabezado"
         app:layout_constraintBottom_toBottomOf="parent">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
-            <TextView android:id="@+id/hero_caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:letterSpacing="0.16" android:textStyle="bold" android:textColor="@color/arcade_muted"/>
-            <TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:layout_marginBottom="20dp" android:textSize="38sp" android:fontFamily="sans-serif-black" android:textStyle="bold" android:textColor="@color/arcade_ink"/>
+            <TextView android:id="@+id/hero_caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="11sp" android:letterSpacing="0.16" android:textStyle="bold" android:textColor="@color/arcade_muted"/>
+            <TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content" android:accessibilityHeading="true" android:layout_marginTop="6dp" android:layout_marginBottom="20dp" android:textSize="38sp" android:fontFamily="sans-serif-black" android:textStyle="bold" android:textColor="@color/arcade_ink"/>
             <com.example.arcadia.compartido.ui.IndicadoresJuegoView android:id="@+id/indicadores" android:layout_width="match_parent" android:layout_height="wrap_content" />
-            <TextView android:id="@+id/gesture_hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginVertical="18dp" android:gravity="center" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/arcade_muted"/>
+            <TextView android:id="@+id/gesture_hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginVertical="18dp" android:gravity="center" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/arcade_muted"/>
             <com.example.arcadia.compartido.ui.TableroArcadeView android:id="@+id/board" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"/>
             <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="58dp" android:paddingVertical="16dp" android:gravity="center" android:accessibilityLiveRegion="polite" android:textColor="@color/arcade_ink" android:textSize="14sp"/>
             <LinearLayout android:id="@+id/controls" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">

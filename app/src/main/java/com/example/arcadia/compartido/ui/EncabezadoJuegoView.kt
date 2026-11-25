@@ -8,7 +8,6 @@ import android.widget.FrameLayout
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.isVisible
 import com.example.arcadia.R
-import com.example.arcadia.databinding.EncabezadoJuegoBinding
 import com.example.arcadia.databinding.EncabezadoArcadeBinding
 
 class EncabezadoJuegoView @JvmOverloads constructor(
@@ -19,28 +18,13 @@ class EncabezadoJuegoView @JvmOverloads constructor(
     private val reiniciar: View
 
     init {
-        var estiloArcade = false
-        var titulo: CharSequence? = null
-        var mostrarTitulo = true
         var mostrarReiniciar = false
         contexto.withStyledAttributes(atributos, R.styleable.EncabezadoJuegoView) {
-            estiloArcade = getBoolean(R.styleable.EncabezadoJuegoView_estiloArcade, false)
-            titulo = getText(R.styleable.EncabezadoJuegoView_tituloEncabezado)
-            mostrarTitulo = getBoolean(R.styleable.EncabezadoJuegoView_mostrarTitulo, true)
             mostrarReiniciar = getBoolean(R.styleable.EncabezadoJuegoView_mostrarReiniciar, false)
         }
-        val inflador = LayoutInflater.from(contexto)
-        if (estiloArcade) {
-            val binding = EncabezadoArcadeBinding.inflate(inflador, this, true)
-            volver = binding.back
-            reiniciar = binding.restart
-        } else {
-            val binding = EncabezadoJuegoBinding.inflate(inflador, this, true)
-            binding.titulo.text = titulo
-            binding.titulo.isVisible = mostrarTitulo
-            volver = binding.btnVolver
-            reiniciar = binding.btnReiniciar
-        }
+        val binding = EncabezadoArcadeBinding.inflate(LayoutInflater.from(contexto), this, true)
+        volver = binding.back
+        reiniciar = binding.restart
         reiniciar.isVisible = mostrarReiniciar
     }
 

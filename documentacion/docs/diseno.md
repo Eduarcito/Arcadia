@@ -12,7 +12,7 @@ La referencia actual es el catálogo ilustrado y las pantallas de 2048, Buscamin
 
 ## Pantallas de juego
 
-- Usar `ConstraintLayout`, directamente o mediante `PantallaPartidaView`. El encabezado compartido se declara con `estiloArcade="true"`: volver, marca y reinicio.
+- Usar `ConstraintLayout`, directamente o mediante `PantallaPartidaView`. El encabezado compartido muestra volver, la marca y el reinicio opcional.
 - Mostrar lema, título, tarjetas de indicadores, instrucción de interacción, tablero y mensaje de estado. Reutilizar `IndicadoresJuegoView` y `AyudaJuegoView`.
 - En los cuatro juegos nuevos, configurar título, instrucciones, lema, gesto y acento desde atributos XML de `PantallaPartidaView`.
 - Mantener los tamaños, márgenes, tipografía y colores existentes de esos cuatro juegos. No añadir botones direccionales ni selectores al refactorizar.
@@ -35,3 +35,6 @@ La referencia actual es el catálogo ilustrado y las pantallas de 2048, Buscamin
 Los textos fijos van en `strings.xml` o archivos `strings_*`, colores en recursos `values`, tamaños compartidos en `dimens_*` y formas en `drawable`. Los atributos de las vistas compuestas configuran el contenido fijo y permiten previsualizarlo después de compilar.
 
 Mantener descripciones accesibles para iconos, casillas y controles. Comunicar errores y selección con algo más que el color. Las vistas no contienen reglas ni modifican la partida por sí mismas.
+- Los títulos de pantalla se marcan como encabezados de accesibilidad y los mensajes de estado de partida se anuncian solos a TalkBack.
+- Las marcas de los juegos (mascota, bandera, mina) son vectores propios (`ic_mascota`, `ic_bandera`, `ic_mina`), no emojis, para que se vean igual en todos los dispositivos.
+- El tema se elige entre sistema, claro y oscuro; el mínimo de texto es 11sp.

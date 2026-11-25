@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="portada_2048_fichas">
+        <item>#F5E3C6</item><item>#F1D396</item><item>#FFB263</item>
+        <item>#FF9674</item><item>#F77C6D</item><item>#EA646A</item>
+        <item>#EDC552</item><item>#F7D25E</item><item>#FFDD70</item>
+    </array>
+    <color name="portada_2048_tinta">#50301C</color>
+    <color name="portada_minas_clara">#DEF3F0</color>
+    <color name="portada_minas_oscura">#4B9492</color>
+    <color name="portada_minas_uno">#3188B9</color>
+    <color name="portada_minas_dos">#1A735E</color>
+    <color name="portada_minas_bandera">#FFB6B9</color>
+    <array name="portada_petdoku_regiones">
+        <item>#F1A8C6</item><item>#8CD4AF</item><item>#A7D9F0</item><item>#F4CE8E</item>
+    </array>
+    <color name="portada_gato_cara">#FFF5E9</color>
+    <color name="portada_gato_ojos">#42363B</color>
+    <color name="portada_gato_nariz">#DF8CA7</color>
+    <color name="portada_snake_cuerpo">#85DC66</color>
+    <color name="portada_snake_cabeza">#B8F77C</color>
+    <color name="portada_snake_pupila">#192A23</color>
+    <color name="portada_snake_fruta">#FF7A9A</color>
+    <color name="portada_snake_hoja">#C3F488</color>
+    <color name="portada_kenken_casilla">#E4D4FF</color>
+    <color name="portada_kenken_casilla_alterna">#F3EAFB</color>
+    <color name="portada_kenken_numero">#795092</color>
+    <color name="portada_kenken_pista">#65417B</color>
+</resources>

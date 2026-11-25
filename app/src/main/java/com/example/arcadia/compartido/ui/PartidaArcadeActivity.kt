@@ -11,10 +11,15 @@ abstract class PartidaArcadeActivity : ArcadeActivity() {
         setContentView(pantalla)
         margenes(pantalla)
         pantalla.alVolver { finish() }
-        pantalla.alReiniciar { confirmar { reiniciar() } }
+        pantalla.alReiniciar {
+            if (reinicioPierdeProgreso()) confirmar { reiniciar() } else reiniciar()
+        }
     }
 
     protected abstract fun reiniciar()
+
+    // Sin partida en curso o ya terminada no hay progreso que perder: reinicio inmediato
+    protected open fun reinicioPierdeProgreso(): Boolean = true
 
     protected fun confirmar(accion: () -> Unit) {
         MaterialAlertDialogBuilder(this)

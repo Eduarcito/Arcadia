@@ -7,10 +7,11 @@ import com.example.arcadia.compartido.ui.CasillaArcade
 import com.example.arcadia.compartido.ui.PartidaArcadeActivity
 import com.example.arcadia.compartido.ui.coloresJuego
 import com.example.arcadia.databinding.ActivityBuscaminasBinding
+import com.example.arcadia.compartido.estado.ARCHIVO_PARTIDAS
 
 class BuscaminasActivity : PartidaArcadeActivity() {
     private val modelo: BuscaminasViewModel by viewModels()
-    private val guardado by lazy { getSharedPreferences("arcade_games",MODE_PRIVATE) }
+    private val guardado by lazy { getSharedPreferences(ARCHIVO_PARTIDAS,MODE_PRIVATE) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preparar(ActivityBuscaminasBinding.inflate(layoutInflater).root);modelo.cargar(guardado)
@@ -27,8 +28,8 @@ class BuscaminasActivity : PartidaArcadeActivity() {
         val pistas = resources.coloresJuego(R.array.pistas_buscaminas)
         pantalla.tablero.mostrar(8,List(64){i->
             when {
-                juego.terminada && i in juego.minas -> CasillaArcade(if(i in juego.banderas)"⚑" else "✹",getColor(if(i==juego.explosion) R.color.mina_explosion else R.color.mina_revelada),descripcion=getString(R.string.mina_descripcion))
-                i in juego.banderas -> CasillaArcade(if(juego.terminada && i !in juego.minas)"×" else "⚑",getColor(R.color.bandera_buscaminas),descripcion=getString(R.string.bandera_descripcion))
+                juego.terminada && i in juego.minas -> CasillaArcade("",getColor(if(i==juego.explosion) R.color.mina_explosion else R.color.mina_revelada),descripcion=getString(R.string.mina_descripcion),icono=if(i in juego.banderas) R.drawable.ic_bandera else R.drawable.ic_mina)
+                i in juego.banderas -> CasillaArcade(if(juego.terminada && i !in juego.minas)"×" else "",getColor(R.color.bandera_buscaminas),descripcion=getString(R.string.bandera_descripcion),icono=if(juego.terminada && i !in juego.minas) 0 else R.drawable.ic_bandera)
                 i in juego.abiertas -> {val n=juego.alrededor(i);CasillaArcade(if(n==0)"" else n.toString(),getColor(R.color.casilla_abierta_buscaminas),pistas[n],descripcion=if(n==0)getString(R.string.casilla_segura_descripcion) else getString(R.string.minas_vecinas_descripcion,n))}
                 else -> CasillaArcade("",getColor(R.color.casilla_cerrada_buscaminas),descripcion=getString(R.string.casilla_cerrada_descripcion))
             }
@@ -36,6 +37,8 @@ class BuscaminasActivity : PartidaArcadeActivity() {
         estadisticas(getString(R.string.arcade_mines_flags,juego.banderas.size),getString(R.string.arcade_mines_open,juego.abiertas.size))
         pantalla.mostrarEstado(if(juego.victoria)R.string.arcade_mines_won else if(juego.terminada)R.string.arcade_mines_lost else R.string.arcade_mines_start)
     }
+    override fun reinicioPierdeProgreso() = !modelo.juego.terminada &&
+        (modelo.juego.iniciada || modelo.juego.banderas.isNotEmpty())
     override fun reiniciar() { modelo.reiniciar();modelo.guardar(guardado);mostrar() }
     override fun onPause() { modelo.guardar(guardado);super.onPause() }
 }

@@ -21,7 +21,6 @@
         <item name="android:layout_weight">1</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="estiloArcade">true</item>
         <item name="cardCornerRadius">24dp</item>
         <item name="cardElevation">0dp</item>
         <item name="strokeWidth">3dp</item>

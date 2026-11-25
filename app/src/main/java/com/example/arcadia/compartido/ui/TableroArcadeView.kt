@@ -21,13 +21,14 @@ import com.example.arcadia.compartido.estado.Direccion
 import kotlin.math.abs
 
 data class CasillaArcade(val texto: String = "", val color: Int = Color.LTGRAY,
-    val tinta: Int = Color.rgb(39,32,43), val borde: Boolean = false, val descripcion: String = texto)
+    val tinta: Int = Color.rgb(39,32,43), val borde: Boolean = false, val descripcion: String = texto,
+    val icono: Int = 0)
 
 class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
     private val binding = TableroArcadeBinding.inflate(LayoutInflater.from(context), this, true)
     private val serpiente = SnakeCanvasView(context).also { addView(it, LayoutParams(-1,-1)); it.visibility=GONE }
     private var lado = 0
-    private val celdas = mutableListOf<TextView>()
+    private val celdas = mutableListOf<FrameLayout>()
     private val detectoresToque = mutableListOf<GestureDetector>()
     private var anteriores = emptyList<CasillaArcade>()
     private val densidad = resources.displayMetrics.density
@@ -76,7 +77,7 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
             else -> R.array.fondo_tablero_snake
         }
         val colores = resources.coloresJuego(paleta).toIntArray()
-        background=GradientDrawable(GradientDrawable.Orientation.TL_BR,colores).apply { cornerRadius=24*densidad;setStroke((1*densidad).toInt(),0x33FFFFFF) }
+        background=GradientDrawable(GradientDrawable.Orientation.TL_BR,colores).apply { cornerRadius=24*densidad;setStroke((1*densidad).toInt(),context.getColor(R.color.borde_tablero)) }
     }
 
     fun mostrar(n: Int, valores: List<CasillaArcade>, interactivo: Boolean = true) {
@@ -90,11 +91,13 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
             }
             repeat(n*n) { i ->
                 val fila = filas[i / n]
-                val celda=CeldaArcadeBinding.inflate(LayoutInflater.from(context),fila,false).root
+                val celdaBinding=CeldaArcadeBinding.inflate(LayoutInflater.from(context),fila,false)
+                val celda=celdaBinding.root
+                celda.tag=celdaBinding
                 celda.layoutParams=LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.MATCH_PARENT,1f).apply {
                     val margen=((if(n==4)4 else 2)*densidad).toInt();setMargins(margen,margen,margen,margen)
                 }
-                TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(celda,9,if(n==4)36 else 24,1,android.util.TypedValue.COMPLEX_UNIT_SP)
+                TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(celdaBinding.texto,9,if(n==4)36 else 24,1,android.util.TypedValue.COMPLEX_UNIT_SP)
                 celda.setOnClickListener { alTocar?.invoke(i) }
                 celda.setOnLongClickListener { alMantener?.invoke(i); alMantener!=null }
                 val toques = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
@@ -130,7 +133,13 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
             celda.isClickable=interactivo && alTocar!=null
             celda.isLongClickable=interactivo && alMantener!=null
             if(anteriores.getOrNull(i)!=valor) {
-                celda.text=valor.texto;celda.setTextColor(valor.tinta)
+                val celdaBinding=celda.tag as CeldaArcadeBinding
+                celdaBinding.texto.text=valor.texto;celdaBinding.texto.setTextColor(valor.tinta)
+                if (valor.icono != 0) {
+                    celdaBinding.icono.setImageResource(valor.icono)
+                    celdaBinding.icono.setColorFilter(valor.tinta)
+                    celdaBinding.icono.visibility=VISIBLE
+                } else celdaBinding.icono.visibility=GONE
                 celda.contentDescription = resources.getString(
                     R.string.casilla_arcade_descripcion, i/n+1, i%n+1,
                     valor.descripcion.ifEmpty { resources.getString(R.string.casilla_arcade_vacia) }
@@ -138,9 +147,10 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
                 val inferior=androidx.core.graphics.ColorUtils.blendARGB(valor.color,Color.BLACK,0.07f)
                 celda.background=GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,intArrayOf(valor.color,inferior)).apply {
                     cornerRadius=(if(n==4)12f else 7f)*densidad
-                    setStroke(((if(valor.borde)3 else 1)*densidad).toInt(),if(valor.borde)0xFFD92854.toInt() else 0x20FFFFFF)
+                    setStroke(((if(valor.borde)3 else 1)*densidad).toInt(),context.getColor(if(valor.borde)R.color.borde_error_casilla else R.color.borde_casilla))
                 }
-                if(anteriores.isNotEmpty() && anteriores[i].texto!=valor.texto && valor.texto.isNotEmpty()) {
+                if(anteriores.isNotEmpty() && anteriores[i]!=valor && (valor.texto.isNotEmpty() || valor.icono!=0)
+                    && android.animation.ValueAnimator.areAnimatorsEnabled()) {
                     celda.animate().cancel();celda.scaleX=.86f;celda.scaleY=.86f
                     celda.animate().scaleX(1f).scaleY(1f).setDuration(130).start()
                 }

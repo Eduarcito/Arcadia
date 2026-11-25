@@ -9,10 +9,11 @@ import com.example.arcadia.compartido.ui.PartidaArcadeActivity
 import com.example.arcadia.compartido.ui.coloresJuego
 import com.example.arcadia.databinding.ActivityJuego2048Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.example.arcadia.compartido.estado.ARCHIVO_PARTIDAS
 
 class Juego2048Activity : PartidaArcadeActivity() {
     private val modelo: Juego2048ViewModel by viewModels()
-    private val guardado by lazy { getSharedPreferences("arcade_games",MODE_PRIVATE) }
+    private val guardado by lazy { getSharedPreferences(ARCHIVO_PARTIDAS,MODE_PRIVATE) }
     private var dialogo=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,7 @@ class Juego2048Activity : PartidaArcadeActivity() {
         MaterialAlertDialogBuilder(this).setTitle(R.string.arcade_2048_win).setMessage(R.string.arcade_2048_win_message)
             .setCancelable(false).setPositiveButton(R.string.arcade_continue) { _,_-> modelo.victoriaVista=true;dialogo=false;modelo.guardar(guardado) }.show()
     }
+    override fun reinicioPierdeProgreso() = !modelo.juego.terminado && modelo.juego.puntos > 0
     override fun reiniciar() { modelo.reiniciar();modelo.guardar(guardado);mostrar() }
     override fun onPause() { modelo.guardar(guardado);super.onPause() }
 }

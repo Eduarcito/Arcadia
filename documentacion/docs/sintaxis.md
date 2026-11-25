@@ -12,14 +12,14 @@ Los ejemplos ilustran convenciones del proyecto. Los fragmentos de pantalla se i
 
 ## 1. Usar el encabezado compartido en otra pantalla
 
-Para un encabezado con título visible, declarar una instancia del componente y pasarle el título como atributo:
+Declarar una instancia del componente y activar el botón de reinicio cuando la pantalla lo necesite:
 
 ```xml
 <com.example.arcadia.compartido.ui.EncabezadoJuegoView
     android:id="@+id/encabezado"
     android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:tituloEncabezado="@string/juego_kenken"
+    android:layout_height="64dp"
+    app:mostrarReiniciar="true"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />

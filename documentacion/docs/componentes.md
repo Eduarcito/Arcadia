@@ -6,8 +6,8 @@ Cada pantalla combina controles de Android y vistas compuestas declaradas por su
 
 | Componente en `compartido/ui/` | Configuración y acciones |
 |---|---|
-| `TarjetaJuegoView` | `tituloJuego`, `descripcionJuego`, `cardBackgroundColor`; la variante `estiloArcade` añade `tintaTarjeta` e `indicePortada`. `alJugar` comunica la selección. |
-| `EncabezadoJuegoView` | `tituloEncabezado`, `mostrarTitulo`, `mostrarReiniciar` y `estiloArcade`. `alVolver` y `alReiniciar` ocultan los botones internos a la actividad. |
+| `TarjetaJuegoView` | `tituloJuego`, `tintaTarjeta`, `indicePortada` y `cardBackgroundColor`. `alJugar` comunica la selección. |
+| `EncabezadoJuegoView` | `mostrarReiniciar`. `alVolver` y `alReiniciar` ocultan los botones internos a la actividad. |
 | `PantallaPartidaView` | Hereda de `ConstraintLayout`. Configura `tituloPartida`, `instruccionesPartida`, `lemaPartida`, `gestoPartida` y `acentoPartida` en el XML de cada juego nuevo. |
 | `IndicadoresJuegoView` | Dos tarjetas de estado con `acentoBloque` y `tamanoIndicador`. `mostrar` actualiza sus valores y `describirDerecha` aporta una descripción accesible. |
 | `AyudaJuegoView` | Tarjeta de instrucciones con `textoAyuda` y `acentoBloque`. |
@@ -17,7 +17,7 @@ Cada pantalla combina controles de Android y vistas compuestas declaradas por su
 
 KenKen usa el mismo encabezado ilustrado, los indicadores y la ayuda. Mantiene `TableroKenKenView` y `ControlesKenKenView` en su propio paquete para representar las jaulas y los tres modos de entrada.
 
-El catálogo declara cinco instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador. Las variantes anteriores de tarjeta y encabezado se conservan para no romper otros layouts.
+El catálogo declara cinco instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador.
 
 ## Al crear o ampliar un juego
 

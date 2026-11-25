@@ -35,4 +35,16 @@
     <array name="fondo_tablero_snake">
         <item>#3D7052</item><item>#214432</item>
     </array>
+    <color name="snake_casilla_par">#16352D</color>
+    <color name="snake_casilla_impar">#1A3C32</color>
+    <color name="snake_fruta">#FF7D9F</color>
+    <color name="snake_hoja">#BEEB70</color>
+    <color name="snake_brillo">#66FFFFFF</color>
+    <color name="snake_cuerpo">#91DF69</color>
+    <color name="snake_cabeza">#C9F58D</color>
+    <color name="snake_pupila">#15352A</color>
+    <color name="snake_velo">#AA10271F</color>
+    <color name="borde_tablero">#33FFFFFF</color>
+    <color name="borde_casilla">#20FFFFFF</color>
+    <color name="borde_error_casilla">#FFD92854</color>
 </resources>

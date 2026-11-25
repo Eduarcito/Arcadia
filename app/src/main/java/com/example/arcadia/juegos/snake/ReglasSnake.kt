@@ -5,7 +5,7 @@ import kotlin.random.Random
 
 class ReglasSnake(private val azar: Random = Random.Default) {
     val lado = 14
-    var cuerpo = listOf(7 * lado + 6, 7 * lado + 5, 7 * lado + 4); private set
+    var cuerpo = posicionInicial(); private set
     var direccion = Direccion.DERECHA; private set
     private var pendiente = direccion
     var comida = -1; private set
@@ -38,17 +38,19 @@ class ReglasSnake(private val azar: Random = Random.Default) {
     }
 
     fun reiniciar() {
-        cuerpo = listOf(104,103,102); direccion = Direccion.DERECHA; pendiente = direccion
+        cuerpo = posicionInicial(); direccion = Direccion.DERECHA; pendiente = direccion
         puntos = 0; terminada = false; colocarComida()
     }
 
     fun restaurar(c: List<Int>, d: Int, f: Int, p: Int, fin: Boolean): Boolean {
-        if (c.size < 3 || c.size > lado * lado || c.distinct().size != c.size || c.any { it !in 0..195 } ||
+        if (c.size < 3 || c.size > lado * lado || c.distinct().size != c.size || c.any { it !in 0 until lado * lado } ||
             c.zipWithNext().any { (a,b) -> kotlin.math.abs(a / lado - b / lado) + kotlin.math.abs(a % lado - b % lado) != 1 } ||
-            d !in 0..3 || p < 0 || (c.size < 196 && (f !in 0..195 || f in c))) return false
+            d !in 0..3 || p < 0 || (c.size < lado * lado && (f !in 0 until lado * lado || f in c))) return false
         cuerpo = c.toList(); direccion = Direccion.entries[d]; pendiente = direccion; comida = f; puntos = p; terminada = fin
         return true
     }
+
+    private fun posicionInicial() = listOf(7 * lado + 6, 7 * lado + 5, 7 * lado + 4)
 
     private fun colocarComida() { comida = (0 until lado * lado).filter { it !in cuerpo }.randomOrNull(azar) ?: -1 }
 }

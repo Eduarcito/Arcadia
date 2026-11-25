@@ -4,8 +4,6 @@
     <color name="arcade_surface">#FFFFFF</color>
     <color name="arcade_ink">#28232D</color>
     <color name="arcade_muted">#665E6B</color>
-    <color name="arcade_purple">#8E529F</color>
-    <color name="arcade_board">#3A3540</color>
     <style name="Theme.Arcade" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">#8E529F</item>
         <item name="colorOnPrimary">#FFFFFF</item>
@@ -24,7 +22,6 @@
     <string name="arcade_collection">Elige tu próximo reto</string>
     <string name="arcade_offline">5 juegos · sin conexión</string>
     <string name="arcade_play">JUGAR  ↗</string>
-    <string name="arcade_new">NUEVO</string>
     <string name="arcade_restart">Nueva partida</string>
     <string name="arcade_restart_title">¿Empezar de nuevo?</string>
     <string name="arcade_restart_message">Se borrará el progreso de esta partida. Tu récord se conserva.</string>
@@ -47,10 +44,6 @@
     <string name="arcade_mines_start">8 × 8 · 10 minas · El primer toque es seguro</string>
     <string name="arcade_mines_lost">¡Una mina! El tablero queda revelado.</string>
     <string name="arcade_mines_won">¡Campo despejado! Encontraste las 54 casillas seguras.</string>
-    <string name="arcade_reveal">Descubrir</string>
-    <string name="arcade_flag">Bandera</string>
-    <string name="arcade_mode_reveal">Modo: descubrir · Cambiar a bandera</string>
-    <string name="arcade_mode_flag">Modo: bandera · Cambiar a descubrir</string>
     <string name="arcade_pet_title">Petdoku</string>
     <string name="arcade_pet_help">Una mascota por fila, columna y región de color. No pueden tocarse, ni en diagonal. Un toque marca o borra una ×. Dos toques descubren una mascota. Si fallas, queda una × roja y pierdes una de tus 3 vidas.</string>
     <string name="arcade_pet_discover">Descubrir mascota</string>
@@ -60,16 +53,11 @@
     <string name="arcade_pet_error">Cada × roja es un intento incorrecto y cuesta una vida. Las × normales son tus notas.</string>
     <string name="arcade_pet_lost">Sin vidas. Toca reiniciar para volver a intentarlo con 3 vidas.</string>
     <string name="arcade_pet_level">NIVEL\n%1$d / 12</string>
-    <string name="arcade_pet_count">MASCOTAS\n%1$d / 6</string>
     <string name="arcade_pet_hint">Arrastra para marcar varias ×; empieza sobre una × para borrarlas. No se borran tus mascotas.</string>
-    <string name="arcade_pet_conflict">Las mascotas con borde rojo comparten fila, columna, región o se están tocando.</string>
     <string name="arcade_pet_won">¡Todas las mascotas encontraron su lugar!</string>
     <string name="arcade_pet_next">Siguiente nivel</string>
     <string name="arcade_snake_title">Snake</string>
     <string name="arcade_snake_help">Desliza el dedo para dirigir la serpiente, incluso sin levantarlo. Toca el tablero para pausar o continuar. Come fruta y evita las paredes y tu cola.</string>
-    <string name="arcade_snake_start">Empezar</string>
-    <string name="arcade_snake_pause">Pausar</string>
-    <string name="arcade_snake_resume">Continuar</string>
     <string name="arcade_snake_ready">Desliza en la dirección que quieras para empezar.</string>
     <string name="arcade_snake_paused">Partida en pausa.</string>
     <string name="arcade_snake_running">¡A por la próxima fruta!</string>
@@ -77,13 +65,18 @@
     <string name="arcade_snake_win">¡Increíble! Llenaste todo el tablero.</string>
     <string name="arcade_settings_caption">A tu manera</string>
     <string name="arcade_volume">Volumen</string>
+    <string name="arcade_volume_value">%1$d %%</string>
     <string name="arcade_sound">Efectos de sonido</string>
     <string name="arcade_music">Música</string>
-    <string name="arcade_dark">Modo oscuro</string>
+    <string name="arcade_dark">Tema</string>
+    <string name="arcade_theme_system">Sistema</string>
+    <string name="arcade_theme_light">Claro</string>
+    <string name="arcade_theme_dark">Oscuro</string>
     <string name="arcade_vibration">Vibración</string>
     <string name="arcade_settings_note">Tus preferencias se guardan en este dispositivo. El tema se aplica a todos los juegos; los ajustes de audio y vibración no se aplican a KenKen.</string>
     <string name="arcade_settings_reset">Restablecer ajustes</string>
-    <string name="arcade_saved">Partidas guardadas automáticamente</string>
+    <string name="arcade_settings_reset_title">¿Restablecer los ajustes?</string>
+    <string name="arcade_settings_reset_message">Volumen, efectos, música, vibración y modo oscuro volverán a sus valores iniciales. Tus partidas guardadas no se borran.</string>
     <color name="arcadia_icon_bg">#211829</color>
     <string name="arcade_open_menu">Abrir menú</string>
     <string name="arcade_my_games">Mis juegos</string>
