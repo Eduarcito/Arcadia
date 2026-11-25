@@ -47,4 +47,5 @@
     <color name="borde_tablero">#33FFFFFF</color>
     <color name="borde_casilla">#20FFFFFF</color>
     <color name="borde_error_casilla">#FFD92854</color>
+    <color name="borde_region_petdoku">#99382A43</color>
 </resources>

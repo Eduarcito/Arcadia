@@ -4,4 +4,5 @@
     <View android:id="@+id/accent" android:layout_width="52dp" android:layout_height="4dp" android:layout_marginTop="6dp"/>
     <com.example.arcadia.compartido.ui.PortadaJuegoView android:id="@+id/art" android:layout_width="match_parent" android:layout_height="140dp" android:importantForAccessibility="no"/>
     <TextView android:id="@+id/play" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="@string/arcade_play" android:textSize="13sp" android:letterSpacing="0.1" android:textStyle="bold"/>
+    <TextView android:id="@+id/estado" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textSize="12sp" android:visibility="gone"/>
 </LinearLayout>

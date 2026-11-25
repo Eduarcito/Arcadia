@@ -54,10 +54,15 @@ class PetdokuActivity : PartidaArcadeActivity() {
                 3 -> R.string.error_petdoku_descripcion
                 else -> R.string.casilla_arcade_vacia
             }
-            CasillaArcade(when(juego.marcas[i]){2,3->"×";else->""},colores[juego.regiones[i]],
+            val region = juego.regiones[i]
+            val mascara = (if (i < 6 || juego.regiones[i-6] != region) 1 else 0) or
+                (if (i >= 30 || juego.regiones[i+6] != region) 2 else 0) or
+                (if (i % 6 == 0 || juego.regiones[i-1] != region) 4 else 0) or
+                (if (i % 6 == 5 || juego.regiones[i+1] != region) 8 else 0)
+            CasillaArcade(when(juego.marcas[i]){2,3->"×";else->""},colores[region],
                 tinta=getColor(if(error) R.color.tinta_error_petdoku else R.color.tinta_casilla),
                 ilustracion=if(juego.marcas[i]==1) mascota.imagen else 0,
-                borde=error,descripcion=getString(R.string.region_petdoku_descripcion,juego.regiones[i]+1,if (juego.marcas[i] == 1) getString(R.string.petdoku_animal_descubierto, getString(mascota.nombre)) else getString(descripcion)))
+                borde=error,bordesRegion=mascara,descripcion=getString(R.string.region_petdoku_descripcion,juego.regiones[i]+1,if (juego.marcas[i] == 1) getString(R.string.petdoku_animal_descubierto, getString(mascota.nombre)) else getString(descripcion)))
         },!juego.terminada)
         val corazones = List(3) { if (it < juego.vidas) "♥" else "♡" }.joinToString(" ")
         estadisticas(getString(R.string.arcade_pet_level,juego.nivel+1),getString(R.string.arcade_pet_lives,corazones))

@@ -97,7 +97,7 @@
                 android:paddingVertical="16dp"
                 android:gravity="center"
                 android:accessibilityLiveRegion="polite"
-                android:text="@string/kenken_instruccion_incrementar"
+                android:text="@string/kenken_instruccion_teclado"
                 android:textSize="14sp"
                 android:textColor="@color/kenken_texto_secundario" />
 

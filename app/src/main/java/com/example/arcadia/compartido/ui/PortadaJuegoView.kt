@@ -68,7 +68,7 @@ class PortadaJuegoView @JvmOverloads constructor(context: Context, attrs: Attrib
             }
             else -> {
                 c.rotate(-7f,85f,80f)
-                for(i in 0..8){val x=7f+(i%3)*52;val y=2f+(i/3)*52;rect(c,x,y,47f,47f,color(if(i%3==0)R.color.portada_kenken_casilla else R.color.portada_kenken_casilla_alterna));text(c,((i*2)%4+1).toString(),x+24,y+35,31f,color(R.color.portada_kenken_numero))}
+                for(i in 0..8){val x=7f+(i%3)*52;val y=2f+(i/3)*52;rect(c,x,y,47f,47f,color(if(i%3==0)R.color.portada_kenken_casilla else R.color.portada_kenken_casilla_alterna));text(c,arrayOf(1,2,3,2,3,1,3,1,2)[i].toString(),x+24,y+35,31f,color(R.color.portada_kenken_numero))}
                 text(c,"6+",30f,16f,11f,color(R.color.portada_kenken_pista))
             }
         }

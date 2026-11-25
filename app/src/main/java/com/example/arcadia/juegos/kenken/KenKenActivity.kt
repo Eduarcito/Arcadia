@@ -17,6 +17,7 @@ class KenKenActivity : TemaArcadeActivity() {
         setContentView(binding.root)
         androidx.core.view.ViewCompat.setAccessibilityHeading(binding.tituloTablero, true)
         margenes(binding.root)
+        binding.encabezado.mostrarTitulo(getString(R.string.juego_kenken))
         binding.encabezado.alVolver { finish() }
         binding.encabezado.alReiniciar {
             viewModel.reiniciar()
@@ -25,11 +26,11 @@ class KenKenActivity : TemaArcadeActivity() {
         }
         binding.tablero.mostrarJaulas(viewModel.rompecabezas)
         binding.tablero.alSeleccionarCasilla { fila, columna ->
-            viewModel.aplicarModoEnCasilla(fila, columna)
+            viewModel.seleccionarCasilla(fila, columna)
             actualizarPantalla()
         }
-        binding.controles.alCambiarModo { modo ->
-            viewModel.cambiarModo(modo)
+        binding.controles.alIntroducirValor { valor ->
+            viewModel.establecerValor(valor)
             actualizarPantalla()
         }
         binding.comprobar.setOnClickListener {
@@ -46,26 +47,20 @@ class KenKenActivity : TemaArcadeActivity() {
     private fun actualizarPantalla() {
         val seleccion = viewModel.casillaSeleccionada
         val habilitado = viewModel.resultado != ResultadoComprobacionKenKen.CORRECTO
-        binding.tablero.mostrarEstado(viewModel.obtenerValores(), seleccion, habilitado)
-        binding.controles.habilitar(habilitado)
-        binding.controles.mostrarModo(viewModel.modoEntrada)
+        val duplicados = viewModel.indicesDuplicados()
+        binding.tablero.mostrarEstado(viewModel.obtenerValores(), seleccion, habilitado, duplicados)
+        binding.controles.habilitar(habilitado && seleccion != null)
         binding.comprobar.isEnabled = habilitado
-        val instruccion = when (viewModel.modoEntrada) {
-            ModoEntradaKenKen.INCREMENTAR -> R.string.kenken_instruccion_incrementar
-            ModoEntradaKenKen.DECREMENTAR -> R.string.kenken_instruccion_decrementar
-            ModoEntradaKenKen.BORRAR -> R.string.kenken_instruccion_borrar
-        }
-        val nombreModo = when (viewModel.modoEntrada) {
-            ModoEntradaKenKen.INCREMENTAR -> R.string.kenken_incrementar
-            ModoEntradaKenKen.DECREMENTAR -> R.string.kenken_decrementar
-            ModoEntradaKenKen.BORRAR -> R.string.kenken_borrar
-        }
         binding.indicadores.mostrar(
             getString(R.string.kenken_casillas_completadas, viewModel.obtenerValores().count { it != 0 }),
-            getString(R.string.kenken_modo_indicador, getString(nombreModo))
+            if (duplicados.isEmpty()) {
+                getString(R.string.kenken_sin_repetidos)
+            } else {
+                getString(R.string.kenken_repetidos_indicador, duplicados.size)
+            }
         )
         val mensaje = when (viewModel.resultado) {
-            ResultadoComprobacionKenKen.SIN_COMPROBAR -> instruccion
+            ResultadoComprobacionKenKen.SIN_COMPROBAR -> R.string.kenken_instruccion_teclado
             ResultadoComprobacionKenKen.INCOMPLETO -> R.string.kenken_resultado_incompleto
             ResultadoComprobacionKenKen.INCORRECTO -> R.string.kenken_resultado_incorrecto
             ResultadoComprobacionKenKen.CORRECTO -> R.string.kenken_resultado_correcto

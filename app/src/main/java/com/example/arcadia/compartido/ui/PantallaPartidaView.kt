@@ -35,6 +35,7 @@ class PantallaPartidaView @JvmOverloads constructor(
         var acento = contexto.getColor(R.color.acento_2048)
         contexto.withStyledAttributes(atributos, R.styleable.PantallaPartidaView) {
             binding.title.text = getText(R.styleable.PantallaPartidaView_tituloPartida)
+            binding.encabezado.mostrarTitulo(getText(R.styleable.PantallaPartidaView_tituloPartida) ?: "")
             binding.ayuda.mostrarTexto(getText(R.styleable.PantallaPartidaView_instruccionesPartida))
             instrucciones = getText(R.styleable.PantallaPartidaView_instruccionesPartida)
             binding.heroCaption.text = getText(R.styleable.PantallaPartidaView_lemaPartida)

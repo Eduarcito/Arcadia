@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/arcade_bg">
-    <com.google.android.material.button.MaterialButton android:id="@+id/back" style="@style/Widget.Material3.Button.TextButton" android:layout_width="wrap_content" android:layout_height="56dp" android:text="@string/arcade_back"
+    <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/back" android:layout_width="48dp" android:layout_height="48dp" android:padding="14dp" android:layout_margin="8dp"
+        android:background="@drawable/arcade_icon_button" android:src="@drawable/arcade_back" android:contentDescription="@string/arcade_back"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
     <ScrollView android:layout_width="0dp" android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +43,7 @@
             </com.google.android.material.button.MaterialButtonToggleGroup>
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="24dp"
                 android:text="@string/arcade_settings_note" android:textColor="@color/arcade_muted" android:textSize="14sp"/>
-            <com.google.android.material.button.MaterialButton android:id="@+id/reset"
+            <com.google.android.material.button.MaterialButton android:id="@+id/reset" style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/arcade_settings_reset"/>
         </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

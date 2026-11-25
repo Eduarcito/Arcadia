@@ -140,19 +140,16 @@ class ArcadeFlowTest {
         ActivityScenario.launch(AjustesActivity::class.java).use {
             screenshot("ajustes")
             onView(withText(R.string.arcade_music)).perform(scrollTo(),click());assertTrue(settings.getBoolean("music",false))
-            onView(withText(R.string.arcade_dark)).perform(scrollTo(),click());assertFalse(settings.getBoolean("dark",true))
+            onView(withId(R.id.theme_light)).perform(scrollTo(),click());assertEquals("claro",settings.getString("theme","sistema"))
             screenshot("ajustes_claro")
         }
         ActivityScenario.launch(MainActivity::class.java).use { screenshot("catalogo_claro") }
         settings.edit().clear().commit()
     }
 
-    @Test fun menuIzquierdoAbreAjustesYUsaIconoAdaptativo() {
+    @Test fun ajustesAbrenDirectoDesdeCatalogoYUsaIconoAdaptativo() {
         ActivityScenario.launch(MainActivity::class.java).use {
             onView(withId(R.id.settings)).perform(click())
-            onView(withId(R.id.menu_settings)).check(matches(isDisplayed()))
-            screenshot("menu_lateral")
-            onView(withId(R.id.menu_settings)).perform(click())
             onView(withText(R.string.arcade_volume)).check(matches(isDisplayed()))
             assertTrue(context.packageManager.getApplicationIcon(context.packageName) is android.graphics.drawable.AdaptiveIconDrawable)
         }

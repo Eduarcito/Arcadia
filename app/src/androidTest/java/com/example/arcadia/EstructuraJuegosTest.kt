@@ -90,7 +90,8 @@ class EstructuraJuegosTest {
                 assertTrue(actividad.findViewById<IndicadoresJuegoView>(R.id.indicadores) != null)
             }
             val primeraCasilla = withContentDescription(startsWith("Fila 1, columna 1:"))
-            onView(primeraCasilla).perform(scrollTo(), click(), click())
+            onView(primeraCasilla).perform(scrollTo(), click())
+            onView(withId(R.id.numero2)).perform(scrollTo(), click())
             onView(primeraCasilla).check(
                 matches(withContentDescription(containsString(": 2.")))
             )
@@ -98,17 +99,11 @@ class EstructuraJuegosTest {
             onView(primeraCasilla).check(
                 matches(withContentDescription(containsString(": 2.")))
             )
-            onView(withId(R.id.decrementar)).perform(scrollTo(), click())
-            onView(withId(R.id.decrementar)).check(matches(isChecked()))
-            onView(withId(R.id.incrementar)).check(matches(not(isChecked())))
-            onView(withId(R.id.decrementar)).perform(click())
-            onView(withId(R.id.decrementar)).check(matches(isChecked()))
-            onView(primeraCasilla).perform(scrollTo(), click())
+            onView(withId(R.id.numero1)).perform(scrollTo(), click())
             onView(primeraCasilla).check(
                 matches(withContentDescription(containsString(": 1.")))
             )
             onView(withId(R.id.borrar)).perform(scrollTo(), click())
-            onView(primeraCasilla).perform(scrollTo(), click())
             onView(primeraCasilla).check(
                 matches(withContentDescription(containsString(": vacía.")))
             )
@@ -117,10 +112,8 @@ class EstructuraJuegosTest {
                 matches(withText(R.string.kenken_resultado_incompleto))
             )
             onView(withId(R.id.restart)).perform(click())
-            onView(withId(R.id.incrementar)).check(matches(isChecked()))
-            onView(withId(R.id.borrar)).check(matches(not(isChecked())))
             onView(withId(R.id.estado)).check(
-                matches(withText(R.string.kenken_instruccion_incrementar))
+                matches(withText(R.string.kenken_instruccion_teclado))
             )
         }
     }
@@ -140,15 +133,14 @@ class EstructuraJuegosTest {
                     )
                 }
                 val primeraCasilla = withContentDescription(startsWith("Fila 1, columna 1:"))
-                onView(primeraCasilla).perform(scrollTo(), click(), click())
-                onView(withId(R.id.decrementar)).perform(scrollTo(), click())
+                onView(primeraCasilla).perform(scrollTo(), click())
+                onView(withId(R.id.numero2)).perform(scrollTo(), click())
                 escenario.moveToState(Lifecycle.State.CREATED)
                 preferencias.edit().putBoolean("dark", false).commit()
                 escenario.moveToState(Lifecycle.State.RESUMED)
                 onView(primeraCasilla).perform(scrollTo()).check(
                     matches(withContentDescription(containsString(": 2.")))
                 )
-                onView(withId(R.id.decrementar)).check(matches(isChecked()))
                 escenario.onActivity { actividad ->
                     assertEquals(
                         Configuration.UI_MODE_NIGHT_NO,

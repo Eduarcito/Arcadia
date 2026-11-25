@@ -13,6 +13,7 @@ import com.example.arcadia.databinding.ActivitySnakeBinding
 
 class SnakeActivity : PartidaArcadeActivity() {
     private val modelo: SnakeViewModel by viewModels()
+    private var botonPausa: com.google.android.material.button.MaterialButton? = null
     private val guardado by lazy { getSharedPreferences("arcade_games",MODE_PRIVATE) }
     override val partidaPerdida get() = modelo.juego.terminada && !modelo.juego.victoria
     private val reloj = Handler(Looper.getMainLooper())
@@ -31,11 +32,19 @@ class SnakeActivity : PartidaArcadeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preparar(ActivitySnakeBinding.inflate(layoutInflater).root)
-        pantalla.usarPantallaCompleta()
+        if (!pasoAPaso) {
+            botonPausa = com.google.android.material.button.MaterialButton(this).apply {
+                textoPausa()
+                setOnClickListener { alternarPausa() }
+            }
+            pantalla.usarPantallaCompleta(herramientas = botonPausa)
+        } else {
+            pantalla.usarPantallaCompleta()
+        }
         modelo.cargar(guardado)
         pantalla.tablero.gestoContinuo = true
         pantalla.tablero.alDeslizar = ::girar
-        pantalla.tablero.alPulsarTablero = ::alternarPausa
+        pantalla.tablero.alPulsarTablero = ::tocarTablero
         pantalla.alReiniciar {
             detener()
             if (reinicioPierdeProgreso()) confirmar { reiniciar() } else reiniciar()
@@ -97,13 +106,26 @@ class SnakeActivity : PartidaArcadeActivity() {
         } else if (modelo.corriendo) detener() else empezar()
     }
 
+    private fun tocarTablero() {
+        // En modo contrarreloj un deslizamiento corto no debe pausar por accidente:
+        // el toque solo avanza en el modo paso a paso; la pausa tiene botón propio.
+        if (pasoAPaso) alternarPausa()
+    }
+
     private fun detener() {
         modelo.corriendo = false; reloj.removeCallbacks(paso)
         modelo.guardar(guardado); mostrar()
     }
 
+    private fun com.google.android.material.button.MaterialButton.textoPausa() {
+        setText(if (modelo.corriendo) R.string.arcade_snake_pausar else R.string.arcade_snake_continuar)
+        setIconResource(if (modelo.corriendo) R.drawable.ic_pausa else R.drawable.ic_reanudar)
+    }
+
     private fun mostrar() {
         val juego = modelo.juego
+        botonPausa?.textoPausa()
+        botonPausa?.isEnabled = !juego.terminada
         val mensaje = when {
             juego.victoria -> getString(R.string.arcade_snake_win)
             juego.terminada -> getString(R.string.arcade_snake_overlay_over)

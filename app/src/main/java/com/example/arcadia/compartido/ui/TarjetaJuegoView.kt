@@ -13,6 +13,7 @@ class TarjetaJuegoView @JvmOverloads constructor(
     contexto: Context,
     atributos: AttributeSet? = null
 ) : MaterialCardView(contexto, atributos) {
+    private lateinit var binding: com.example.arcadia.databinding.TarjetaArcadeBinding
 
     init {
         var titulo: CharSequence? = null
@@ -23,7 +24,7 @@ class TarjetaJuegoView @JvmOverloads constructor(
             tinta = getColor(R.styleable.TarjetaJuegoView_tintaTarjeta, 0)
             portada = getInt(R.styleable.TarjetaJuegoView_indicePortada, 0)
         }
-        val binding = TarjetaArcadeBinding.inflate(LayoutInflater.from(context), this, true)
+        binding = TarjetaArcadeBinding.inflate(LayoutInflater.from(context), this, true)
         binding.title.text = titulo
         binding.title.setTextColor(tinta)
         binding.accent.setBackgroundColor(tinta)
@@ -37,5 +38,12 @@ class TarjetaJuegoView @JvmOverloads constructor(
 
     fun alJugar(accion: () -> Unit) {
         setOnClickListener { accion() }
+    }
+
+    /** Progreso visible en la tarjeta («Récord 1688», «Nivel 3/12»); vacío la oculta. */
+    fun mostrarEstado(texto: String) {
+        binding.estado.visibility = if (texto.isEmpty()) View.GONE else View.VISIBLE
+        binding.estado.text = texto
+        binding.estado.setTextColor(binding.play.currentTextColor)
     }
 }

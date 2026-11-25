@@ -8,99 +8,103 @@ import org.junit.Test
 
 class KenKenViewModelTest {
     @Test
-    fun iniciaVacioConIncrementoActivo() {
+    fun iniciaVacioSinSeleccion() {
         val modelo = KenKenViewModel()
         assertEquals(List(16) { 0 }, modelo.obtenerValores())
         assertNull(modelo.casillaSeleccionada)
-        assertEquals(ModoEntradaKenKen.INCREMENTAR, modelo.modoEntrada)
     }
 
     @Test
-    fun incrementaDesdeUnoSinSuperarCuatro() {
+    fun escribeElValorDelTecladoEnLaCasillaSeleccionada() {
         val modelo = KenKenViewModel()
-        for (valor in 1..4) {
-            modelo.aplicarModoEnCasilla(1, 2)
-            assertEquals(valor, modelo.obtenerValores()[6])
-        }
-        modelo.aplicarModoEnCasilla(1, 2)
+        modelo.seleccionarCasilla(1, 2)
+        modelo.establecerValor(4)
         assertEquals(4, modelo.obtenerValores()[6])
         assertEquals(6, modelo.casillaSeleccionada)
     }
 
     @Test
-    fun decrementaDesdeVacioHastaUnoSinBorrar() {
+    fun elTecladoNoEscribeSinCasillaSeleccionada() {
         val modelo = KenKenViewModel()
-        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
-        for (valor in 4 downTo 1) {
-            modelo.aplicarModoEnCasilla(0, 0)
-            assertEquals(valor, modelo.obtenerValores()[0])
-        }
-        modelo.aplicarModoEnCasilla(0, 0)
-        assertEquals(1, modelo.obtenerValores()[0])
+        modelo.establecerValor(3)
+        assertEquals(List(16) { 0 }, modelo.obtenerValores())
     }
 
     @Test
-    fun borraSoloLaCasillaTocada() {
+    fun corregirEsUnSoloToqueSinCiclar() {
         val modelo = KenKenViewModel()
-        modelo.aplicarModoEnCasilla(0, 0)
-        modelo.aplicarModoEnCasilla(3, 3)
-        modelo.cambiarModo(ModoEntradaKenKen.BORRAR)
-        modelo.aplicarModoEnCasilla(3, 3)
-        modelo.aplicarModoEnCasilla(2, 2)
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(1)
+        modelo.establecerValor(4)
+        assertEquals(4, modelo.obtenerValores()[0])
+    }
+
+    @Test
+    fun borraSoloLaCasillaSeleccionada() {
+        val modelo = KenKenViewModel()
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(1)
+        modelo.seleccionarCasilla(3, 3)
+        modelo.establecerValor(2)
+        modelo.establecerValor(0)
         val esperado = MutableList(16) { 0 }
         esperado[0] = 1
         assertEquals(esperado, modelo.obtenerValores())
     }
 
     @Test
-    fun cambiarModoNoModificaValoresNiSeleccion() {
+    fun escribirReiniciaElResultadoDeLaComprobacion() {
         val modelo = KenKenViewModel()
-        modelo.aplicarModoEnCasilla(1, 1)
-        val valores = modelo.obtenerValores()
-        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
-        assertEquals(valores, modelo.obtenerValores())
-        assertEquals(5, modelo.casillaSeleccionada)
-        assertEquals(ModoEntradaKenKen.DECREMENTAR, modelo.modoEntrada)
+        modelo.comprobar()
+        assertEquals(ResultadoComprobacionKenKen.INCOMPLETO, modelo.resultado)
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(1)
+        assertEquals(ResultadoComprobacionKenKen.SIN_COMPROBAR, modelo.resultado)
     }
 
     @Test
-    fun aplicaElModoActualSobreValoresExistentes() {
+    fun ignoraCoordenadasYValoresFueraDeRango() {
         val modelo = KenKenViewModel()
-        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
-        modelo.aplicarModoEnCasilla(0, 0)
-        modelo.aplicarModoEnCasilla(0, 0)
-        modelo.cambiarModo(ModoEntradaKenKen.INCREMENTAR)
-        modelo.aplicarModoEnCasilla(0, 0)
-        assertEquals(4, modelo.obtenerValores()[0])
-    }
-
-    @Test
-    fun ignoraCoordenadasFueraDelTablero() {
-        val modelo = KenKenViewModel()
-        modelo.aplicarModoEnCasilla(-1, 0)
-        modelo.aplicarModoEnCasilla(0, 4)
-        modelo.aplicarModoEnCasilla(4, 0)
+        modelo.seleccionarCasilla(-1, 0)
+        modelo.seleccionarCasilla(0, 4)
         assertNull(modelo.casillaSeleccionada)
-        assertEquals(List(16) { 0 }, modelo.obtenerValores())
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(5)
+        modelo.establecerValor(-1)
+        assertEquals(0, modelo.obtenerValores()[0])
     }
 
     @Test
     fun losValoresConsultadosNoCambianConJugadasPosteriores() {
         val modelo = KenKenViewModel()
         val valoresAnteriores = modelo.obtenerValores()
-        modelo.aplicarModoEnCasilla(0, 0)
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(1)
         assertEquals(0, valoresAnteriores[0])
         assertEquals(1, modelo.obtenerValores()[0])
     }
 
     @Test
-    fun comprobarIncompletoPermiteSeguirJugando() {
+    fun detectaDuplicadosEnFilaYColumnaEnVivo() {
         val modelo = KenKenViewModel()
-        modelo.comprobar()
-        assertEquals(ResultadoComprobacionKenKen.INCOMPLETO, modelo.resultado)
-        modelo.aplicarModoEnCasilla(0, 0)
-        assertEquals(1, modelo.obtenerValores()[0])
-        assertEquals(ResultadoComprobacionKenKen.SIN_COMPROBAR, modelo.resultado)
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(2)
+        assertTrue(modelo.indicesDuplicados().isEmpty())
+        modelo.seleccionarCasilla(0, 3)
+        modelo.establecerValor(2)
+        assertEquals(setOf(0, 3), modelo.indicesDuplicados())
+        modelo.seleccionarCasilla(2, 0)
+        modelo.establecerValor(2)
+        assertEquals(setOf(0, 3, 8), modelo.indicesDuplicados())
+        modelo.seleccionarCasilla(0, 3)
+        modelo.establecerValor(0)
+        assertEquals(setOf(0, 8), modelo.indicesDuplicados())
+    }
+
+    @Test
+    fun losDuplicadosIgnoranCasillasVacias() {
+        val modelo = KenKenViewModel()
+        assertTrue(modelo.indicesDuplicados().isEmpty())
     }
 
     @Test
@@ -108,14 +112,14 @@ class KenKenViewModelTest {
         val modelo = KenKenViewModel()
         for (fila in 0 until 4) {
             for (columna in 0 until 4) {
-                modelo.aplicarModoEnCasilla(fila, columna)
+                modelo.seleccionarCasilla(fila, columna)
+                modelo.establecerValor(1)
             }
         }
         modelo.comprobar()
         assertEquals(ResultadoComprobacionKenKen.INCORRECTO, modelo.resultado)
-        modelo.cambiarModo(ModoEntradaKenKen.BORRAR)
-        modelo.aplicarModoEnCasilla(0, 0)
-        assertEquals(0, modelo.obtenerValores()[0])
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(2)
         assertEquals(ResultadoComprobacionKenKen.SIN_COMPROBAR, modelo.resultado)
     }
 
@@ -125,34 +129,21 @@ class KenKenViewModelTest {
         modelo.comprobar()
         val valores = modelo.obtenerValores()
         assertEquals(ResultadoComprobacionKenKen.CORRECTO, modelo.resultado)
-        modelo.cambiarModo(ModoEntradaKenKen.BORRAR)
-        modelo.aplicarModoEnCasilla(0, 0)
+        val seleccionPrevia = modelo.casillaSeleccionada
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(0)
+        assertEquals(seleccionPrevia, modelo.casillaSeleccionada)
         assertEquals(valores, modelo.obtenerValores())
-        assertEquals(ModoEntradaKenKen.INCREMENTAR, modelo.modoEntrada)
-        assertEquals(ResultadoComprobacionKenKen.CORRECTO, modelo.resultado)
     }
 
     @Test
-    fun reiniciarLimpiaValoresSeleccionModoYResultado() {
+    fun reiniciarLimpiaValoresSeleccionYResultado() {
         val modelo = crearModeloResuelto()
         modelo.comprobar()
         modelo.reiniciar()
         assertEquals(List(16) { 0 }, modelo.obtenerValores())
         assertNull(modelo.casillaSeleccionada)
-        assertEquals(ModoEntradaKenKen.INCREMENTAR, modelo.modoEntrada)
         assertEquals(ResultadoComprobacionKenKen.SIN_COMPROBAR, modelo.resultado)
-        modelo.aplicarModoEnCasilla(0, 0)
-        assertEquals(1, modelo.obtenerValores()[0])
-    }
-
-    @Test
-    fun reiniciarTambienRestableceElModoDuranteLaPartida() {
-        val modelo = KenKenViewModel()
-        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
-        modelo.aplicarModoEnCasilla(0, 0)
-        modelo.reiniciar()
-        assertEquals(ModoEntradaKenKen.INCREMENTAR, modelo.modoEntrada)
-        assertEquals(List(16) { 0 }, modelo.obtenerValores())
     }
 
     @Test
@@ -175,11 +166,11 @@ class KenKenViewModelTest {
     }
 
     @Test
-    fun jugarYCambiarModoNoCambianElRompecabezas() {
+    fun jugarNoCambiaElRompecabezas() {
         val modelo = KenKenViewModel()
         val anterior = modelo.rompecabezas
-        modelo.aplicarModoEnCasilla(0, 0)
-        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
+        modelo.seleccionarCasilla(0, 0)
+        modelo.establecerValor(1)
         modelo.comprobar()
         assertEquals(anterior, modelo.rompecabezas)
     }
@@ -193,9 +184,8 @@ class KenKenViewModelTest {
             4, 1, 2, 3
         )
         for ((indice, valor) in solucion.withIndex()) {
-            repeat(valor) {
-                modelo.aplicarModoEnCasilla(indice / 4, indice % 4)
-            }
+            modelo.seleccionarCasilla(indice / 4, indice % 4)
+            modelo.establecerValor(valor)
         }
         return modelo
     }

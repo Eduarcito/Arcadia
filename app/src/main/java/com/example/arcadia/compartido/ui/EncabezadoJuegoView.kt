@@ -16,6 +16,11 @@ class EncabezadoJuegoView @JvmOverloads constructor(
 ) : FrameLayout(contexto, atributos) {
     private val volver: View
     private val reiniciar: View
+    private var titulo: android.widget.TextView? = null
+
+    fun mostrarTitulo(texto: CharSequence) {
+        titulo?.text = texto
+    }
 
     init {
         var mostrarReiniciar = false
@@ -23,6 +28,7 @@ class EncabezadoJuegoView @JvmOverloads constructor(
             mostrarReiniciar = getBoolean(R.styleable.EncabezadoJuegoView_mostrarReiniciar, false)
         }
         val binding = EncabezadoArcadeBinding.inflate(LayoutInflater.from(contexto), this, true)
+        titulo = binding.brand
         volver = binding.back
         reiniciar = binding.restart
         reiniciar.isVisible = mostrarReiniciar

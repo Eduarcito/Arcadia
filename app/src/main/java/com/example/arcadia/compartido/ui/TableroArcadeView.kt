@@ -22,7 +22,7 @@ import kotlin.math.abs
 
 data class CasillaArcade(val texto: String = "", val color: Int = Color.LTGRAY,
     val tinta: Int = Color.rgb(39,32,43), val borde: Boolean = false, val descripcion: String = texto,
-    val plana: Boolean = false, val ilustracion: Int = 0)
+    val plana: Boolean = false, val ilustracion: Int = 0, val bordesRegion: Int = 0)
 
 class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
     private val binding = TableroArcadeBinding.inflate(LayoutInflater.from(context), this, true)
@@ -135,6 +135,7 @@ class TableroArcadeView @JvmOverloads constructor(context: Context, attrs: Attri
             if(anteriores.getOrNull(i)!=valor) {
                 celda.text=valor.texto;celda.setTextColor(valor.tinta)
                 celda.mostrarIlustracion(valor.ilustracion)
+                celda.mostrarBordesRegion(valor.bordesRegion)
                 celda.contentDescription = resources.getString(
                     R.string.casilla_arcade_descripcion, i/n+1, i%n+1,
                     valor.descripcion.ifEmpty { resources.getString(R.string.casilla_arcade_vacia) }

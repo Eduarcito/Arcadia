@@ -58,12 +58,16 @@ class TableroKenKenView @JvmOverloads constructor(
         }
     }
 
-    fun mostrarEstado(valores: List<Int>, casillaSeleccionada: Int?, habilitado: Boolean) {
+    fun mostrarEstado(valores: List<Int>, casillaSeleccionada: Int?, habilitado: Boolean, duplicados: Set<Int> = emptySet()) {
         for ((indice, celda) in celdas.withIndex()) {
             val valor = valores[indice]
             val texto = if (valor == 0) "" else valor.toString()
             val cambioValor = estadoMostrado && celda.valor.text.toString() != texto
             celda.valor.text = texto
+            val duplicada = indice in duplicados && valor != 0
+            celda.valor.setTextColor(context.getColor(
+                if (duplicada) R.color.kenken_tinte_borrar else R.color.kenken_texto_tablero
+            ))
             if (cambioValor) {
                 if (valor == 0) {
                     animarRespuestaKenKen(celda.root, escalaInicial = 1f)
@@ -79,13 +83,17 @@ class TableroKenKenView @JvmOverloads constructor(
             } else {
                 valor.toString()
             }
-            celda.root.contentDescription = context.getString(
+            val descripcion = StringBuilder(context.getString(
                 R.string.kenken_descripcion_casilla,
                 indice / TAMANO_TABLERO + 1,
                 indice % TAMANO_TABLERO + 1,
                 textoValor,
                 descripcionesJaulas[indice]
-            )
+            ))
+            if (duplicada) {
+                descripcion.append(context.getString(R.string.kenken_repetida))
+            }
+            celda.root.contentDescription = descripcion
             if (cambioValor) {
                 celda.root.announceForAccessibility(
                     context.getString(

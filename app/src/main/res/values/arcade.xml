@@ -21,7 +21,7 @@
     <string name="arcade_subtitle">TU MOMENTO DE JUGAR</string>
     <string name="arcade_collection">Elige tu próximo reto</string>
     <string name="arcade_offline">6 juegos · sin conexión</string>
-    <string name="arcade_play">JUGAR  ↗</string>
+    <string name="arcade_play">JUGAR  →</string>
     <string name="arcade_restart">Nueva partida</string>
     <string name="arcade_restart_title">¿Empezar de nuevo?</string>
     <string name="arcade_restart_message">Se borrará el progreso de esta partida. Tu récord se conserva.</string>
@@ -57,7 +57,7 @@
     <string name="arcade_pet_won">¡Todas las mascotas encontraron su lugar!</string>
     <string name="arcade_pet_next">Siguiente nivel</string>
     <string name="arcade_snake_title">Snake</string>
-    <string name="arcade_snake_help">Desliza el dedo para dirigir la serpiente, incluso sin levantarlo. Toca el tablero para pausar o continuar. Come fruta y evita las paredes y tu cola.</string>
+    <string name="arcade_snake_help">Desliza el dedo para dirigir la serpiente, incluso sin levantarlo. Usa el botón de pausa para detenerla o continuar. Come fruta y evita las paredes y tu cola.</string>
     <string name="arcade_snake_ready">Desliza en la dirección que quieras para empezar.</string>
     <string name="arcade_snake_paused">Partida en pausa.</string>
     <string name="arcade_snake_running">¡A por la próxima fruta!</string>
@@ -78,10 +78,6 @@
     <string name="arcade_settings_reset_title">¿Restablecer los ajustes?</string>
     <string name="arcade_settings_reset_message">Volumen, efectos, música, vibración y modo oscuro volverán a sus valores iniciales. Tus partidas guardadas no se borran.</string>
     <color name="arcadia_icon_bg">#211829</color>
-    <string name="arcade_open_menu">Abrir menú</string>
-    <string name="arcade_my_games">Mis juegos</string>
-    <string name="arcade_menu_message">Una pausa para tu mente.
-Cinco formas de jugar.</string>
     <string name="arcade_how_to_play">CÓMO JUGAR</string>
     <string name="arcade_2048_caption">COMBINA · CRECE · SUPÉRATE</string>
     <string name="arcade_mines_caption">CADA PISTA CUENTA</string>
@@ -90,7 +86,7 @@ Cinco formas de jugar.</string>
     <string name="arcade_gesture_swipe">↔  Desliza sobre el tablero  ↕</string>
     <string name="arcade_gesture_mines">Toca para abrir · Mantén para marcar</string>
     <string name="arcade_gesture_pet">1 toque: × · 2 toques: mascota</string>
-    <string name="arcade_gesture_snake">Desliza para girar · Toca para pausar</string>
+    <string name="arcade_gesture_snake">Desliza para girar</string>
     <string name="arcade_snake_overlay_ready">DESLIZA PARA EMPEZAR</string>
     <string name="arcade_snake_paso_a_paso">Paso a paso: cada deslizamiento avanza una casilla, toca el tablero para seguir recto.</string>
     <string name="arcade_snake_fruta_direccion">Fruta %1$s, a %2$d casillas.</string>
@@ -102,4 +98,9 @@ Cinco formas de jugar.</string>
     <string name="arcade_snake_peligro">Peligro adelante.</string>
     <string name="arcade_snake_overlay_paused">TOCA PARA CONTINUAR</string>
     <string name="arcade_snake_overlay_over">FIN DE PARTIDA</string>
+    <string name="arcade_snake_pausar">Pausar</string>
+    <string name="arcade_snake_continuar">Continuar</string>
+    <string name="catalogo_record">Récord %1$d</string>
+    <string name="catalogo_nivel">Nivel %1$d/12</string>
+    <string name="catalogo_racha">Racha %1$d</string>
 </resources>

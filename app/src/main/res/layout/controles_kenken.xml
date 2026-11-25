@@ -7,40 +7,26 @@
     android:orientation="horizontal">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/incrementar"
-        style="@style/Widget.Arcadia.BotonIncrementarKenKen"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/alto_modo_kenken"
-        android:layout_weight="1"
-        android:layout_marginEnd="5dp"
-        android:text="@string/kenken_accion_sumar"
-        android:contentDescription="@string/kenken_incrementar"
-        android:tooltipText="@string/kenken_incrementar"
-        android:checked="true"
-        app:icon="@drawable/kenken_sumar" />
-
+        android:id="@+id/numero1" style="@style/Widget.Arcadia.BotonTeclaKenKen"
+        android:layout_width="0dp" android:layout_height="64dp" android:layout_weight="1"
+        android:layout_marginEnd="4dp" android:text="1" android:textSize="24sp" />
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/decrementar"
-        style="@style/Widget.Arcadia.BotonDecrementarKenKen"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/alto_modo_kenken"
-        android:layout_weight="1"
-        android:layout_marginHorizontal="5dp"
-        android:text="@string/kenken_accion_restar"
-        android:contentDescription="@string/kenken_decrementar"
-        android:tooltipText="@string/kenken_decrementar"
-        app:icon="@drawable/kenken_restar" />
-
+        android:id="@+id/numero2" style="@style/Widget.Arcadia.BotonTeclaKenKen"
+        android:layout_width="0dp" android:layout_height="64dp" android:layout_weight="1"
+        android:layout_marginHorizontal="4dp" android:text="2" android:textSize="24sp" />
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/borrar"
-        style="@style/Widget.Arcadia.BotonBorrarKenKen"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/alto_modo_kenken"
-        android:layout_weight="1"
-        android:layout_marginStart="5dp"
-        android:text="@string/kenken_borrar"
+        android:id="@+id/numero3" style="@style/Widget.Arcadia.BotonTeclaKenKen"
+        android:layout_width="0dp" android:layout_height="64dp" android:layout_weight="1"
+        android:layout_marginHorizontal="4dp" android:text="3" android:textSize="24sp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/numero4" style="@style/Widget.Arcadia.BotonTeclaKenKen"
+        android:layout_width="0dp" android:layout_height="64dp" android:layout_weight="1"
+        android:layout_marginHorizontal="4dp" android:text="4" android:textSize="24sp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/borrar" style="@style/Widget.Arcadia.BotonTeclaKenKen"
+        android:layout_width="0dp" android:layout_height="64dp" android:layout_weight="1"
+        android:layout_marginStart="4dp"
         android:contentDescription="@string/kenken_borrar"
-        android:tooltipText="@string/kenken_borrar"
-        app:icon="@drawable/kenken_borrar" />
+        app:icon="@drawable/kenken_borrar" app:iconGravity="textStart" />
 
 </LinearLayout>

@@ -13,6 +13,7 @@
         android:src="@drawable/arcade_back"
         android:contentDescription="@string/arcade_back" />
     <TextView
+        android:id="@+id/brand"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
