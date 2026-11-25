@@ -12,7 +12,7 @@ Los ejemplos ilustran convenciones del proyecto. Los fragmentos de pantalla se i
 
 ## 1. Usar el encabezado compartido en otra pantalla
 
-En `activity_kenken.xml`, declarar una instancia del componente y pasarle el título como atributo:
+Para un encabezado con título visible, declarar una instancia del componente y pasarle el título como atributo:
 
 ```xml
 <com.example.arcadia.compartido.ui.EncabezadoJuegoView
@@ -25,7 +25,7 @@ En `activity_kenken.xml`, declarar una instancia del componente y pasarle el tí
     app:layout_constraintTop_toTopOf="parent" />
 ```
 
-En `onCreate()` de `KenKenActivity.kt`, después de inicializar el binding, conectar el botón:
+En `onCreate()`, después de inicializar el binding, conectar el botón:
 
 ```kotlin
 binding.encabezado.alVolver { finish() }
@@ -109,32 +109,17 @@ internal fun cumpleDivision(primerValor: Int, segundoValor: Int, objetivo: Int):
 
 `maxOf()` y `minOf()` son de la biblioteca estándar de Kotlin. `%` comprueba que el resto sea cero y evita aceptar `3 / 2` como `1` por el truncamiento de la división entera. La función se puede probar localmente sin abrir la aplicación.
 
-## 4. Conectar el selector de controles de 2048
+## 4. Conectar los gestos de 2048
 
-En `Juego2048Activity.kt`, usar `MaterialAlertDialogBuilder` de la biblioteca de Google para vistas XML. Los dos botones del diálogo eligen el modo; cerrar el diálogo con Atrás o tocando fuera activa el valor predeterminado solo si aún no hay una preferencia.
+`Juego2048Activity` infla `ActivityJuego2048Binding` y pasa su raíz a `preparar()`. `PantallaPartidaView` conserva su View Binding interno y expone el tablero compuesto para conectar `alDeslizar`.
 
-```kotlin
-private fun mostrarSelectorControles() {
-    MaterialAlertDialogBuilder(this)
-        .setTitle(R.string.titulo_controles_2048)
-        .setPositiveButton(R.string.control_deslizar) { _, _ ->
-            cambiarModoControl(ModoControl.DESLIZAR)
-        }
-        .setNegativeButton(R.string.control_botones) { _, _ ->
-            cambiarModoControl(ModoControl.BOTONES)
-        }
-        .setOnCancelListener {
-            if (modoControl == null) {
-                cambiarModoControl(ModoControl.BOTONES)
-            }
-        }
-        .show()
-}
-```
+La actividad recibe una `Direccion` de `compartido/estado/`, llama a `modelo.mover(direccion)`, guarda la partida y muestra el resultado. El detector de gestos compartido descarta desplazamientos cortos, cancela trazos inválidos y entrega una sola jugada por trazo en 2048. Snake activa el modo continuo del mismo detector.
 
-Declarar `ModoControl` como un `enum class` con `DESLIZAR` y `BOTONES`. `modoControl` es `null` solo si no se ha guardado una preferencia. `cambiarModoControl()` es una función propia de la `Activity`: guarda el modo con `SharedPreferences` y actualiza qué controles se muestran, sin cambiar la partida. Cargar la preferencia al abrir la pantalla y mostrar el diálogo automáticamente solo si falta.
+`MotionEvent` es del SDK de Android; `DetectorDeslizamiento` es una clase del proyecto. No se requiere una biblioteca de gestos adicional. Las cuatro direcciones también se exponen como acciones de accesibilidad del tablero mediante AndroidX Core.
 
-Para el deslizamiento, usar `setOnTouchListener()` en el tablero y leer `MotionEvent.ACTION_DOWN`, `ACTION_UP` y `ACTION_CANCEL`, del SDK de Android. Guardar las coordenadas iniciales, comparar la distancia en X e Y al soltar y descartar desplazamientos por debajo de un umbral en `dp`, convertido a píxeles. El eje con mayor desplazamiento marca la dirección y su signo determina el sentido; en caso de empate, usar el eje horizontal. Tanto el gesto válido como los botones llaman a la misma función de la `Activity`, que ejecuta `viewModel.moverTablero(direccion)` y `actualizarPantalla()`.
+El único diálogo propio de 2048 es el de victoria, construido con `MaterialAlertDialogBuilder` de Material Components. No se añade selector de controles.
+
+`PartidaViewModel.cargar()` y `guardar()` son funciones del proyecto que mantienen el contrato existente de JSON en `SharedPreferences`, del SDK de Android. Su uso permite recuperar tablero, puntuación y récord al volver a abrir, sin base de datos.
 
 ## 5. Decidir cuándo compartir una función visual
 

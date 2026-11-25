@@ -2,8 +2,8 @@
 
 Aplicación Android en Kotlin con cinco juegos disponibles sin conexión y un catálogo
 de tarjetas ilustradas. Los ajustes permiten cambiar el volumen, los efectos de
-sonido, la música, la vibración y el modo oscuro. KenKen conserva su implementación,
-recursos, componentes compartidos y apariencia originales.
+sonido, la música, la vibración y el modo oscuro. KenKen conserva sus reglas y
+controles, y comparte el estilo de encabezado, tarjetas y ayuda con los otros juegos.
 
 - **2048:** tablero 4 × 4 controlado con deslizamientos, fusiones sin encadenar la misma
   ficha, puntuación, récord, detección de fin y opción de continuar tras llegar a 2048.
@@ -21,7 +21,8 @@ recursos, componentes compartidos y apariencia originales.
 - **KenKen:** cinco variantes 4 × 4 con jaulas, comprobación y reinicio.
 
 Los cuatro juegos nuevos guardan automáticamente su progreso en el dispositivo,
-incluso al cerrar la aplicación. Los ajustes no se aplican a KenKen. Las ilustraciones
+incluso al cerrar la aplicación. El tema se aplica también a KenKen; los ajustes de
+audio y vibración no modifican ese juego. Las ilustraciones
 del catálogo son vectores dibujados en código; la melodía incluida es original.
 
 El menú lateral se abre con las tres líneas de la esquina superior izquierda y
@@ -39,11 +40,11 @@ El código está en `app/src/main/java/com/example/arcadia/` y las vistas en `ap
 | Funcionalidad | Paquete o archivo Kotlin | Layout |
 |---|---|---|
 | Catálogo | `MainActivity.kt` | `activity_main.xml`, `tarjeta_arcade.xml` |
-| Ajustes | `arcade/AjustesActivity.kt` | `activity_arcade_settings.xml` |
-| 2048 | `juegos/juego2048/` | `activity_arcade_game.xml` |
-| Buscaminas | `juegos/buscaminas/` | `activity_arcade_game.xml` |
-| Petdoku | `juegos/petdoku/` | `activity_arcade_game.xml` |
-| Snake | `juegos/snake/` | `activity_arcade_game.xml` |
+| Ajustes | `ajustes/AjustesActivity.kt` | `activity_arcade_settings.xml` |
+| 2048 | `juegos/juego2048/` | `activity_juego_2048.xml` |
+| Buscaminas | `juegos/buscaminas/` | `activity_buscaminas.xml` |
+| Petdoku | `juegos/petdoku/` | `activity_petdoku.xml` |
+| Snake | `juegos/snake/` | `activity_snake.xml` |
 | KenKen | `juegos/kenken/` | `activity_kenken.xml` |
 
 KenKen usa los componentes `TableroKenKenView` y `ControlesKenKenView`.
@@ -54,12 +55,19 @@ Cada partida elige al azar una de cinco variantes predefinidas de solución úni
 Reiniciar selecciona otra variante sin repetir la anterior de inmediato.
 Rotar la pantalla conserva el rompecabezas y sus valores. No se utiliza un generador.
 
-Los componentes originales en `compartido/ui/` se conservan para KenKen. Las nuevas
-pantallas utilizan el tema local `Theme.Arcade` y los componentes en `arcade/`.
-`TableroArcadeView` infla sus casillas una vez mediante View Binding y actualiza
-solo las que cambian. Cada juego tiene reglas en Kotlin puro y un `ViewModel`;
-`PartidaViewModel` conserva el estado durante la rotación y lo guarda como JSON
-en preferencias privadas. Snake elimina sus callbacks al pausar la Activity.
+Los componentes visuales compartidos están en `compartido/ui/`. El catálogo declara
+las tarjetas en XML y los cuatro juegos nuevos usan `PantallaPartidaView`, una vista
+compuesta basada en `ConstraintLayout`, con contenido fijo configurado por atributos.
+`activity_arcade_game.xml` es su plantilla interna. Todos los juegos reutilizan
+`EncabezadoJuegoView`, `IndicadoresJuegoView` y `AyudaJuegoView`.
+`TableroArcadeView` infla filas y casillas `LinearLayout` una vez mediante View Binding
+y actualiza solo las que cambian, sin `GridLayout`. Cada juego tiene reglas en Kotlin
+puro y un `ViewModel`. `PartidaViewModel`, en `compartido/estado/`, mantiene sin cambios
+el guardado JSON en preferencias privadas y sus claves existentes.
+Snake elimina sus callbacks al pausar la Activity. `TemaArcadeActivity` aplica el
+tema global y las barras del sistema a todas las pantallas, incluido KenKen.
+Sus controles usan tarjetas independientes con iconos y etiquetas, con colores
+adaptados a ambos temas. KenKen no guarda partidas de forma persistente.
 
 Para crear o ampliar un juego, sigue la [guía de componentes](documentacion/docs/componentes.md).
 El patrón de separar reglas, estado y vistas también se aplica a los nuevos juegos.
@@ -88,6 +96,8 @@ restablecen el guardado de los cuatro juegos nuevos y los ajustes en ese disposi
 Comprueban navegación, fusiones por gesto, recuperación del estado, banderas, marcas,
 pausa táctil de Snake, toques simples/dobles, tres vidas y trazos de Petdoku,
 menú lateral, icono adaptativo y modo claro.
+`EstructuraJuegosTest` verifica filas uniformes, recuperación del guardado al reabrir
+y componentes compartidos, modos, rotación y reinicio de KenKen.
 Las pruebas de lógica verifican los umbrales de gesto, la cancelación y un único
 movimiento por trazo en 2048, además de la solución
 única y conectividad de las regiones de cada nivel de Petdoku. Las pruebas de KenKen

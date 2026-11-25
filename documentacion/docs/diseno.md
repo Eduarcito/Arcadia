@@ -1,39 +1,37 @@
 # Diseño visual
 
-Adaptar al teléfono la estética de [Arcadia](https://arcade-games-eosin.vercel.app/): fondo crema, texto verde oscuro, acentos suaves y tarjetas redondeadas. La referencia es visual; implementar las pantallas con vistas y recursos XML, sin copiar la estructura web ni cargar la página en la aplicación.
+La referencia actual es el catálogo ilustrado y las pantallas de 2048, Buscaminas, Petdoku y Snake. Mantener su apariencia durante las adaptaciones estructurales. KenKen adopta el mismo lenguaje visual sin cambiar sus reglas; sus controles inferiores usan iconos y etiquetas en tarjetas independientes.
 
-Usar **Material Components para vistas XML** (`com.google.android.material:material`) con `Theme.Material3.DayNight.NoActionBar` como tema base. Aplicar la paleta del juego mediante recursos, sin usar Material para Compose.
+## Tema y catálogo
 
-## Catálogo
-
-- Mostrar el encabezado **«Juegos que estimulan el pensamiento»** y tres tarjetas en una sola columna: 2048, Buscaminas y KenKen.
-- Declarar tres instancias de `TarjetaJuegoView` en `activity_main.xml`. La vista compuesta contiene el título, la descripción y el `MaterialButton` **Jugar**. Cada instancia configura sus textos y su color en XML para que se vean en la vista previa.
-- No incorporar búsqueda, filtros, favoritos ni secciones adicionales.
+- Usar Material Components para vistas XML, con tema base `Theme.Material3.DayNight.NoActionBar`, sin Compose.
+- El catálogo y los cuatro juegos nuevos usan `Theme.Arcade`, colores claros y oscuros definidos en recursos y los ajustes locales existentes.
+- KenKen usa el mismo `Theme.Arcade` y el modo claro u oscuro global mediante `TemaArcadeActivity`, sin añadir audio ni vibración. Sus colores de casillas, texto, selección y controles tienen variantes nocturnas.
+- Mantener las cinco tarjetas ilustradas en dos columnas, esquinas redondeadas, contorno y textos configurados desde XML mediante `TarjetaJuegoView`.
+- Conservar el menú lateral con **Mis juegos** y **Ajustes** y el icono adaptativo.
 
 ## Pantallas de juego
 
-- Usar `EncabezadoJuegoView` en los tres layouts. Cada pantalla indica su título en XML y conecta la acción **Volver** en Kotlin. Al implementar **Reiniciar**, añadir el botón al encabezado compartido y conectar la acción desde cada pantalla.
-- Mostrar una instrucción breve, el tablero, los controles propios del juego y un mensaje de estado. 2048 muestra su puntaje; Buscaminas indica el modo activo; KenKen muestra si aún faltan valores o si hay un error al comprobar.
-- Mantener el tablero cuadrado con una proporción `1:1` en `ConstraintLayout`, dentro del espacio disponible y sin desplazamiento horizontal. No fijar el ancho en `dp`.
-- Dar el mismo peso a todas las filas del `LinearLayout` vertical y a todas las casillas de cada fila horizontal. Así se reparte por igual el alto entre filas y el ancho entre casillas.
-- En 2048, mantener visible el `MaterialButton` **Controles** en ambos modos. Abrir el selector con `MaterialAlertDialogBuilder` e indicar el modo activo en la pantalla. En modo **Deslizar**, mostrar una instrucción breve en lugar de los botones direccionales. Si estos botones usan solo flechas, dar a cada uno una descripción accesible con su dirección.
+- Usar `ConstraintLayout`, directamente o mediante `PantallaPartidaView`. El encabezado compartido se declara con `estiloArcade="true"`: volver, marca y reinicio.
+- Mostrar lema, título, tarjetas de indicadores, instrucción de interacción, tablero y mensaje de estado. Reutilizar `IndicadoresJuegoView` y `AyudaJuegoView`.
+- En los cuatro juegos nuevos, configurar título, instrucciones, lema, gesto y acento desde atributos XML de `PantallaPartidaView`.
+- Mantener los tamaños, márgenes, tipografía y colores existentes de esos cuatro juegos. No añadir botones direccionales ni selectores al refactorizar.
+- Construir los tableros de casillas con filas horizontales en un contenedor vertical. Repartir las filas y casillas con pesos; mantener el tablero cuadrado, centrado y sin desplazamiento horizontal.
+- Snake conserva el dibujo interpolado en `Canvas`. Los gestos y las acciones accesibles siguen funcionando.
+- Admitir desplazamiento vertical cuando el contenido no quepa en teléfonos pequeños.
 
-## Recursos de estilo
+## KenKen
 
-| Recurso | Qué guardar |
-|---|---|
-| `strings.xml` | Títulos, botones, instrucciones, mensajes y textos con formato, como el puntaje. |
-| `colors.xml` | Fondo crema `#F7F6F0`, texto verde oscuro `#173E31` y acento lima `#D6EE8C`. Usar ocre para 2048, verde azulado para Buscaminas y lavanda para KenKen. |
-| `dimens.xml` | Márgenes, separaciones, esquinas y tamaños repetidos. Usar `dp` para dimensiones y `sp` para texto. |
-| `styles.xml` y `themes.xml` | Tipografía del sistema, jerarquía de títulos y estilos comunes para tarjetas, botones y textos. |
-| `drawable/` | Fondos redondeados y bordes de selección o de jaula. |
+- Compartir encabezado, tarjetas informativas y ayuda con los otros juegos. Usar acentos lavanda, tablero con marco redondeado y casillas de fondo suave con relieve.
+- Los indicadores muestran casillas completadas y modo activo; no añaden reglas ni condiciones de victoria.
+- Conservar las pistas y las fronteras continuas de las jaulas: líneas internas finas y bordes de jaula más gruesos. No separar casillas con márgenes que rompan las jaulas.
+- Mantener selección visible con fondo y contorno. Los controles son tres tarjetas redondeadas de 88 dp, con iconos vectoriales de trazo redondeado y las etiquetas **Sumar**, **Restar** y **Borrar**. Solo una permanece activa; conserva también su estado accesible de selección.
+- **Comprobar** es la acción principal, con icono de escudo y verificación, colores adaptados al tema y estado deshabilitado al resolver el tablero.
+- Mantener el reinicio inmediato y la elección de variantes existentes, sin añadir un diálogo de confirmación.
+- Conservar las microinteracciones nativas existentes: 160 ms al cambiar modo o valor, 180 ms en el mensaje de comprobación y 260 ms al confirmar victoria. Respetar las animaciones desactivadas del sistema.
 
-Usar contraste suficiente y distinguir los estados por algo más que el color. Por ejemplo, una bandera debe tener un símbolo y una descripción; una casilla seleccionada de KenKen debe mostrar un borde. Dar nombres accesibles a los controles que solo muestran un icono y dejar espacio suficiente para tocarlos.
+## Recursos y accesibilidad
 
-Toda la aplicación usa el modo claro aunque el sistema esté en modo oscuro. La configuración se aplica una sola vez en `ArcadiaApplication` mediante AndroidX AppCompat, manteniendo el tema base Material 3 DayNight.
+Los textos fijos van en `strings.xml` o archivos `strings_*`, colores en recursos `values`, tamaños compartidos en `dimens_*` y formas en `drawable`. Los atributos de las vistas compuestas configuran el contenido fijo y permiten previsualizarlo después de compilar.
 
-En KenKen, distinguir las líneas internas finas y tenues de los bordes de jaula gruesos y oscuros; marcar la selección con fondo lavanda y borde violeta. El encabezado solo muestra las acciones de navegación y reinicio. Centrar el bloque de título y tablero entre el encabezado y el panel inferior, alineando el título al inicio del tablero con 12 dp de separación.
-
-Los tres modos usan iconos con descripciones accesibles, altura uniforme de 56 dp y colores propios: verde para incrementar, azul para decrementar y rojo suave para borrar. El modo activo intensifica su fondo y aumenta el contorno de 1 a 2 dp, sin depender solo del color. **Comprobar** es la acción principal, con texto e icono de verificación. Usar formas de cápsula y un mensaje secundario debajo de los controles, sin fijar el ancho del tablero.
-
-Las microinteracciones de KenKen usan las animaciones nativas de Android: respuesta de 160 ms al cambiar modo o valor, aparición de 180 ms del mensaje de comprobación y confirmación de victoria de 260 ms. Animar solo escala y opacidad, sin modificar el tamaño del layout ni repetir animaciones al recrear la pantalla. Respetar las animaciones desactivadas mediante `ValueAnimator.areAnimatorsEnabled()`.
+Mantener descripciones accesibles para iconos, casillas y controles. Comunicar errores y selección con algo más que el color. Las vistas no contienen reglas ni modifican la partida por sí mismas.
