@@ -1,3 +1,4 @@
 <resources>
     <dimen name="margen_pantalla_juego">16dp</dimen>
+    <dimen name="separacion_titulo_juego">8dp</dimen>
 </resources>

@@ -4,5 +4,7 @@
     <string name="juego_buscaminas">Buscaminas</string>
     <string name="juego_kenken">KenKen</string>
     <string name="volver_catalogo">Volver al catálogo</string>
+    <string name="volver">Volver</string>
+    <string name="reiniciar_partida">Reiniciar</string>
     <string name="estado_en_desarrollo">Juego en desarrollo</string>
 </resources>
