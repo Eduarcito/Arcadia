@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.example.arcadia"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -23,7 +23,7 @@ android {
     buildTypes {
         release {
             optimization {
-                enable = false
+                enable = true
             }
         }
     }

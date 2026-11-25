@@ -63,3 +63,5 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los cinco jueg
 Cada integrante debe poder mostrar una jugada completa: **pulsación en la `Activity` → cambio de estado en el `ViewModel` → actualización de las casillas XML**. También debe poder explicar una regla del juego y señalar un componente XML reutilizado.
 
 Las pruebas de guardado usan Robolectric (`GuardadoPartidasTest`): recorren el ciclo completo de guardar y restaurar en cada juego, fijan las claves inmutables del formato (`2048`, `mines`, `petdoku`, `snake`) y cubren JSON corrupto y carga única.
+
+La compilación release usa R8 (`optimization.enable`); verificarla con `./gradlew :app:assembleRelease`.
