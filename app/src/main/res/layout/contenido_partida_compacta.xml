@@ -22,6 +22,6 @@
     <LinearLayout android:id="@+id/pie" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
         <TextView android:id="@+id/status" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:padding="8dp" android:gravity="center" android:textSize="13sp" android:maxLines="3" android:ellipsize="end" android:accessibilityLiveRegion="polite" android:textColor="@color/arcade_ink" />
-        <com.google.android.material.button.MaterialButton android:id="@+id/ayuda" style="@style/Widget.Material3.Button.TextButton" android:layout_width="48dp" android:layout_height="48dp" android:minWidth="0dp" android:padding="0dp" android:text="?" android:textSize="22sp" android:contentDescription="@string/arcade_help_title" />
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/ayuda" android:layout_width="48dp" android:layout_height="48dp" android:padding="13dp" android:background="@drawable/arcade_icon_button" android:src="@drawable/ic_ayuda" android:contentDescription="@string/arcade_help_title" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

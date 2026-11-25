@@ -1,54 +1,50 @@
 package com.example.arcadia.juegos.kenken
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import com.example.arcadia.R
 import com.example.arcadia.compartido.ui.ArcadeActivity
 import com.example.arcadia.databinding.ActivityKenkenBinding
+import com.example.arcadia.databinding.HerramientasKenkenBinding
 
 class KenKenActivity : ArcadeActivity() {
     private lateinit var binding: ActivityKenkenBinding
+    private lateinit var controles: HerramientasKenkenBinding
+    private lateinit var tablero: TableroKenKenView
     private val viewModel: KenKenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKenkenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        androidx.core.view.ViewCompat.setAccessibilityHeading(binding.tituloTablero, true)
         margenes(binding.root)
-        binding.encabezado.mostrarTitulo(getString(R.string.juego_kenken))
-        binding.encabezado.alVolver { finish() }
-        binding.encabezado.alMostrarAyuda {
-            com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.arcade_help_title)
-                .setMessage(R.string.kenken_ayuda)
-                .setPositiveButton(android.R.string.ok, null)
-                .show()
-        }
-        binding.encabezado.alReiniciar {
+        tablero = TableroKenKenView(this)
+        controles = HerramientasKenkenBinding.inflate(LayoutInflater.from(this))
+        binding.pantalla.usarPantallaCompleta(tableroAlternativo = tablero, herramientas = controles.root)
+        binding.pantalla.alVolver { finish() }
+        binding.pantalla.alReiniciar {
             viewModel.reiniciar()
-            binding.tablero.mostrarJaulas(viewModel.rompecabezas)
+            tablero.mostrarJaulas(viewModel.rompecabezas)
             actualizarPantalla()
         }
-        binding.tablero.mostrarJaulas(viewModel.rompecabezas)
-        binding.tablero.alSeleccionarCasilla { fila, columna ->
+        tablero.mostrarJaulas(viewModel.rompecabezas)
+        tablero.alSeleccionarCasilla { fila, columna ->
             viewModel.seleccionarCasilla(fila, columna)
             actualizarPantalla()
         }
-        binding.controles.alIntroducirValor { valor ->
+        controles.controles.alIntroducirValor { valor ->
             val antes = viewModel.obtenerValores()
             viewModel.establecerValor(valor)
             if (viewModel.obtenerValores() != antes) respuesta()
             actualizarPantalla()
         }
-        binding.comprobar.setOnClickListener {
+        controles.comprobar.setOnClickListener {
             respuesta()
             viewModel.comprobar()
             actualizarPantalla()
-            animarRespuestaKenKen(binding.estado, escalaInicial = 1f, duracion = 180L)
             if (viewModel.resultado == ResultadoComprobacionKenKen.CORRECTO) {
-                binding.tablero.animarVictoria()
+                tablero.animarVictoria()
             }
         }
         actualizarPantalla()
@@ -58,10 +54,10 @@ class KenKenActivity : ArcadeActivity() {
         val seleccion = viewModel.casillaSeleccionada
         val habilitado = viewModel.resultado != ResultadoComprobacionKenKen.CORRECTO
         val duplicados = viewModel.indicesDuplicados()
-        binding.tablero.mostrarEstado(viewModel.obtenerValores(), seleccion, habilitado, duplicados)
-        binding.controles.habilitar(habilitado && seleccion != null)
-        binding.comprobar.isEnabled = habilitado
-        binding.indicadores.mostrar(
+        tablero.mostrarEstado(viewModel.obtenerValores(), seleccion, habilitado, duplicados)
+        controles.controles.habilitar(habilitado && seleccion != null)
+        controles.comprobar.isEnabled = habilitado
+        binding.pantalla.mostrarEstadisticas(
             getString(R.string.kenken_casillas_completadas, viewModel.obtenerValores().count { it != 0 }),
             if (duplicados.isEmpty()) {
                 getString(R.string.kenken_sin_repetidos)
@@ -75,12 +71,12 @@ class KenKenActivity : ArcadeActivity() {
             ResultadoComprobacionKenKen.INCORRECTO -> R.string.kenken_resultado_incorrecto
             ResultadoComprobacionKenKen.CORRECTO -> R.string.kenken_resultado_correcto
         }
-        binding.estado.setText(mensaje)
+        binding.pantalla.mostrarEstado(mensaje)
         val color = when (viewModel.resultado) {
             ResultadoComprobacionKenKen.CORRECTO -> R.color.kenken_incrementar_tinte
             ResultadoComprobacionKenKen.INCORRECTO -> R.color.kenken_borrar_tinte
             else -> R.color.kenken_texto_secundario
         }
-        binding.estado.setTextColor(ContextCompat.getColor(this, color))
+        binding.pantalla.colorEstado(color)
     }
 }

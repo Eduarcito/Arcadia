@@ -27,9 +27,11 @@ class PetdokuActivity : PartidaArcadeActivity() {
         super.onCreate(savedInstanceState)
         preparar(ActivityPetdokuBinding.inflate(layoutInflater).root);modelo.cargar(guardado)
         reglasVisuales = ReglasVisualesPetdokuView(this)
-        pantalla.mostrarReglasVisuales(reglasVisuales)
-        pantalla.compactarCabecera()
-        pantalla.alSiguienteNivel { mostrarSelectorNivel() }
+        val botonNivel = com.google.android.material.button.MaterialButton(this).apply {
+            setText(R.string.arcade_pet_next)
+            setOnClickListener { mostrarSelectorNivel() }
+        }
+        pantalla.usarPantallaCompleta(herramientas = botonNivel, previsualizacion = reglasVisuales)
         pantalla.tablero.alTocar={ tocar(it,false) }
         pantalla.tablero.alDobleTocar={ tocar(it,true) }
         pantalla.tablero.alIniciarTrazo = { borrando = modelo.juego.marcas[it] == 2 }
@@ -74,7 +76,6 @@ class PetdokuActivity : PartidaArcadeActivity() {
             else -> getString(R.string.arcade_pet_progress,juego.mascotas.size) + "\n" + getString(if(juego.vidas<3) R.string.arcade_pet_error else R.string.arcade_pet_hint)
         })
         resolverFinDePartida()
-        pantalla.mostrarSiguienteNivel(true)
     }
 
     private fun mostrarSelectorNivel() {

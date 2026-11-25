@@ -19,7 +19,7 @@ KenKen usa el mismo encabezado ilustrado, los indicadores y la ayuda. Mantiene `
 
 El catálogo declara seis instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador. Las variantes anteriores de tarjeta y encabezado se conservan para no romper otros layouts.
 
-`PantallaPartidaView.usarPantallaCompleta` utiliza `contenido_partida_compacta.xml`: marcadores en el encabezado, tablero centrado y ajustado a la altura disponible, herramientas inferiores y ayuda en diálogo. 2048, Buscaminas, Snake y Number Connect usan esta distribución sin scroll.
+Los seis juegos usan la misma distribución: `PantallaPartidaView.usarPantallaCompleta` (`contenido_partida_compacta.xml`), con marcadores en el encabezado junto a volver y reiniciar, nombre y gesto centrados, tablero ajustado a la altura disponible, herramientas inferiores y ayuda en diálogo desde el botón **?** del pie. Petdoku coloca su leyenda ilustrada en la previsualización y su selector de nivel en las herramientas; KenKen conecta `TableroKenKenView` como tablero alternativo y su teclado más **Comprobar** como herramientas.
 
 `ControlesBuscaminasView`, declarado en `herramientas_buscaminas.xml`, encapsula contador, selector y pista. `TableroNumberConnectView`, declarado en `tablero_number_connect.xml`, infla filas y casillas XML; dibuja únicamente la línea del trazo en Canvas y consulta la validez al modelo.
 

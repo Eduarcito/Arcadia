@@ -62,7 +62,7 @@ class PantallaPartidaView @JvmOverloads constructor(
         if (compacta != null) return
         val nueva = ContenidoPartidaCompactaBinding.inflate(LayoutInflater.from(context), this, false)
         (binding.indicadores.parent as ViewGroup).removeView(binding.indicadores)
-        binding.indicadores.compactar(20f, 8)
+        binding.indicadores.compactar(16f, 6)
         nueva.marcadores.addView(binding.indicadores)
         val vistaTablero = tableroAlternativo ?: binding.board
         (vistaTablero.parent as? ViewGroup)?.removeView(vistaTablero)
@@ -70,6 +70,7 @@ class PantallaPartidaView @JvmOverloads constructor(
         herramientas?.let { nueva.herramientas.addView(it) }
         previsualizacion?.let { nueva.previsualizacion.addView(it) }
         nueva.nombre.text = binding.title.text
+        ViewCompat.setAccessibilityHeading(nueva.nombre, true)
         nueva.gesto.text = binding.gestureHint.text
         nueva.status.text = binding.status.text
         nueva.back.setOnClickListener { volver?.invoke() }
@@ -108,17 +109,13 @@ class PantallaPartidaView @JvmOverloads constructor(
 
     fun alReiniciar(accion: () -> Unit) { reiniciar = accion; binding.encabezado.alReiniciar(accion) }
 
-    fun alSiguienteNivel(accion: () -> Unit) {
-        binding.siguienteNivel.setOnClickListener { accion() }
-    }
-
-    fun mostrarSiguienteNivel(visible: Boolean) {
-        binding.siguienteNivel.isVisible = visible
-    }
-
     fun mostrarEstado(recurso: Int) {
         binding.status.setText(recurso)
         compacta?.status?.setText(recurso)
+    }
+
+    fun colorEstado(recursoColor: Int) {
+        compacta?.status?.setTextColor(context.getColor(recursoColor))
     }
 
     fun mostrarEstado(texto: String) {

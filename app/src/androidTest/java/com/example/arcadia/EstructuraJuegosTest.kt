@@ -46,7 +46,7 @@ class EstructuraJuegosTest {
                 escenario.onActivity { actividad ->
                     val pantalla = actividad.findViewById<android.view.ViewGroup>(android.R.id.content)
                         .getChildAt(0) as PantallaPartidaView
-                    assertTrue(pantalla.findViewById<EncabezadoJuegoView>(R.id.encabezado) != null)
+                    assertTrue(pantalla.findViewById<android.view.View>(R.id.marcadores) != null)
                     val filas = pantalla.tablero.getChildAt(0) as LinearLayout
                     assertEquals(LinearLayout.VERTICAL, filas.orientation)
                     assertEquals(8, filas.childCount)
@@ -86,8 +86,8 @@ class EstructuraJuegosTest {
     fun kenkenComparteComponentesYConservaModosRotacionYReinicio() {
         ActivityScenario.launch(KenKenActivity::class.java).use { escenario ->
             escenario.onActivity { actividad ->
-                assertTrue(actividad.findViewById<EncabezadoJuegoView>(R.id.encabezado) != null)
-                assertTrue(actividad.findViewById<IndicadoresJuegoView>(R.id.indicadores) != null)
+                assertTrue(actividad.findViewById<android.view.View>(R.id.marcadores) != null)
+                assertTrue(actividad.findViewById<android.view.View>(R.id.status) != null)
             }
             val primeraCasilla = withContentDescription(startsWith("Fila 1, columna 1:"))
             onView(primeraCasilla).perform(scrollTo(), click())
@@ -108,11 +108,11 @@ class EstructuraJuegosTest {
                 matches(withContentDescription(containsString(": vacía.")))
             )
             onView(withId(R.id.comprobar)).perform(scrollTo(), click())
-            onView(withId(R.id.estado)).check(
+            onView(withId(R.id.status)).check(
                 matches(withText(R.string.kenken_resultado_incompleto))
             )
             onView(withId(R.id.restart)).perform(click())
-            onView(withId(R.id.estado)).check(
+            onView(withId(R.id.status)).check(
                 matches(withText(R.string.kenken_instruccion_teclado))
             )
         }

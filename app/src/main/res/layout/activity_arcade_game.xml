@@ -26,12 +26,6 @@
             <com.example.arcadia.compartido.ui.TableroArcadeView android:id="@+id/board" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"/>
             <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="58dp" android:paddingVertical="16dp" android:gravity="center" android:accessibilityLiveRegion="polite" android:textColor="@color/arcade_ink" android:textSize="14sp"/>
             <LinearLayout android:id="@+id/controls" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/siguiente_nivel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/arcade_pet_next"
-                    android:visibility="gone" />
             </LinearLayout>
             <com.example.arcadia.compartido.ui.AyudaJuegoView android:id="@+id/ayuda" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" />
         </LinearLayout>
