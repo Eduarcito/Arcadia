@@ -34,7 +34,7 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los seis juego
 ## Petdoku y Snake
 
 - Petdoku distingue toque simple, doble y arrastre en todas las filas tras cambiar a `LinearLayout`. Los trazos no afectan a mascotas ni errores.
-- Petdoku conserva nivel, marcas y vidas al salir. Tres fallos bloquean la partida; reiniciar devuelve las vidas y ganar habilita siguiente nivel.
+- Petdoku conserva nivel, marcas y vidas al salir. Tres fallos bloquean la partida con un diálogo de reintento; reiniciar devuelve las vidas y ganar avanza al siguiente nivel tras una breve pausa.
 - Snake permite varios giros sin levantar el dedo y pausa o continúa al tocar el tablero, sin botones direccionales.
 - Snake se pausa al salir, rotar o reiniciar; no avanza en segundo plano y conserva el cuerpo guardado.
 

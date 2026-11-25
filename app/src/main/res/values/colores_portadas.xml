@@ -26,4 +26,10 @@
     <color name="portada_kenken_casilla_alterna">#F3EAFB</color>
     <color name="portada_kenken_numero">#795092</color>
     <color name="portada_kenken_pista">#65417B</color>
+    <array name="portada_connect_numeros">
+        <item>#A275EA</item><item>#F9C900</item><item>#60C1F0</item><item>#A275EA</item>
+        <item>#A275EA</item><item>#87C85C</item><item>#FFB276</item><item>#A275EA</item>
+        <item>#F9C900</item>
+    </array>
+    <color name="portada_connect_tinta">#2C333F</color>
 </resources>

@@ -13,11 +13,10 @@ Cada pantalla combina controles de Android y vistas compuestas declaradas por su
 | `AyudaJuegoView` | Tarjeta de instrucciones con `textoAyuda` y `acentoBloque`. |
 | `TableroArcadeView` | Infla filas y casillas con View Binding y comunica toques, pulsaciones largas, dobles toques, trazos y direcciones. `mostrar` actualiza las casillas existentes. |
 
-`PantallaPartidaView` compone encabezado, indicadores, tablero y ayuda sin duplicarlos por juego. Su propiedad `tablero` permite conectar las acciones del componente; no expone el View Binding de la pantalla ni sus botones internos. El botón de siguiente nivel se declara en XML y solo se muestra cuando corresponde en Petdoku.
+`PantallaPartidaView` compone encabezado, indicadores, tablero y ayuda sin duplicarlos por juego. Su propiedad `tablero` permite conectar las acciones del componente; no expone el View Binding de la pantalla ni sus botones internos. Petdoku avanza de nivel automáticamente al ganar; el botón de siguiente nivel sigue declarado en XML pero oculto.
 
 KenKen usa el mismo encabezado ilustrado, los indicadores y la ayuda. Mantiene `TableroKenKenView` y `ControlesKenKenView` en su propio paquete para representar las jaulas y los tres modos de entrada.
 
-El catálogo declara cinco instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador.
 El catálogo declara seis instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador. Las variantes anteriores de tarjeta y encabezado se conservan para no romper otros layouts.
 
 `PantallaPartidaView.usarPantallaCompleta` utiliza `contenido_partida_compacta.xml`: marcadores en el encabezado, tablero centrado y ajustado a la altura disponible, herramientas inferiores y ayuda en diálogo. 2048, Buscaminas, Snake y Number Connect usan esta distribución sin scroll.
