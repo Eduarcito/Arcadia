@@ -15,6 +15,7 @@ const val CLAVE_MUSICA = "music"
 const val CLAVE_VIBRACION = "vibration"
 const val CLAVE_VOLUMEN = "volume"
 const val CLAVE_VOLUMEN_MUSICA = "volume_music"
+const val CLAVE_CONTROLES_KENKEN = "kenken_controls"
 const val VOLUMEN_INICIAL = 45
 
 fun temaGuardado(preferencias: SharedPreferences): Int {

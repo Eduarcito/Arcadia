@@ -15,7 +15,7 @@ Cada pantalla combina controles de Android y vistas compuestas declaradas por su
 
 `PantallaPartidaView` compone encabezado, indicadores, tablero y ayuda sin duplicarlos por juego. Su propiedad `tablero` permite conectar las acciones del componente; no expone el View Binding de la pantalla ni sus botones internos. Petdoku avanza de nivel automáticamente al ganar; el botón de siguiente nivel sigue declarado en XML pero oculto.
 
-KenKen usa el mismo encabezado ilustrado, los indicadores y la ayuda. Mantiene `TableroKenKenView` y `ControlesKenKenView` en su propio paquete: el tablero representa las jaulas y el control es un teclado numérico que escribe en la casilla seleccionada.
+KenKen usa el mismo encabezado ilustrado, los indicadores y la ayuda. Mantiene `TableroKenKenView` y `ControlesKenKenView` en su propio paquete: el tablero representa las jaulas y el control alterna entre modos clásicos y teclado numérico. `alCambiarModo` y `alIntroducirValor` comunican las acciones a la actividad, sin aplicar reglas en la vista.
 
 El catálogo declara seis instancias de `TarjetaJuegoView` con atributos y recursos fijos; no crea tarjetas desde Kotlin ni necesita un adaptador. Las variantes anteriores de tarjeta y encabezado se conservan para no romper otros layouts.
 

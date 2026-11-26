@@ -20,6 +20,7 @@ import com.example.arcadia.compartido.ui.IndicadoresJuegoView
 import com.example.arcadia.compartido.ui.PantallaPartidaView
 import com.example.arcadia.juegos.buscaminas.BuscaminasActivity
 import com.example.arcadia.juegos.kenken.KenKenActivity
+import com.example.arcadia.compartido.estado.CLAVE_CONTROLES_KENKEN
 import org.hamcrest.Matchers.containsString
 import org.hamcrest.Matchers.startsWith
 import org.hamcrest.Matchers.not
@@ -27,12 +28,65 @@ import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.junit.Before
+import org.junit.After
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class EstructuraJuegosTest {
     private val contexto get() =
         InstrumentationRegistry.getInstrumentation().targetContext
+    private var controlesAnteriores: String? = null
+
+    @Before
+    fun prepararTipoControl() {
+        val preferencias = contexto.getSharedPreferences("arcade_settings", Context.MODE_PRIVATE)
+        controlesAnteriores = preferencias.getString(CLAVE_CONTROLES_KENKEN, null)
+        preferencias.edit().putString(CLAVE_CONTROLES_KENKEN, "NUMEROS").commit()
+    }
+
+    @After
+    fun restaurarTipoControl() {
+        contexto.getSharedPreferences("arcade_settings", Context.MODE_PRIVATE).edit().apply {
+            if (controlesAnteriores == null) remove(CLAVE_CONTROLES_KENKEN)
+            else putString(CLAVE_CONTROLES_KENKEN, controlesAnteriores)
+        }.commit()
+    }
+
+    @Test
+    fun kenkenAlternaLosControlesSinReiniciarYGuardaLaPreferencia() {
+        val preferencias = contexto.getSharedPreferences("arcade_settings", Context.MODE_PRIVATE)
+        preferencias.edit().remove(CLAVE_CONTROLES_KENKEN).commit()
+        val primeraCasilla = withContentDescription(startsWith("Fila 1, columna 1:"))
+        ActivityScenario.launch(KenKenActivity::class.java).use { escenario ->
+            onView(withId(R.id.incrementar)).check(matches(isChecked()))
+            onView(primeraCasilla).perform(click(), click())
+            onView(withId(R.id.decrementar)).perform(click())
+            onView(primeraCasilla).perform(click())
+            onView(primeraCasilla).check(matches(withContentDescription(containsString(": 1."))))
+            escenario.recreate()
+            onView(withId(R.id.decrementar)).check(matches(isChecked()))
+            onView(withId(R.id.tipo_control)).perform(click())
+            onView(withText(R.string.kenken_controles_numeros)).perform(click())
+            onView(primeraCasilla).check(matches(withContentDescription(containsString(": 1."))))
+            onView(withId(R.id.numero4)).perform(click())
+            onView(primeraCasilla).check(matches(withContentDescription(containsString(": 4."))))
+            escenario.recreate()
+            onView(withId(R.id.numero2)).perform(click())
+            onView(primeraCasilla).check(matches(withContentDescription(containsString(": 2."))))
+        }
+        ActivityScenario.launch(KenKenActivity::class.java).use {
+            onView(primeraCasilla).perform(click())
+            onView(withId(R.id.numero3)).perform(click())
+            onView(withId(R.id.tipo_control)).perform(click())
+            onView(withText(R.string.kenken_controles_modos)).perform(click())
+            onView(withId(R.id.borrar_modo)).perform(click())
+            onView(primeraCasilla).perform(click())
+            onView(primeraCasilla).check(matches(withContentDescription(containsString(": vacía."))))
+            onView(withId(R.id.restart)).perform(click())
+            onView(withId(R.id.incrementar)).check(matches(isChecked()))
+        }
+    }
 
     @Test
     fun buscaminasUsaFilasUniformesYConservaElGuardadoAlReabrir() {

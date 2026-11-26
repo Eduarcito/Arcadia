@@ -16,6 +16,43 @@ class KenKenViewModel(
     var casillaSeleccionada: Int? = null
         private set
 
+    var tipoControl = TipoControlKenKen.MODOS
+        private set
+
+    var modoEntrada = ModoEntradaKenKen.INCREMENTAR
+        private set
+
+    fun cambiarTipoControl(tipo: TipoControlKenKen) {
+        tipoControl = tipo
+    }
+
+    fun cambiarModo(modo: ModoEntradaKenKen) {
+        if (resultado != ResultadoComprobacionKenKen.CORRECTO) modoEntrada = modo
+    }
+
+    fun tocarCasilla(fila: Int, columna: Int) {
+        if (tipoControl == TipoControlKenKen.MODOS) {
+            aplicarModoEnCasilla(fila, columna)
+        } else {
+            seleccionarCasilla(fila, columna)
+        }
+    }
+
+    fun aplicarModoEnCasilla(fila: Int, columna: Int) {
+        val tamano = rompecabezas.tamano
+        if (resultado == ResultadoComprobacionKenKen.CORRECTO ||
+            fila !in 0 until tamano || columna !in 0 until tamano
+        ) return
+        seleccionarCasilla(fila, columna)
+        val valor = valores[fila * tamano + columna]
+        val nuevo = when (modoEntrada) {
+            ModoEntradaKenKen.INCREMENTAR -> minOf(valor + 1, tamano)
+            ModoEntradaKenKen.DECREMENTAR -> if (valor == 0) tamano else maxOf(valor - 1, 1)
+            ModoEntradaKenKen.BORRAR -> 0
+        }
+        establecerValor(nuevo)
+    }
+
     fun obtenerValores(): List<Int> = valores.toList()
 
     fun seleccionarCasilla(fila: Int, columna: Int) {
@@ -28,7 +65,7 @@ class KenKenViewModel(
         casillaSeleccionada = fila * tamano + columna
     }
 
-    /** Pone [valor] (1..tamano) en la casilla seleccionada; 0 la borra. */
+    // Escribe en la casilla seleccionada; cero la borra
     fun establecerValor(valor: Int) {
         val indice = casillaSeleccionada ?: return
         if (resultado == ResultadoComprobacionKenKen.CORRECTO) return
@@ -39,7 +76,7 @@ class KenKenViewModel(
         }
     }
 
-    /** Casillas con un valor repetido en su fila o columna, para aviso en vivo. */
+    // Identifica los valores repetidos en filas o columnas
     fun indicesDuplicados(): Set<Int> {
         val tamano = rompecabezas.tamano
         val duplicados = mutableSetOf<Int>()
@@ -63,6 +100,7 @@ class KenKenViewModel(
         rompecabezas = alternativas.randomOrNull() ?: rompecabezas
         valores.fill(0)
         casillaSeleccionada = null
+        modoEntrada = ModoEntradaKenKen.INCREMENTAR
         resultado = ResultadoComprobacionKenKen.SIN_COMPROBAR
     }
 }

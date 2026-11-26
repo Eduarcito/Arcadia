@@ -17,6 +17,17 @@
         <item name="iconPadding">0dp</item>
     </style>
 
+    <style name="Widget.Arcadia.BotonModoKenKen" parent="Widget.Arcadia.BotonTeclaKenKen">
+        <item name="android:checkable">true</item>
+        <item name="toggleCheckedStateOnClick">false</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:paddingStart">2dp</item>
+        <item name="android:paddingEnd">2dp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="iconGravity">textTop</item>
+        <item name="iconPadding">4dp</item>
+    </style>
+
     <style name="Widget.Arcadia.BotonComprobarKenKen" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/kenken_fondo_comprobar</item>
         <item name="android:textColor">@color/kenken_texto_comprobar</item>

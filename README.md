@@ -77,6 +77,9 @@ El código está en `app/src/main/java/com/example/arcadia/` y las vistas en `ap
 | KenKen | `juegos/kenken/` | `activity_kenken.xml` |
 
 KenKen usa los componentes `TableroKenKenView` y `ControlesKenKenView`.
+El botón **Controles** permite alternar entre los modos clásicos y el teclado
+numérico sin reiniciar la partida. La elección se conserva al volver a abrir
+el juego; por defecto se muestran los modos clásicos.
 Los modos **Incrementar**, **Decrementar** y **Borrar** se aplican al tocar una
 casilla. **Comprobar** distingue entre tablero incompleto, incorrecto y correcto;
 solo una comprobación correcta bloquea la partida hasta reiniciar.

@@ -48,7 +48,9 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los seis juego
 - Una fila o columna con números repetidos se rechaza aunque las jaulas cumplan sus objetivos.
 - Una cuadrícula sin repetidos se rechaza si falla una jaula.
 - `4 ÷ 2` cumple un objetivo de 2; los valores `3` y `2` no cumplen un objetivo de 1.
-- Tocar una casilla solo la selecciona; cada tecla del teclado (1–4) escribe su valor en la casilla seleccionada con un solo toque, y el borrador la limpia. Corregir un valor no exige ciclar. Sin casilla seleccionada el teclado no escribe.
+- Por defecto se muestran **Incrementar**, **Decrementar** y **Borrar**. Cada toque aplica el modo elegido; incrementar se detiene en 4, decrementar empieza en 4 si está vacía y se detiene en 1, y borrar actúa sobre la casilla tocada.
+- Elegir **Teclado numérico** desde **Controles** conserva la partida. Tocar una casilla solo la selecciona; cada tecla 1–4 escribe su valor y el borrador la limpia. Sin selección el teclado no escribe.
+- Alternar entre ambos controles, cancelar el selector, rotar y volver a abrir: la preferencia se conserva, cambiar de control no altera la variante ni los valores y rotar conserva el modo clásico seleccionado.
 - Las repeticiones en fila o columna se marcan en vivo al escribir, antes de comprobar.
 - **Comprobar** sobre un tablero incompleto no declara victoria ni bloquea la partida.
 - Las jaulas en forma de L se ven continuas entre filas y muestran una sola pista. Cada frontera de jaula se dibuja una sola vez, sin duplicar su grosor.
@@ -56,7 +58,7 @@ Comprobar las reglas por separado y recorrer catálogo, ajustes y los seis juego
 - Al rotar se conservan los valores, la selección y el resultado de la comprobación.
 - El título no se duplica en el encabezado ilustrado. Los indicadores muestran casillas completadas y modo activo. Los modos tienen colores distintos y el activo muestra un contorno más grueso.
 - La pantalla mantiene el estilo de tarjetas y ayuda compartido con los demás juegos. El tablero conserva las jaulas continuas y permite desplazarse verticalmente en teléfonos pequeños.
-- El teclado se deshabilita al resolver la cuadrícula y también mientras no haya casilla seleccionada; reiniciar lo rehabilita.
+- Ambos controles se deshabilitan al resolver la cuadrícula. El teclado también se deshabilita sin selección; al reiniciar espera una nueva selección, mientras los modos clásicos quedan disponibles inmediatamente.
 - Cambiar el modo oscuro global y abrir KenKen aplica el mismo tema que el catálogo. Volver a una pantalla de KenKen abierta tras cambiar la preferencia actualiza el tema sin perder valores ni modo. Comprobar contraste de pistas, números, selección, controles y mensajes en ambos temas.
 - Las microinteracciones no bloquean toques rápidos, no cambian valores por sí mismas y no se repiten al rotar. Con las animaciones del sistema desactivadas, todos los controles y mensajes siguen funcionando sin movimiento.
 

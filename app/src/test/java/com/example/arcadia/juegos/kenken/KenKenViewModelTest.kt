@@ -8,6 +8,87 @@ import org.junit.Test
 
 class KenKenViewModelTest {
     @Test
+    fun losModosClasicosSonElControlInicial() {
+        val modelo = KenKenViewModel()
+        assertEquals(TipoControlKenKen.MODOS, modelo.tipoControl)
+        assertEquals(ModoEntradaKenKen.INCREMENTAR, modelo.modoEntrada)
+        modelo.tocarCasilla(0, 0)
+        assertEquals(1, modelo.obtenerValores()[0])
+    }
+
+    @Test
+    fun incrementarSeDetieneEnElTamanoDelTablero() {
+        val modelo = KenKenViewModel()
+        repeat(6) { modelo.tocarCasilla(0, 0) }
+        assertEquals(4, modelo.obtenerValores()[0])
+    }
+
+    @Test
+    fun decrementarEmpiezaEnCuatroYSeDetieneEnUno() {
+        val modelo = KenKenViewModel()
+        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
+        modelo.tocarCasilla(0, 0)
+        assertEquals(4, modelo.obtenerValores()[0])
+        repeat(6) { modelo.tocarCasilla(0, 0) }
+        assertEquals(1, modelo.obtenerValores()[0])
+    }
+
+    @Test
+    fun borrarActuaSobreLaCasillaTocadaSinCambiarLasDemas() {
+        val modelo = KenKenViewModel()
+        modelo.tocarCasilla(0, 0)
+        modelo.tocarCasilla(1, 1)
+        modelo.cambiarModo(ModoEntradaKenKen.BORRAR)
+        modelo.tocarCasilla(0, 0)
+        assertEquals(0, modelo.obtenerValores()[0])
+        assertEquals(1, modelo.obtenerValores()[5])
+    }
+
+    @Test
+    fun cambiarControlesConservaValoresSeleccionVarianteYResultado() {
+        val modelo = KenKenViewModel()
+        modelo.tocarCasilla(0, 0)
+        modelo.cambiarModo(ModoEntradaKenKen.DECREMENTAR)
+        modelo.comprobar()
+        val valores = modelo.obtenerValores()
+        val variante = modelo.rompecabezas
+        modelo.cambiarTipoControl(TipoControlKenKen.NUMEROS)
+        assertEquals(valores, modelo.obtenerValores())
+        assertEquals(0, modelo.casillaSeleccionada)
+        assertEquals(variante, modelo.rompecabezas)
+        assertEquals(ResultadoComprobacionKenKen.INCOMPLETO, modelo.resultado)
+        modelo.tocarCasilla(1, 1)
+        assertEquals(valores, modelo.obtenerValores())
+        modelo.establecerValor(3)
+        modelo.cambiarTipoControl(TipoControlKenKen.MODOS)
+        assertEquals(ModoEntradaKenKen.DECREMENTAR, modelo.modoEntrada)
+        modelo.tocarCasilla(1, 1)
+        assertEquals(2, modelo.obtenerValores()[5])
+    }
+
+    @Test
+    fun laVictoriaBloqueaTambienLosModosClasicos() {
+        val modelo = crearModeloResuelto()
+        modelo.comprobar()
+        val valores = modelo.obtenerValores()
+        modelo.cambiarModo(ModoEntradaKenKen.BORRAR)
+        modelo.tocarCasilla(0, 0)
+        assertEquals(valores, modelo.obtenerValores())
+        assertEquals(ModoEntradaKenKen.INCREMENTAR, modelo.modoEntrada)
+    }
+
+    @Test
+    fun reiniciarConservaElTipoDeControlYRestableceIncrementar() {
+        val modelo = KenKenViewModel()
+        modelo.cambiarTipoControl(TipoControlKenKen.NUMEROS)
+        modelo.cambiarModo(ModoEntradaKenKen.BORRAR)
+        modelo.reiniciar()
+        assertEquals(TipoControlKenKen.NUMEROS, modelo.tipoControl)
+        assertEquals(ModoEntradaKenKen.INCREMENTAR, modelo.modoEntrada)
+        assertEquals(List(16) { 0 }, modelo.obtenerValores())
+    }
+
+    @Test
     fun iniciaVacioSinSeleccion() {
         val modelo = KenKenViewModel()
         assertEquals(List(16) { 0 }, modelo.obtenerValores())

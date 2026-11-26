@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="kenken_incrementar">Incrementar</string>
+    <string name="kenken_decrementar">Decrementar</string>
+    <string name="kenken_controles">Controles</string>
+    <string name="kenken_controles_titulo">Controles de KenKen</string>
+    <string name="kenken_controles_modos">Incrementar, decrementar y borrar</string>
+    <string name="kenken_controles_numeros">Teclado numérico</string>
+    <string name="kenken_controles_actual">Cambiar controles. Actual: %1$s</string>
+    <string name="kenken_instruccion_incrementar">Incrementar: toca una casilla para aumentar su valor hasta 4.</string>
+    <string name="kenken_instruccion_decrementar">Decrementar: toca una casilla para reducir su valor hasta 1. Si está vacía, empieza en 4.</string>
+    <string name="kenken_instruccion_borrar">Borrar: toca una casilla para eliminar su valor.</string>
     <string name="kenken_lema">CADA NÚMERO EN SU LUGAR</string>
-    <string name="kenken_gesto">Toca una casilla · Elige un número</string>
-    <string name="kenken_ayuda">Completa cada fila y columna con los números del 1 al 4, sin repetir. Las jaulas indican el resultado y la operación que deben cumplir sus casillas.</string>
+    <string name="kenken_gesto">Elige los controles · Toca el tablero</string>
+    <string name="kenken_ayuda">Completa cada fila y columna con los números del 1 al 4, sin repetir. Las jaulas indican el resultado y la operación que deben cumplir sus casillas. En Controles puedes elegir incrementar, decrementar y borrar al tocar las casillas, o seleccionar una casilla y escribir con el teclado numérico. Cambiar los controles no reinicia la partida.</string>
     <string name="kenken_casillas_completadas">CASILLAS\n%1$d / 16</string>
     <string name="kenken_simbolo_incrementar">+</string>
     <string name="kenken_simbolo_decrementar">−</string>

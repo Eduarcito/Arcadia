@@ -4,7 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:baselineAligned="false"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/teclado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:visibility="gone">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/numero1" style="@style/Widget.Arcadia.BotonTeclaKenKen"
@@ -29,4 +37,45 @@
         android:contentDescription="@string/kenken_borrar"
         app:icon="@drawable/kenken_borrar" app:iconGravity="textStart" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/modos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/incrementar"
+            style="@style/Widget.Arcadia.BotonModoKenKen"
+            android:layout_width="0dp" android:layout_height="64dp"
+            android:layout_weight="1" android:layout_marginEnd="4dp"
+            android:text="@string/kenken_incrementar"
+            android:contentDescription="@string/kenken_incrementar"
+            app:icon="@drawable/kenken_sumar" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/decrementar"
+            style="@style/Widget.Arcadia.BotonModoKenKen"
+            android:layout_width="0dp" android:layout_height="64dp"
+            android:layout_weight="1" android:layout_marginHorizontal="4dp"
+            android:text="@string/kenken_decrementar"
+            android:contentDescription="@string/kenken_decrementar"
+            app:backgroundTint="@color/kenken_fondo_decrementar"
+            app:strokeColor="@color/kenken_tinte_decrementar"
+            app:iconTint="@color/kenken_tinte_decrementar"
+            android:textColor="@color/kenken_tinte_decrementar"
+            app:icon="@drawable/kenken_restar" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/borrar_modo"
+            style="@style/Widget.Arcadia.BotonModoKenKen"
+            android:layout_width="0dp" android:layout_height="64dp"
+            android:layout_weight="1" android:layout_marginStart="4dp"
+            android:text="@string/kenken_borrar"
+            android:contentDescription="@string/kenken_borrar"
+            app:backgroundTint="@color/kenken_fondo_borrar"
+            app:strokeColor="@color/kenken_tinte_borrar"
+            app:iconTint="@color/kenken_tinte_borrar"
+            android:textColor="@color/kenken_tinte_borrar"
+            app:icon="@drawable/kenken_borrar" />
+    </LinearLayout>
 </LinearLayout>
