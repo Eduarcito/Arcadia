@@ -1,136 +1,159 @@
-# Arcadia
+<p align="center">
+  <img src="app/src/main/res/drawable-nodpi/arcadia_app_icon.png" alt="Icono de Arcadia" width="128" />
+</p>
 
-## Antes de continuar el desarrollo
+<h1 align="center">Arcadia</h1>
 
-**Todo cambio debe seguir la documentación del proyecto.** Antes de modificar o
-añadir funcionalidades, lee las [reglas obligatorias](documentacion/AGENTS.md) y
-consulta las guías correspondientes:
+<p align="center">
+  Juegos de lógica y habilidad para Android.<br />
+  Seis juegos, controles táctiles y partidas sin conexión.
+</p>
 
-- [Estructura](documentacion/docs/estructura.md): paquetes, clases y recursos.
-- [Componentes](documentacion/docs/componentes.md): vistas compuestas y reutilización.
-- [Diseño](documentacion/docs/diseno.md): estilos, controles y temas.
-- [Juegos](documentacion/docs/juegos.md): reglas y alcance.
-- [Sintaxis](documentacion/docs/sintaxis.md): convenciones y ejemplos.
-- [Pruebas](documentacion/docs/pruebas.md): comprobaciones y criterios de entrega.
+<p align="center">
+  <a href="https://github.com/Eduarcito/Arcadia/releases"><strong>Descargar APK</strong></a>
+  · <a href="#juegos">Juegos</a>
+  · <a href="#instalacion">Instalación</a>
+  · <a href="#desarrollo">Desarrollo</a>
+</p>
 
-Si utilizas un agente de IA, indícale que lea `documentacion/AGENTS.md` antes de
-trabajar. Acuerda con el equipo cualquier cambio que se aparte de estas guías y
-actualiza la documentación para mantenerla alineada con la implementación.
+---
 
-## Descripción
+Arcadia reúne **2048, Buscaminas, Petdoku, Snake, Number Connect y KenKen** en una aplicación Android desarrollada en Kotlin. Elige un juego desde el catálogo ilustrado, juega sin Internet y personaliza la experiencia desde el menú de ajustes.
 
-Aplicación Android en Kotlin con seis juegos disponibles sin conexión y un catálogo
-de tarjetas ilustradas. Los ajustes permiten cambiar el volumen, los efectos de
-sonido, la música, la vibración y el modo oscuro. KenKen conserva sus reglas y
-controles, y comparte el estilo de encabezado, tarjetas y ayuda con los otros juegos.
+**Android 8.0 o posterior · Modo claro y oscuro · Controles táctiles**
 
-- **2048:** tablero 4 × 4 controlado con deslizamientos, fusiones sin encadenar la misma
-  ficha, puntuación, récord, detección de fin y opción de continuar tras llegar a 2048.
-- **Buscaminas:** tablero 8 × 8 con 10 minas, zona inicial segura, expansión de ceros,
-  casillas mediante toque y banderas mediante pulsación larga, victoria y revelación al perder.
-- **Petdoku:** 12 niveles de solución única. Coloca una mascota en cada fila, columna
-  y región de color, sin contacto diagonal. Un toque marca o quita una ×; dos toques
-  descubren una mascota. Un intento incorrecto deja una × roja fija y consume una
-  de las 3 vidas; al agotarlas aparece un diálogo para reintentar o volver al menú.
-  Al completar un nivel, el siguiente se abre automáticamente tras una breve pausa.
-  Las reglas ilustradas y el encabezado compacto dejan visible el tablero completo.
-  Arrastrar marca
-  varias casillas, o borra notas si el trazo empieza en una ×, sin quitar mascotas
-  ni errores. Las vidas y las marcas se guardan al salir.
-- **Snake:** deslizamientos con dirección continua sin levantar el dedo, crecimiento
-  al comer, velocidad progresiva, récord y colisiones con paredes o cuerpo. Tocar
-  el tablero pausa o continúa; un deslizamiento inicia la partida. Se pausa al salir.
-- **Number Connect:** tablero 5 × 7; arrastra sobre números iguales vecinos, también en diagonal, y suelta para combinarlos. Incluye puntuación, récord, guardado y diálogo de derrota.
-- **KenKen:** cinco variantes 4 × 4 con jaulas, comprobación y reinicio.
+<a id="juegos"></a>
+## Juegos
 
-Los cinco juegos nuevos guardan automáticamente su progreso en el dispositivo,
-incluido el fin de la partida, incluso al cerrar la aplicación.
-Al perder en 2048, Buscaminas o Snake, un diálogo
-permite reintentar o volver al menú principal; los récords se conservan al reintentar.
-El tema se aplica también a KenKen; los ajustes de
-audio y vibración no modifican ese juego. Las ilustraciones
-del catálogo son vectores dibujados en código; la melodía incluida es original.
-
-2048, Buscaminas, Snake y Number Connect ajustan el tablero al ancho y alto disponibles, sin desplazamiento. La ayuda completa se abre con **?**. Buscaminas muestra casillas blancas, números de colores, racha, récord, selector para descubrir o marcar y una pista gratuita por partida.
-
-El menú lateral se abre con las tres líneas de la esquina superior izquierda y
-contiene Mis juegos y Ajustes. El icono adaptativo de Android usa la imagen generada
-`drawable-nodpi/arcadia_app_icon.png`, con margen para el recorte del launcher.
-Las cinco pantallas nuevas usan colores propios, marcadores separados y tableros
-con relieve. Las fichas cambian con una animación breve y Snake se dibuja con
-interpolación entre pasos. No hay botones direccionales; 2048 y Snake también
-exponen las direcciones como acciones de accesibilidad del tablero.
-
-## Dónde trabajar
-
-El código está en `app/src/main/java/com/example/arcadia/` y las vistas en `app/src/main/res/layout/`.
-
-| Funcionalidad | Paquete o archivo Kotlin | Layout |
+| Juego | Tu objetivo | Cómo jugar |
 |---|---|---|
-| Catálogo | `MainActivity.kt` | `activity_main.xml`, `tarjeta_arcade.xml` |
-| Ajustes | `ajustes/AjustesActivity.kt` | `activity_arcade_settings.xml` |
+| **2048** | Combinar fichas en un tablero 4 × 4 hasta alcanzar el 2048. | Desliza en la dirección que quieras mover las fichas. Puedes continuar después de alcanzar la meta. |
+| **Buscaminas** | Descubrir las 54 casillas seguras de un tablero 8 × 8 con 10 minas. | Toca para descubrir y mantén pulsado para marcar, o usa el selector de banderas. Incluye una pista por partida, racha y mejor racha. |
+| **Petdoku** | Encontrar una mascota por fila, columna y región de color, sin que se toquen. | Un toque marca una ×; dos toques descubren una mascota. Arrastra para marcar o borrar varias notas. Tienes tres vidas por nivel. |
+| **Snake** | Comer, crecer y superar tu récord sin chocar con las paredes ni con tu cuerpo. | Desliza para empezar y girar; toca el tablero para pausar o continuar. |
+| **Number Connect** | Unir números iguales y conseguir fichas de mayor valor en un tablero 5 × 7. | Arrastra entre casillas vecinas, también en diagonal. Consulta la suma y la ficha final antes de soltar. |
+| **KenKen** | Completar un tablero 4 × 4 respetando las operaciones de las jaulas y sin repetir números en filas o columnas. | Usa los modos clásicos o el teclado numérico y pulsa **Comprobar** para revisar la solución. |
+
+### Petdoku: una mascota en cada nivel
+
+Sus **12 niveles de solución única** alternan siete mascotas ilustradas: perrito, gatito, conejito, zorrito, panda, tigre y osito. El tablero y las reglas muestran el animal del nivel actual.
+
+Un intento incorrecto deja una **× roja** y consume una vida. Al completar el tablero, el siguiente nivel comienza automáticamente. Si pierdes las tres vidas, puedes reintentar o volver al menú.
+
+### Number Connect: combina con una vista previa
+
+La tarjeta sobre el tablero muestra la suma mientras trazas la conexión y el valor de la ficha que se formará. Puedes retroceder una casilla para corregir el trazo.
+
+Por ejemplo, **8 + 8 + 8 = 24** produce una ficha de **32**: la suma se redondea hacia arriba a una potencia de dos. La combinación se confirma al soltar el dedo; después, las fichas caen y se rellenan los espacios.
+
+## Características
+
+- **Sin conexión:** todos los juegos funcionan sin Internet ni cuentas.
+- **Partidas guardadas:** 2048, Buscaminas, Petdoku, Snake y Number Connect recuperan el progreso al volver a abrirlos.
+- **Tableros adaptables:** 2048, Buscaminas, Snake y Number Connect ajustan el tablero al espacio disponible, sin desplazamiento vertical. Petdoku incluye reglas ilustradas compactas.
+- **Reintento al perder:** esos cinco juegos ofrecen un diálogo para reintentar o volver al menú principal.
+- **Ajustes de juego:** volumen, efectos de sonido, música, vibración y modo claro u oscuro.
+- **Ayuda y accesibilidad:** instrucciones de juego, descripciones de casillas y acciones de accesibilidad para los controles compatibles.
+
+El menú de tres líneas abre **Mis juegos** y **Ajustes**. Snake se pausa al salir y espera a que lo reanudes al regresar.
+
+KenKen ofrece cinco rompecabezas predefinidos y conserva el tablero al rotar la pantalla. Su partida no se guarda al cerrar el juego; sí se recuerda la elección entre controles clásicos y teclado numérico. El tema visual es compartido, mientras que los ajustes de audio y vibración se aplican a los demás juegos.
+
+<a id="instalacion"></a>
+## Descargar e instalar
+
+1. Abre la sección [Releases](https://github.com/Eduarcito/Arcadia/releases).
+2. Elige una versión y descarga el archivo **.apk** de **Assets**.
+3. Abre el archivo en tu dispositivo Android. Si el sistema lo solicita, permite instalar aplicaciones desde esa fuente.
+4. Completa la instalación y abre **Arcadia**.
+
+**Requisito mínimo:** Android 8.0 — API 26.
+
+<a id="desarrollo"></a>
+## Desarrollo
+
+### Antes de modificar el proyecto
+
+Lee las [reglas obligatorias](documentacion/AGENTS.md) y consulta la guía correspondiente. Los cambios deben mantener la documentación alineada con la implementación.
+
+| Guía | Contenido |
+|---|---|
+| [Estructura](documentacion/docs/estructura.md) | Paquetes, clases, recursos y guardado. |
+| [Componentes](documentacion/docs/componentes.md) | Vistas compuestas y reutilización de interfaz. |
+| [Diseño](documentacion/docs/diseno.md) | Temas, tarjetas, tableros y controles. |
+| [Juegos](documentacion/docs/juegos.md) | Reglas y alcance de cada juego. |
+| [Sintaxis](documentacion/docs/sintaxis.md) | Convenciones de Kotlin y ejemplos de XML. |
+| [Pruebas](documentacion/docs/pruebas.md) | Validaciones y criterios de entrega. |
+
+Si trabajas con un agente de IA, indícale que lea `documentacion/AGENTS.md` antes de editar. Acuerda con el equipo cualquier cambio que se aparte de estas guías.
+
+### Tecnologías y arquitectura
+
+- **Kotlin** y un único módulo Android: `app`.
+- **Vistas XML y View Binding**, con Material Components y ConstraintLayout.
+- **Reglas en Kotlin puro** para separar la lógica de la interfaz y facilitar las pruebas.
+- **ViewModel** para conservar el estado durante la recreación de las pantallas.
+- **SharedPreferences** para las partidas y los ajustes locales.
+- **JUnit, Robolectric y Espresso** para las comprobaciones de lógica, guardado e interfaz.
+
+Cada juego agrupa su `Activity`, `ViewModel` y reglas en su propio paquete. La actividad conecta los controles y muestra el estado; el modelo delega las jugadas a las reglas.
+
+Los componentes compartidos viven en `compartido/ui/`. Las pantallas arcade utilizan `PantallaPartidaView`, y los tableros de casillas reutilizan filas y celdas XML. Snake conserva su dibujo interpolado en `Canvas`.
+
+Las partidas se guardan como JSON en `arcade_games`, con las claves `2048`, `mines`, `petdoku`, `snake` y `number_connect`. Los ajustes se almacenan por separado en `arcade_settings`. Conserva estas claves al reorganizar el código para mantener la compatibilidad con las partidas existentes.
+
+### Ubicación del código
+
+Rutas relativas a `app/src/main/java/com/example/arcadia/`. Los layouts se encuentran en `app/src/main/res/layout/`.
+
+| Funcionalidad | Código | Layout principal |
+|---|---|---|
+| Catálogo | `MainActivity.kt` | `activity_main.xml` |
+| Ajustes | `ajustes/` | `activity_arcade_settings.xml` |
 | 2048 | `juegos/juego2048/` | `activity_juego_2048.xml` |
 | Buscaminas | `juegos/buscaminas/` | `activity_buscaminas.xml` |
 | Petdoku | `juegos/petdoku/` | `activity_petdoku.xml` |
 | Snake | `juegos/snake/` | `activity_snake.xml` |
 | Number Connect | `juegos/numberconnect/` | `activity_number_connect.xml` |
 | KenKen | `juegos/kenken/` | `activity_kenken.xml` |
+| Componentes y estado compartidos | `compartido/ui/`, `compartido/estado/` | Plantillas reutilizables |
 
-KenKen usa los componentes `TableroKenKenView` y `ControlesKenKenView`.
-El botón **Controles** permite alternar entre los modos clásicos y el teclado
-numérico sin reiniciar la partida. La elección se conserva al volver a abrir
-el juego; por defecto se muestran los modos clásicos.
-Los modos **Incrementar**, **Decrementar** y **Borrar** se aplican al tocar una
-casilla. **Comprobar** distingue entre tablero incompleto, incorrecto y correcto;
-solo una comprobación correcta bloquea la partida hasta reiniciar.
-Cada partida elige al azar una de cinco variantes predefinidas de solución única.
-Reiniciar selecciona otra variante sin repetir la anterior de inmediato.
-Rotar la pantalla conserva el rompecabezas y sus valores. No se utiliza un generador.
+### Abrir y ejecutar
 
-Los componentes visuales compartidos están en `compartido/ui/`. El catálogo declara
-las tarjetas en XML y los cinco juegos nuevos usan `PantallaPartidaView`, una vista
-compuesta basada en `ConstraintLayout`, con contenido fijo configurado por atributos.
-`activity_arcade_game.xml` es su plantilla interna. Todos los juegos reutilizan
-`EncabezadoJuegoView`, `IndicadoresJuegoView` y `AyudaJuegoView`.
-`TableroArcadeView` infla filas y casillas `LinearLayout` una vez mediante View Binding
-y actualiza solo las que cambian, sin `GridLayout`. Cada juego tiene reglas en Kotlin
-puro y un `ViewModel`. `PartidaViewModel`, en `compartido/estado/`, mantiene sin cambios
-el guardado JSON en preferencias privadas y sus claves existentes.
-Snake elimina sus callbacks al pausar la Activity. `TemaArcadeActivity` aplica el
-tema global y las barras del sistema a todas las pantallas, incluido KenKen.
-Sus controles usan tarjetas independientes con iconos y etiquetas, con colores
-adaptados a ambos temas. KenKen no guarda partidas de forma persistente.
+1. Clona el repositorio y abre su carpeta raíz en **Android Studio**.
+2. Usa una versión de Android Studio compatible con el Android Gradle Plugin definido en [libs.versions.toml](gradle/libs.versions.toml).
+3. Instala el SDK indicado en [app/build.gradle.kts](app/build.gradle.kts) y sincroniza Gradle.
+4. Selecciona el módulo **app** y un dispositivo o emulador con API 26 o posterior.
+5. Pulsa **Run** para compilar, instalar y abrir la aplicación.
 
-Para crear o ampliar un juego, sigue la [guía de componentes](documentacion/docs/componentes.md).
-El patrón de separar reglas, estado y vistas también se aplica a los nuevos juegos.
+Para generar un APK de depuración desde PowerShell:
 
-Al implementar una partida, coloca su `ViewModel` y sus reglas en el paquete del juego.
-La `Activity` conecta los controles mediante View Binding y muestra el estado;
-el `ViewModel` conserva la partida al rotar la pantalla. Escribe las reglas en Kotlin
-sin referencias a vistas para poder probarlas en `app/src/test/`.
+```powershell
+.\gradlew.bat :app:assembleDebug
+```
 
-## Abrir y comprobar la base
+El archivo se genera en `app/build/outputs/apk/debug/app-debug.apk`.
 
-1. Abre la carpeta raíz en Android Studio y sincroniza el proyecto con Gradle.
-2. Usa el Gradle Wrapper del repositorio y el SDK de compilación indicado en `app/build.gradle.kts`.
-3. Selecciona `app`, elige un dispositivo o emulador con Android 8.0 (API 26) o posterior y pulsa **Run**.
-4. Desde el catálogo, abre cada juego y comprueba que **Volver al catálogo** y el botón Atrás del sistema regresan a la lista.
+### Comprobaciones
 
-## Comprobaciones
+Compilación, pruebas locales y análisis estático:
 
 ```powershell
 .\gradlew.bat :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+```
+
+Pruebas de interfaz con un emulador o dispositivo de prueba conectado:
+
+```powershell
 .\gradlew.bat :app:connectedDebugAndroidTest
 ```
 
-La segunda orden requiere un emulador o dispositivo de prueba. Las pruebas de interfaz
-restablecen el guardado de los cuatro juegos nuevos y los ajustes en ese dispositivo.
-Comprueban navegación, fusiones por gesto, recuperación del estado, banderas, marcas,
-pausa táctil de Snake, toques simples/dobles, tres vidas y trazos de Petdoku,
-menú lateral, icono adaptativo y modo claro.
-`EstructuraJuegosTest` verifica filas uniformes, recuperación del guardado al reabrir
-y componentes compartidos, modos, rotación y reinicio de KenKen.
-Las pruebas de lógica verifican los umbrales de gesto, la cancelación y un único
-movimiento por trazo en 2048, además de la solución
-única y conectividad de las regiones de cada nivel de Petdoku. Las pruebas de KenKen
-se mantienen intactas.
+> Ejecuta la suite de interfaz en un dispositivo de prueba: `ArcadeFlowTest` borra las preferencias de partidas y ajustes.
+
+Las pruebas cubren las reglas de los juegos, gestos, guardado, navegación, diálogos de fin de partida, mascotas y avance de Petdoku, previsualización de Number Connect y controles de KenKen. Consulta la [guía de pruebas](documentacion/docs/pruebas.md) para conocer los escenarios de cada suite.
+
+## Recursos visuales
+
+El catálogo combina ilustraciones dibujadas en código con las mascotas de Petdoku. El icono de la app y las mascotas se incluyen como recursos locales, por lo que no requieren descargas durante el juego.
+
+La [documentación de las mascotas](documentacion/mascotas_por_nivel.md) recoge las imágenes, su distribución por nivel y los prompts utilizados para crearlas.
